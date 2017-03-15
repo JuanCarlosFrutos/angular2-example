@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-form-tweet',
   templateUrl: './form-tweet.component.html',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormTweetComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  	private route: Router
+  	) { }
 
   ngOnInit() {
+  }
+
+  redirect(){
+  	this.route.navigate(['/']);
   }
 
 }
