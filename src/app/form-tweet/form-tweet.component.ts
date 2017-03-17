@@ -37,7 +37,20 @@ export class FormTweetComponent implements OnInit {
   // }
 
   writeTweet(content){
-    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (2, "Admin", content.value)});
+  let textTweet = content.value;
+  let wordsTweet = textTweet.split(' ');
+  let arr=[];
+  console.log(wordsTweet[1]);
+  console.log(wordsTweet.length);
+  for(var i = 1; i < wordsTweet.length; i++){
+      console.log("bucle for");
+      if(wordsTweet[i].indexOf('#') == 0){
+        arr.push(wordsTweet[i]);  
+      }
+  }
+  console.log(arr);
+
+    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (2, "Admin", content.value, arr)});
   }
 
    // RegisterTweet(content){

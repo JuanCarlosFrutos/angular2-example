@@ -19,8 +19,7 @@ export class AppComponent{
   constructor(
       private _store : Store<AppStore>
   	) {  
-  	   this._store.dispatch({type: 'TWEET_WRITE', payload: new Tweet (2, "Admin", "Primer tweet APP PRINCIPAL")});
+  	   //this._store.dispatch({type: 'TWEET_WRITE', payload: new Tweet (2, "Admin", "Primer tweet APP PRINCIPAL"), {'0','0'}});
        this.tweet = _store.select('TweetReduce');
-       console.log(this.tweet);
     }
 }
