@@ -8,6 +8,8 @@
 	<body>
 		<app-header></app-header>
 		<app-nav-bar></app-nav-bar>
+		<app-feed [tweets] = "tweet | async"></app-feed>
+<!-- 		<app-tweet [tweet] = "tweet | async"></app-tweet> -->
 		<router-outlet></router-outlet>
 	</body>
 </html> 
