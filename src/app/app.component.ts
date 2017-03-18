@@ -15,10 +15,14 @@ import { TweetReduce } from './store/reducer/tweet.reducer';
 })
 export class AppComponent{
   private tweet;
+  private hashtags : String[] = ["cine", "ciencia"]
 
   constructor(
-      private _store : Store<AppStore>
+      private _store : Store<AppStore>,
   	) {  
+  	    //hashtags.push ("Ciencia");
+  	    //hashtags.push ("Cine");
+  	    //console.log(hashtags);
   	   //this._store.dispatch({type: 'TWEET_WRITE', payload: new Tweet (2, "Admin", "Primer tweet APP PRINCIPAL"), {'0','0'}});
        this.tweet = _store.select('TweetReduce');
     }

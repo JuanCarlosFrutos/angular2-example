@@ -24,7 +24,7 @@ export class FormTweetComponent implements OnInit {
     	private route: Router,
       private _store : Store<AppStore>
   	) {  
-       this.tweet = _store.select('TweetReduce');
+       //this.tweet = _store.select('TweetReduce');
     }
 
 
