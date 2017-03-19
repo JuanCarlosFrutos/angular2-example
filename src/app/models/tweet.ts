@@ -3,6 +3,6 @@ export class Tweet {
     	public id: Number, 
     	public author: string, 
     	public text:string,
-    	public hashtags:String[]
+    	public hashtags:Array<String>
     ){}
 }

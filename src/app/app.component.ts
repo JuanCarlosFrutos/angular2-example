@@ -16,16 +16,14 @@ export class AppComponent{
   private tweet;
   private tweetFilter : Observable<Array<Tweet>>;
   private currentFilter;
-  private model;
-  private hashtags : string[] = ['#all','#hola','#adios'];
+  private hashtags : Array<String> = ['#all'];
 
   constructor(
       private _store : Store<AppStore>,
   	) {  
-       this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (2, "Admin", "Tweet APP PRINCIPAL", this.hashtags)});
+      // this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (2, "Admin", "Tweet APP PRINCIPAL", this.hashtags)});
        this.tweet = _store.select('TweetReduce');
        this.currentFilter = _store.select('FilterReduce');
-
       // const latest = this.currentFilter.withLatestFrom(this.tweet);
 
       // const subscribe = latest.subscribe(latestValues => {
@@ -45,7 +43,15 @@ export class AppComponent{
       .let(stateSelector());
 
       //console.log(this.tweetFilter);
-    
+
+      this.tweet.subscribe( result => {
+                                      result.map(p => {
+                                                        for (var i = 0; i<p.hashtags.length; i++){
+                                                            if (!(this.hashtags.indexOf(p.hashtags[i])>=0))
+                                                              this.hashtags.push(p.hashtags[i]);
+                                                        }
+                                                      });
+                                    });
 
 
        //this.currentFilter.subscribe(result => {console.log("HIii");this.tweetFilter = this.tweet.map(p => console.log(p.hashtags))});
