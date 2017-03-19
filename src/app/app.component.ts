@@ -1,12 +1,11 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import {Observable} from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 
 import { Tweet } from './models/tweet';
-import { AppStore } from './store/app-store'
-
-import { TweetReduce } from './store/reducer/tweet.reducer';
+import { AppStore } from './store/app-store';
+import { stateSelector} from './store/state-selector';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +14,41 @@ import { TweetReduce } from './store/reducer/tweet.reducer';
 })
 export class AppComponent{
   private tweet;
-  private hashtags : String[] = ["cine", "ciencia"]
+  private tweetFilter : Observable<Array<Tweet>>;
+  private currentFilter;
+  private model;
+  private hashtags : string[] = ['#all','#hola','#adios'];
 
   constructor(
       private _store : Store<AppStore>,
   	) {  
-  	    //hashtags.push ("Ciencia");
-  	    //hashtags.push ("Cine");
-  	    //console.log(hashtags);
-  	   //this._store.dispatch({type: 'TWEET_WRITE', payload: new Tweet (2, "Admin", "Primer tweet APP PRINCIPAL"), {'0','0'}});
+       this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (2, "Admin", "Tweet APP PRINCIPAL", this.hashtags)});
        this.tweet = _store.select('TweetReduce');
+       this.currentFilter = _store.select('FilterReduce');
+
+      // const latest = this.currentFilter.withLatestFrom(this.tweet);
+
+      // const subscribe = latest.subscribe(latestValues => {
+
+      //   const [filter, tweets] = latestValues;
+
+      //   if (filter != undefined){
+      //     this.tweetFilter = tweets.filter(upgrade => upgrade.hashtags.includes(filter));
+      //   }else{
+      //     this.tweetFilter = this.tweet;
+      //   }
+      //   console.log(this.tweetFilter);
+      // });
+
+     this.tweetFilter = Observable.combineLatest(this.currentFilter,this.tweet)
+      //extracting party model to selector
+      .let(stateSelector());
+
+      //console.log(this.tweetFilter);
+    
+
+
+       //this.currentFilter.subscribe(result => {console.log("HIii");this.tweetFilter = this.tweet.map(p => console.log(p.hashtags))});
+         // p.filter(upgrade => upgrade.hashtags.includes('')))
     }
 }

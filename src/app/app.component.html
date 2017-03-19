@@ -1,5 +1,4 @@
-
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/x.x.x/ng2-bootstrap.min.js"></script>
@@ -8,8 +7,7 @@
 	<body>
 		<app-header></app-header>
 		<app-nav-bar [hashtags] = "hashtags"></app-nav-bar>
-		<app-feed [tweets] = "tweet | async"></app-feed>
-<!-- 		<app-tweet [tweet] = "tweet | async"></app-tweet> -->
+		<app-feed [tweets] = "tweetFilter | async" ></app-feed>
 		<router-outlet></router-outlet>
 	</body>
 </html> 

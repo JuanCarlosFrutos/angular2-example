@@ -3,8 +3,13 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  template: `
+  <div id="header" class="container">
+     <div class="jumbotron">
+      <h1>tterTwi</h1>
+      <button (click)="redirect('tweet')" class="btn btn-info">Tweet</button>
+    </div>
+  </div>  `  
 })
 export class HeaderComponent implements OnInit {
 

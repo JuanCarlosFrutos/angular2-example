@@ -5,6 +5,6 @@ import { HeaderComponent }    from './header/header.component';
 import { FormTweetComponent }    from './form-tweet/form-tweet.component';
 
 export const routing = [
- // { path: '', component: '' },
+  //{ path: '/', component:  },
   { path: 'tweet', component: FormTweetComponent }
 ];

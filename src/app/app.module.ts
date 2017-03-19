@@ -8,15 +8,17 @@ import {StoreModule, provideStore} from '@ngrx/store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import { routing } from './app.routing';
-
+//REDUCES
+import { TweetReduce } from './store/reducer/tweet.reducer';
+import { FilterReduce } from './store/reducer/filter.reducer';
+//COMPONENTS
 import { AppComponent } from './app.component';
+import { FeedComponent } from './feed/feed.component';
+import { TweetComponent } from './tweet/tweet.component';
 import { HeaderComponent } from './header/header.component';
 import { FormTweetComponent } from './form-tweet/form-tweet.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { TweetReduce } from './store/reducer/tweet.reducer';
-//import { Numero } from './store/reducer/numero_reducer';
-import { FeedComponent } from './feed/feed.component';
-import { TweetComponent } from './tweet/tweet.component';
+
 
 @NgModule({
   declarations: [
@@ -25,14 +27,14 @@ import { TweetComponent } from './tweet/tweet.component';
     FormTweetComponent,
     NavBarComponent,
     FeedComponent,
-    TweetComponent,
+    TweetComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routing),
-    StoreModule.provideStore({TweetReduce}),
+    StoreModule.provideStore({TweetReduce, FilterReduce}),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [],
