@@ -18,7 +18,7 @@ import { AppStore } from '../store/app-store';
           <input #content type="text" name="content">
       </div>
 
-      <button type="submit" (click)="writeTweet(content)">EscribirTweet</button>
+      <button class="btn btn-default"type="submit" (click)="writeTweet(content)">EscribirTweet</button>
     </form>
   </div>
   `

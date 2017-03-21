@@ -9,8 +9,10 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import { routing } from './app.routing';
 //REDUCES
-import { TweetReduce } from './store/reducer/tweet.reducer';
-import { FilterReduce } from './store/reducer/filter.reducer';
+import { TweetReduce } from './store/reduce/tweet.reduce';
+import { FilterReduce } from './store/reduce/filter.reduce';
+import { UserReduce } from './store/reduce/user.reduce';
+import { UserLoged } from './store/reduce/user-loged.reduce';
 //COMPONENTS
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
@@ -18,6 +20,10 @@ import { TweetComponent } from './tweet/tweet.component';
 import { HeaderComponent } from './header/header.component';
 import { FormTweetComponent } from './form-tweet/form-tweet.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { SignupComponent } from './signup/signup.component';
+import { FormLoginComponent } from './form-login/form-login.component';
+//SERVICES
+import { LoginService } from './login-service.service';
 
 
 @NgModule({
@@ -27,17 +33,19 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
     FormTweetComponent,
     NavBarComponent,
     FeedComponent,
-    TweetComponent
+    TweetComponent,
+    SignupComponent,
+    FormLoginComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routing),
-    StoreModule.provideStore({TweetReduce, FilterReduce}),
+    StoreModule.provideStore({TweetReduce, FilterReduce, UserReduce, UserLoged}),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

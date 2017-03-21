@@ -1,13 +1,13 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Tweet } from '../models/tweet';
 
-import {Observable} from 'rxjs/Rx';;
-import { Store, provideStore } from '@ngrx/store';
+import {Observable} from 'rxjs/Rx';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-feed',
   template: `
-  <div class="container" style = "background: red">
+  <div class="container">
     <div *ngFor="let item of tweets;">
         <app-tweet [tweet] = "item"></app-tweet>
     </div>

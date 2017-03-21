@@ -5,13 +5,11 @@ import { Tweet } from '../models/tweet';
 @Component({
   selector: 'app-tweet',
   template: `
-  <div class = "container">
-    <li style ="background : green;">
+  <div class = "container alert alert-info">
     	<p>Date: {{tweet.id}}</p>
     	<p>Author: {{tweet.author}}</p>
     	<p>Content: {{tweet.text}}</p>
       <p>Hashtags: {{tweet.hashtags}}</p>      
-    </li>
   </div>
   `, 
   changeDetection: ChangeDetectionStrategy.OnPush

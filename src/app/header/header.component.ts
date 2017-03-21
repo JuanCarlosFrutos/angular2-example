@@ -1,28 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  template: `
-  <div id="header" class="container">
-     <div class="jumbotron">
-      <h1>tterTwi</h1>
-      <button (click)="redirect('tweet')" class="btn btn-info">Tweet</button>
-    </div>
-  </div>  `  
+  templateUrl: './header.component.html',
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   constructor(
-  	private route: Router
+  	private router: Router
   	) {}
 
   redirect(name){
-  	console.log("Button : " + name);
-  	this.route.navigate(['/tweet']);
+  	this.router.navigate(['/'+name]);
   }
-
-  ngOnInit() {
-  }
-
 }

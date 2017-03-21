@@ -1,9 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-
-import {Observable} from 'rxjs/Rx';
-import { Store } from '@ngrx/store';
-
-import { AppStore } from '../store/app-store'
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
@@ -13,27 +8,14 @@ import { AppStore } from '../store/app-store'
 
 	    <ul class="nav navbar-nav">
 	      <li *ngFor="let item of hashtags">
-	      	<a (click)="filter($event)">{{item}}</a>
+	      	<a (click)="filter.emit($event)">{{item}}</a>
 	      </li>
 	    </ul>
 	  </div>
 	</nav>
   `
 })
-export class NavBarComponent implements OnInit{
+export class NavBarComponent{
 	@Input() hashtags: String[];
-	//@Output() filter: filterHashtags = new EventEmitter();
-
-	ngOnInit(){
-
-	}
-
-	 constructor(
-      private _store : Store<AppStore>,
-  	) {  
-    }
-
-	filter(event){
-		this._store.dispatch({type: 'TWEET_FILTER', payload: event.target.text});
-	}
+	@Output() filter = new EventEmitter();
 }
