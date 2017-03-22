@@ -7,4 +7,5 @@ export interface AppStore {
   currentFilter: String;
   users: Array<User>;
   currentUser : User;
+  number : Number;
 }

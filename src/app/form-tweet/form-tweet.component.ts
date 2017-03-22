@@ -35,7 +35,7 @@ export class FormTweetComponent implements OnInit {
 
     let arr=[];
     for(var i = 0; i < wordsTweet.length; i++){
-      console.log(wordsTweet[i]);
+      //console.log(wordsTweet[i]);
         if(wordsTweet[i].indexOf('#') == 0){
           arr.push(wordsTweet[i]);  
         }

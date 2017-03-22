@@ -42,7 +42,7 @@ import { LoginService } from './login-service.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routing),
-    StoreModule.provideStore({TweetReduce, FilterReduce, UserReduce, UserLoged}),
+    StoreModule.provideStore({TweetReduce, UserReduce, UserLoged}),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [LoginService],

@@ -1,43 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 
 import { Tweet } from './models/tweet';
 import { AppStore } from './store/app-store';
-import { stateSelector} from './store/state-selector';
-import { LoginService} from './login-service.service';
+import { stateSelector } from './store/state-selector';
+import { LoginService } from './login-service.service';
+
+//TODO
+//hashtag store
+//types
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent{
-  private tweet;
-  private tweetFilter : Observable<Array<Tweet>>;
-  private currentFilter;
-  private listUsers;
-  private userLoged;
-  private hashtags : Array<String> = ['#all'];
-  private isLoged;
+export class AppComponent implements OnInit {
+
+  private tweetStore : Observable<Array<Tweet>>;
+  private tweetsShow : Tweet[];
+  private tweets : Tweet[];
+  private hashtags : Array<string> = ['#all'];
+
+  //private listUsers;
+  //private userLoged;
+  //private isLoged;
 
   constructor(
     private _store : Store<AppStore>,
-    private loginService : LoginService
-    ) {  
-    //SELECT STORES
-    this.tweet = _store.select('TweetReduce');
-    this.currentFilter = _store.select('FilterReduce');
-    //this.listUsers = _store.select('UserReduce');
-    //this.userLoged = _store.select('UserLoged');
+    //private loginService : LoginService
+  ) {
 
-    //FILTER TWEETS
-    this.tweetFilter = Observable.combineLatest(this.currentFilter,this.tweet)
-    .let(stateSelector());
-    //CHECK IF USER IS LOGED
-    //this.userLoged.subscribe(result => { result === undefined ? this.isLoged = false : this.isLoged = true;console.log(this.isLoged); });
-    //ARRAY WITH DIFFERENTS HASHTAGS USE TO NAV-BAR. 
-    this.tweet.subscribe( result => {
+    //SELECT STORES
+    this.tweetStore = _store.select('TweetReduce');
+    this.tweetStore.subscribe(arrayTweets => {this.tweets = arrayTweets; this.tweetsShow = arrayTweets;});
+
+    this.tweetStore.subscribe( result => {
       result.map(p => {
         for (var i = 0; i<p.hashtags.length; i++){
           if (!(this.hashtags.indexOf(p.hashtags[i])>=0))
@@ -48,9 +48,20 @@ export class AppComponent{
 
   }
 
+  ngOnInit () {
+      this.filterTweets('#all');
+  }
+
   changeFilter(event){
-    //console.log($event);
-    this._store.dispatch({type: 'TWEET_FILTER', payload: event.target.text});
+      this.filterTweets(event.target.text)
+  }
+
+  filterTweets(filter){
+    if (filter === '#all'){
+      this.tweetsShow = this.tweets;
+    }else{
+      this.tweetsShow = this.tweets.filter(upgrade => upgrade.hashtags.indexOf(filter)>= 0);
+    }
   }
 
  // logout($event){
