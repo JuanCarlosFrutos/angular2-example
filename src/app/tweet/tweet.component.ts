@@ -9,7 +9,7 @@ import { Tweet } from '../models/tweet';
     	<p>Date: {{tweet.id | date: 'dd/MM/yyyy'}}</p>
     	<p>Author: {{tweet.author}}</p>
     	<p>Content: {{tweet.text}}</p>
-      <p>Hashtags: {{tweet.hashtags}}</p>      
+     <!-- <p>Hashtags: {{tweet.hashtags}}</p> --> 
   </div>
   `, 
   changeDetection: ChangeDetectionStrategy.OnPush

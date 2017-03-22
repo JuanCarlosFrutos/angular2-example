@@ -6,10 +6,8 @@ export const UserLoged = (state: any = [], action) => {
 	    	return action.payload;
 	    case 'USER_LOGOUT':
 	    	return undefined;
-	    case 'USER_LOGED':
-	    	return state;
 	    default:
-	      return state;
+	      return undefined;
  	}
 }
 

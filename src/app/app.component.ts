@@ -25,17 +25,18 @@ export class AppComponent{
     private _store : Store<AppStore>,
     private loginService : LoginService
     ) {  
-    // this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (2, "Admin", "Tweet APP PRINCIPAL", this.hashtags)});
+    //SELECT STORES
     this.tweet = _store.select('TweetReduce');
     this.currentFilter = _store.select('FilterReduce');
-    this.listUsers = this._store.select('UserReduce');
-    this.userLoged = this._store.select('UserLoged');
+    this.listUsers = _store.select('UserReduce');
+    this.userLoged = _store.select('UserLoged');
 
+    //FILTER TWEETS
     this.tweetFilter = Observable.combineLatest(this.currentFilter,this.tweet)
     .let(stateSelector());
-    //If login tweet button active, if not disable.
+    //CHECK IF USER IS LOGED
     this.userLoged.subscribe(result => { result === undefined ? this.isLoged = false : this.isLoged = true;console.log(this.isLoged); });
-    //array tags nav-bar 
+    //ARRAY WITH DIFFERENTS HASHTAGS USE TO NAV-BAR. 
     this.tweet.subscribe( result => {
       result.map(p => {
         for (var i = 0; i<p.hashtags.length; i++){

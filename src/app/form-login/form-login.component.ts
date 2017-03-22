@@ -34,6 +34,7 @@ export class FormLoginComponent implements OnInit {
   login() {
     let isLogin;
     isLogin = this.loginService.login(this.user);
+    this._router.navigate(['/tweet']);
   }
 
   ngOnInit() {

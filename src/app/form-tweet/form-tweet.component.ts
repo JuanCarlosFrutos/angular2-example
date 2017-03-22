@@ -35,7 +35,7 @@ export class FormTweetComponent implements OnInit {
       private loginService : LoginService
   	) {  
       this.userLoged = _store.select('UserLoged');
-      this.userLoged.subscribe(result => {this.user = result; console.log(result)});
+      this.userLoged.subscribe(result => {this.user = result;});
     }
 
   writeTweet(content){
@@ -47,9 +47,6 @@ export class FormTweetComponent implements OnInit {
           arr.push(wordsTweet[i]);  
         }
     }
-
-    //this.userLoged = this.loginService.isLoged();
-    //this.userLoged.map(p => console.log(p));
     this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (new Date(), this.user.name, content.value, arr)});
   }
 
