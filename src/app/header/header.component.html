@@ -4,10 +4,10 @@
         <div class="col-md-6">
           <h1>Twitter</h1>
         </div>
-        <div *ngIf="isLoged" class="col-md-2">
+        <div class="col-md-2">
           <button (click)="redirect('tweet')" class="btn btn-info">Tweet</button>
         </div>
-        <div class="col-md-2">
+<!--         <div class="col-md-2">
           <button (click)="redirect('signUp')" class="btn btn-info">Sign Up</button>
         </div>
         <div *ngIf="!isLoged" class="col-md-2">
@@ -15,6 +15,6 @@
         </div>
         <div *ngIf="isLoged" class="col-md-2">
           <button (click)="logout.emit($event)" class="btn btn-info">Logout</button>
-        </div>
+        </div> -->
     </div>
   </div>

@@ -21,14 +21,13 @@ export class LoginService {
   };
   
   public login(user: User){
+    console.log(user);
     for (var i = 0; i<this.users.length; i++){
-      console.log(users[i]);
-    }
-    console.log('User log: ' + user.name);
-
-    if (this.users.includes(user)){
-      this.store.dispatch({type: 'USER_LOGIN', payload: user});
-      console.log('loged');
+      console.log(this.users[i]);
+      if (user.name===this.users[i].name && user.pass===this.users[i].pass){
+        this.store.dispatch({type: 'USER_LOGIN', payload: user});
+        console.log('loged');
+      }
     }
   }
 

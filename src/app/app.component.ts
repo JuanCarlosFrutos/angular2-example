@@ -28,14 +28,14 @@ export class AppComponent{
     //SELECT STORES
     this.tweet = _store.select('TweetReduce');
     this.currentFilter = _store.select('FilterReduce');
-    this.listUsers = _store.select('UserReduce');
-    this.userLoged = _store.select('UserLoged');
+    //this.listUsers = _store.select('UserReduce');
+    //this.userLoged = _store.select('UserLoged');
 
     //FILTER TWEETS
     this.tweetFilter = Observable.combineLatest(this.currentFilter,this.tweet)
     .let(stateSelector());
     //CHECK IF USER IS LOGED
-    this.userLoged.subscribe(result => { result === undefined ? this.isLoged = false : this.isLoged = true;console.log(this.isLoged); });
+    //this.userLoged.subscribe(result => { result === undefined ? this.isLoged = false : this.isLoged = true;console.log(this.isLoged); });
     //ARRAY WITH DIFFERENTS HASHTAGS USE TO NAV-BAR. 
     this.tweet.subscribe( result => {
       result.map(p => {
@@ -53,7 +53,7 @@ export class AppComponent{
     this._store.dispatch({type: 'TWEET_FILTER', payload: event.target.text});
   }
 
-  logout($event){
-    this.loginService.logout();
-  }
+ // logout($event){
+ //   this.loginService.logout();
+ // }
 }

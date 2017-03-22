@@ -1,8 +1,8 @@
 export class Tweet {
 	constructor(
     	public id: Date, 
-    	public author: string, 
-    	public text:string,
+    	public author: String, 
+    	public text:String,
     	public hashtags:Array<String>
     ){}
 }

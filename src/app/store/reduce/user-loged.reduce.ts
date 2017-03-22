@@ -7,7 +7,7 @@ export const UserLoged = (state: any = [], action) => {
 	    case 'USER_LOGOUT':
 	    	return undefined;
 	    default:
-	      return undefined;
+	      return state;
  	}
 }
 

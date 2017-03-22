@@ -10,44 +10,38 @@ import { LoginService } from '../login-service.service';
 
 @Component({
   selector: 'app-form-tweet',
-  template: `
-  <div class="container">
-    <h2>Tweet</h2>
-    <form>
-      <div class="form-group">
-          <label>Content:</label>
-          <input #content type="text" name="content">
-      </div>
-
-      <button class="btn btn-default"type="submit" (click)="writeTweet(content)">EscribirTweet</button>
-    </form>
-  </div>
-  `
+  templateUrl: './form-tweet.component.html',
 })
 export class FormTweetComponent implements OnInit {
 
-  private userLoged;
-  private user;
+  //private userLoged;
+  //private user;
+  private tweet = new Tweet (new Date(),'','',null);
 
   constructor(
     	private route: Router,
       private _store : Store<AppStore>,
-      private loginService : LoginService
+      //private loginService : LoginService
   	) {  
-      this.userLoged = _store.select('UserLoged');
-      this.userLoged.subscribe(result => {this.user = result;});
+      //this.userLoged = _store.select('UserLoged');
+      //this.userLoged.subscribe(result => {this.user = result;});
     }
 
-  writeTweet(content){
+  writeTweet(content, author){
+
     let textTweet = content.value;
     let wordsTweet = textTweet.split(' ');
+
+
     let arr=[];
-    for(var i = 1; i < wordsTweet.length; i++){
+    for(var i = 0; i < wordsTweet.length; i++){
+      console.log(wordsTweet[i]);
         if(wordsTweet[i].indexOf('#') == 0){
           arr.push(wordsTweet[i]);  
         }
     }
-    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (new Date(), this.user.name, content.value, arr)});
+
+    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (new Date(), author.value, content.value, arr)});
   }
 
   ngOnInit() {
