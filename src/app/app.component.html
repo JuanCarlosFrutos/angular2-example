@@ -1,5 +1,5 @@
 
-		<app-header></app-header>
-		<app-nav-bar [hashtags] = "hashtags" (filter)="changeFilter($event)"></app-nav-bar>
-		<app-feed [tweets] = "tweetFilter | async" ></app-feed>
-		<router-outlet></router-outlet>
+<app-header [isLoged] = "isLoged" (logout)="logout($event)"></app-header>
+<app-nav-bar [hashtags] = "hashtags" (filter)="changeFilter($event)"></app-nav-bar>
+<app-feed [tweets] = "tweetFilter | async" ></app-feed>
+<router-outlet></router-outlet>

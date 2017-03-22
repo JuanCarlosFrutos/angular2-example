@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent {
+
+	@Input() isLoged;
+	@Output() logout = new EventEmitter();
 
   constructor(
   	private router: Router

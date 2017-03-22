@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
 export class SignupComponent implements OnInit {
 
   private listUsers: Observable<Array<User>>;
-  private user = new User('Juan Carlos', '1234');
+  private user = new User('', '');
 
   submitted = false;
 

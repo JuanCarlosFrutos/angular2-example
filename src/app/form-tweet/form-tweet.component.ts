@@ -6,6 +6,7 @@ import { Store, provideStore } from '@ngrx/store';
 
 import { Tweet } from '../models/tweet';
 import { AppStore } from '../store/app-store';
+import { LoginService } from '../login-service.service';
 
 @Component({
   selector: 'app-form-tweet',
@@ -25,10 +26,16 @@ import { AppStore } from '../store/app-store';
 })
 export class FormTweetComponent implements OnInit {
 
+  private userLoged;
+  private user;
+
   constructor(
     	private route: Router,
-      private _store : Store<AppStore>
+      private _store : Store<AppStore>,
+      private loginService : LoginService
   	) {  
+      this.userLoged = _store.select('UserLoged');
+      this.userLoged.subscribe(result => {this.user = result; console.log(result)});
     }
 
   writeTweet(content){
@@ -40,7 +47,10 @@ export class FormTweetComponent implements OnInit {
           arr.push(wordsTweet[i]);  
         }
     }
-    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (2, "Admin", content.value, arr)});
+
+    //this.userLoged = this.loginService.isLoged();
+    //this.userLoged.map(p => console.log(p));
+    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (new Date(), this.user.name, content.value, arr)});
   }
 
   ngOnInit() {

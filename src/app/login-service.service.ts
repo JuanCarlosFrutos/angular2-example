@@ -15,16 +15,23 @@ export class LoginService {
   private userLoged;
 
   constructor( private store: Store<AppStore>) {
-  		this.listUsers = store.select('UserReduce');
-  		this.userLoged = store.select('UserLoged');
+  		//this.listUsers = store.select('UserReduce');
+  		//this.userLoged = store.select('UserLoged');
   };
 
 
-  public login(user: String, password: String): Observable<User> {
-  	this.userLoged.dispatched(this.listUsers.filter (s => user == s.name && password == s.pass)); 
-    return this.listUsers.filter (s => user == s.name && password == s.pass);
+  public login(user: User){
+      this.store.dispatch({type: 'USER_LOGIN', payload: user});
   }
 
+  public logout(){
+      this.store.dispatch({type: 'USER_LOGOUT'});
+  }
+
+  public isLoged(){
+    console.log(this.store.dispatch({type: 'USER_LOGED'}));
+      return this.store.dispatch({type: 'USER_LOGED'});
+  }
   // private extractData(response: any): any {
   //   return response;
   // }

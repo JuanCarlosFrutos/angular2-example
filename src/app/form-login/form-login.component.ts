@@ -19,7 +19,7 @@ export class FormLoginComponent implements OnInit {
 
   private listUsers: Observable<Array<User>>;
   private logedUser;
-  private user = new User('Juan Carlos', '1234');
+  private user = new User('', '');
 
   submitted = false;
 
@@ -32,10 +32,8 @@ export class FormLoginComponent implements OnInit {
   }
 
   login() {
-
-    console.log(this.logedUser);
-    //this._store.dispatch({type: 'USER_REGISTER', payload: this.user});
-    //this._router.navigate(['/tweet']);
+    let isLogin;
+    isLogin = this.loginService.login(this.user);
   }
 
   ngOnInit() {
