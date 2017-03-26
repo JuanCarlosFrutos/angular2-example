@@ -1,5 +1,5 @@
 
 <app-header [isLoged] = "isLoged" (logout)="logout($event)"></app-header>
-<app-nav-bar [hashtags] = "hashtags" (filter)="changeFilter($event)"></app-nav-bar>
+<app-nav-bar [hashtags] = "hashtagShow" (filter)="changeFilter($event)"></app-nav-bar>
 <app-feed [tweets] = "tweetsShow" ></app-feed>
 <router-outlet></router-outlet>

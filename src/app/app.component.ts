@@ -21,7 +21,9 @@ export class AppComponent implements OnInit {
   private tweetStore : Observable<Array<Tweet>>;
   private tweetsShow : Tweet[];
   private tweets : Tweet[];
+
   private hashtagStore : Observable<Array<Hashtag>>;
+  private hashtagShow : Hashtag[];
 
   //private listUsers;
   //private userLoged;
@@ -41,38 +43,19 @@ export class AppComponent implements OnInit {
         (arrayTweets: Tweet[]) => {
             this.tweets = arrayTweets; 
             this.tweetsShow = arrayTweets;
-            //this.addHashtags(arrayTweets);
         }
       );
 
-
-
-    // this.tweetStore.subscribe( result => {
-    //   result.map(p => {
-    //     for (var i = 0; i<p.hashtags.length; i++){
-    //       if (!(this.hashtags.indexOf(p.hashtags[i])>=0))
-    //         this.hashtags.push(p.hashtags[i]);
-    //     }
-    //   });
-    // });
-
+    this.hashtagStore
+      .subscribe( 
+        (arrayHashtags : Hashtag[]) => {
+            this.hashtagShow = arrayHashtags;
+        }
+      );
   }
 
-  // addHashtags(arrayTweets : Tweet []){
-  //   let listHashtags : string[];
-
-  //   if (arrayTweets.length != 0){
-
-  //     listHashtags = arrayTweets[arrayTweets.length-1].hashtags;
-  //     for (var i = 0; i<listHashtags.length; i++){
-  //       this._store.dispatch({type: 'HASHTAG_ADD', payload:listHashtags[i]});
-  //     }
-  //   }
-  // }
-
-
   ngOnInit () {
-      this.filterTweets('#all');
+      //this.filterTweets('#all');
   }
 
   changeFilter (event){
@@ -80,11 +63,17 @@ export class AppComponent implements OnInit {
   }
 
   filterTweets (filter){
-    // if (filter === '#all'){
-    //   this.tweetsShow = this.tweets;
-    // }else{
-    //   this.tweetsShow = this.tweets.filter(upgrade => upgrade.hashtags.indexOf(filter)>= 0);
-    // }
+    let tweetsIDS : number[] = [];
+    
+    this.hashtagShow.forEach(
+      (hashtag : Hashtag) => {
+        if (hashtag.name === filter) 
+          tweetsIDS = hashtag.tweets;
+      }
+    );
+
+    this.tweetsShow = this.tweets.filter((tweet : Tweet) => tweetsIDS.indexOf(tweet.id)>=0);
+    
   }
 
  // logout($event){

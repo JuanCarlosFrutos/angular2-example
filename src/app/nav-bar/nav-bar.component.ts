@@ -8,7 +8,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 	    <ul class="nav navbar-nav">
 	      <li *ngFor="let item of hashtags">
-	      	<a (click)="filter.emit($event)">{{item}}</a>
+	      	<a (click)="filter.emit($event)">{{item.name}}</a>
 	      </li>
 	    </ul>
 	  </div>

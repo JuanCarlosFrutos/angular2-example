@@ -6,7 +6,7 @@ import { Tweet } from '../models/tweet';
   selector: 'app-tweet',
   template: `
   <div class = "container alert alert-info">
-    	<p>Date: {{tweet.id | date: 'dd/MM/yyyy'}}</p>
+    	<p>Date: {{tweet.date | date: 'dd/MM/yyyy'}}</p>
     	<p>Author: {{tweet.author}}</p>
     	<p>Content: {{tweet.text}}</p>
      <!-- <p>Hashtags: {{tweet.hashtags}}</p> --> 
