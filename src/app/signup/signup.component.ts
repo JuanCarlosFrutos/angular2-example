@@ -18,7 +18,11 @@ import { AppStore } from '../store/app-store';
 
 export class SignupComponent implements OnInit {
 
-  private user = new User('', '');
+  private user: User;
+  private name: string;
+  private pass: string;
+  private repass: string;
+  private err: boolean = false;
 
   constructor(
   	private _store: Store<AppStore>,
@@ -27,9 +31,15 @@ export class SignupComponent implements OnInit {
   }
 
   newUser() {
-    this._store.dispatch({type: 'USER_REGISTER', payload: this.user});
+
+    if (this.pass === this.repass){
+      this.user = new User (this.name, this.pass);
+      this._store.dispatch({type: 'USER_REGISTER', payload: this.user});
+    }else{
+      this.err = true;
+    }
     //this.user = new User('', '');
-    this._router.navigate(['/login']);
+    //this._router.navigate(['/login']);
   }
 
   ngOnInit() {

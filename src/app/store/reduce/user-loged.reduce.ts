@@ -1,5 +1,5 @@
 
-export const UserLoged = (state: any = [], action) => {
+export const UserLoged = (state: any = undefined, action) => {
 
 	switch(action.type){
 	    case 'USER_LOGIN':
@@ -7,7 +7,7 @@ export const UserLoged = (state: any = [], action) => {
 	    case 'USER_LOGOUT':
 	    	return undefined;
 	    default:
-	      return state;
+	    	return state;
  	}
 }
 

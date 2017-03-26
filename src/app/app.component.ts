@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
@@ -16,7 +16,7 @@ import { LoginService } from './login-service.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent{
 
   private tweetStore : Observable<Array<Tweet>>;
   private tweetsShow : Tweet[];
@@ -25,13 +25,13 @@ export class AppComponent implements OnInit {
   private hashtagStore : Observable<Array<Hashtag>>;
   private hashtagShow : Hashtag[];
 
-  //private listUsers;
+  //private listUsers : ;
   //private userLoged;
   //private isLoged;
 
   constructor(
     private _store : Store<AppStore>,
-    //private loginService : LoginService
+    private loginService : LoginService
   ) {
 
     //SELECT STORES
@@ -54,10 +54,6 @@ export class AppComponent implements OnInit {
       );
   }
 
-  ngOnInit () {
-      //this.filterTweets('#all');
-  }
-
   changeFilter (event){
       this.filterTweets(event.target.text)
   }
@@ -73,10 +69,10 @@ export class AppComponent implements OnInit {
     );
 
     this.tweetsShow = this.tweets.filter((tweet : Tweet) => tweetsIDS.indexOf(tweet.id)>=0);
-    
+
   }
 
- // logout($event){
- //   this.loginService.logout();
- // }
+  logout($event){
+    this.loginService.logout();
+  }
 }

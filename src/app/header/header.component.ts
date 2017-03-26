@@ -9,12 +9,4 @@ export class HeaderComponent {
 
 	@Input() isLoged;
 	@Output() logout = new EventEmitter();
-
-  constructor(
-  	private router: Router
-  	) {}
-
-  redirect(name){
-  	this.router.navigate(['/'+name]);
-  }
 }

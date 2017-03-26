@@ -9,30 +9,52 @@ import {Observable} from 'rxjs/Rx';
 @Injectable()
 export class LoginService {
 
-  private loggedIn = false;
-  private endpoint: string;
-  private listUsers;
-  private users;
-  private userLoged;
+  private listUsersStore  : Observable<User[]>;
+  private users           : User[];
+  private userLoggedStore  : Observable<User>;
+  private userLogged       : User;
 
-  constructor( private store: Store<AppStore>) {
-    this.listUsers = store.select('UserReduce');
-    this.listUsers.subscribe(result => {this.users = result; console.log(result);} );
-  };
+  constructor( private store: Store<AppStore>) 
+  {
+
+    //selects
+    this.listUsersStore = store.select('UserReduce');
+    this.userLoggedStore = store.select('UserLoged');
+
+    //subscribe to Store with all users.
+    this.listUsersStore
+      .subscribe(
+        (arrayUsers : User[]) => {
+          this.users = arrayUsers;
+        } 
+    );
+
+    //subscribe to Store that contains info about logged user.
+    this.userLoggedStore
+      .subscribe(
+        (user : User) => {
+          this.userLogged = user;
+        } 
+    );
+  }
   
-  public login(user: User){
-    console.log(user);
-    for (var i = 0; i<this.users.length; i++){
-      console.log(this.users[i]);
-      if (user.name===this.users[i].name && user.pass===this.users[i].pass){
-        this.store.dispatch({type: 'USER_LOGIN', payload: user});
-        console.log('loged');
-      }
+  public login(loginUser: User){
+
+    if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
+        console.log(true);
+        this.store.dispatch({type: 'USER_LOGIN', payload: loginUser});
     }
   }
 
   public logout(){
       this.store.dispatch({type: 'USER_LOGOUT'});
+  }
+
+  public isLoggedIn(){
+    if (this.userLogged === undefined){
+      return false;
+    }
+    return true; 
   }
 }
 

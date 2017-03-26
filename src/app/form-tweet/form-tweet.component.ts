@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 import { Router } from '@angular/router';
 
-import { Store, provideStore } from '@ngrx/store';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Rx';
 
+import { User } from '../models/user'
 import { Tweet } from '../models/tweet';
 import { Hashtag } from '../models/hashtag';
 import { AppStore } from '../store/app-store';
@@ -15,21 +17,19 @@ import { LoginService } from '../login-service.service';
 })
 export class FormTweetComponent implements OnInit {
 
-  //private userLoged;
-  //private user;
-  //private tweet = new Tweet (new Date(),'','',null);
+  private userLogedStore : Observable <User>;
+  private userLoged : User;
   private id : number = 0;
 
   constructor(
     	private route: Router,
       private _store : Store<AppStore>,
-      //private loginService : LoginService
   	) {  
-      //this.userLoged = _store.select('UserLoged');
-      //this.userLoged.subscribe(result => {this.user = result;});
+      this.userLogedStore = _store.select('UserLoged');
+      this.userLogedStore.subscribe((user : User) => this.userLoged = user);
     }
 
-  writeTweet(content, author){
+  writeTweet(content){
 
     let newHashtag: Hashtag;
     let arrayid : number[] = [];
@@ -37,15 +37,17 @@ export class FormTweetComponent implements OnInit {
     let wordsTweet = textTweet.split(' ');
 
     arrayid.push(this.id);
-    let arr=[];
-    for(var i = 0; i < wordsTweet.length; i++){
-        if(wordsTweet[i].indexOf('#') == 0){
-          newHashtag = new Hashtag (wordsTweet[i], arrayid);
+
+    wordsTweet.forEach(
+      (word : string) => {
+        if(word.indexOf('#') == 0){
+          newHashtag = new Hashtag (word, arrayid);
           this._store.dispatch({type: 'HASHTAG_ADD', payload: newHashtag});
         }
-    }
-    console.log('id =>' + this.id);
-    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (this.id,new Date(), author.value, content.value)});
+      }
+    );
+
+    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (this.id,new Date(), this.userLoged.name, content.value)});
     this.id++;
   }
 

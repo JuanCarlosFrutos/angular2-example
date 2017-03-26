@@ -1,17 +1,17 @@
   <div id="header" class="container">
      <div class="jumbotron">
      <div class="row" >
-        <div class="col-md-6">
+        <div class="col-md-10">
           <h1>Twitter</h1>
         </div>
         <div class="col-md-2">
-          <button (click)="redirect('tweet')" class="btn btn-info">Tweet</button>
+          <button [routerLink]="['/tweet']" class="btn btn-info">Tweet</button>
         </div>
 <!--         <div class="col-md-2">
-          <button (click)="redirect('signUp')" class="btn btn-info">Sign Up</button>
-        </div>
-        <div *ngIf="!isLoged" class="col-md-2">
-          <button (click)="redirect('login')" class="btn btn-info">Login</button>
+          <button [routerLink]="['/signup']"  routerLinkActive="inactive"class="btn btn-info">Sign Up</button>
+        </div> -->
+<!--         <div *ngIf="!isLoged" class="col-md-2">
+          <button [routerLink]="['/login']" class="btn btn-info">Login</button>
         </div>
         <div *ngIf="isLoged" class="col-md-2">
           <button (click)="logout.emit($event)" class="btn btn-info">Logout</button>

@@ -24,6 +24,7 @@ import { SignupComponent } from './signup/signup.component';
 import { FormLoginComponent } from './form-login/form-login.component';
 //SERVICES
 import { LoginService } from './login-service.service';
+import { CanActivateService } from './can-activate-service.service';
 
 
 @NgModule({
@@ -42,10 +43,17 @@ import { LoginService } from './login-service.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routing),
-    StoreModule.provideStore({TweetReduce, UserReduce, UserLoged, HashtagsReduce}),
+    StoreModule.provideStore({ TweetReduce, 
+                               UserReduce, 
+                               UserLoged, 
+                               HashtagsReduce,
+                             }),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    CanActivateService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

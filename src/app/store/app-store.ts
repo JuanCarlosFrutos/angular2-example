@@ -6,5 +6,4 @@ export interface AppStore {
   tweet: Tweet[];
   users: Array<User>;
   currentUser : User;
-  number : Number;
 }
