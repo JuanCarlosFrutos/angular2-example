@@ -10,9 +10,9 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import { routing } from './app.routing';
 //REDUCES
 import { TweetReduce } from './store/reduce/tweet.reduce';
-import { FilterReduce } from './store/reduce/filter.reduce';
 import { UserReduce } from './store/reduce/user.reduce';
 import { UserLoged } from './store/reduce/user-loged.reduce';
+import { HashtagsReduce } from './store/reduce/hashtags.reduce';
 //COMPONENTS
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
@@ -42,7 +42,7 @@ import { LoginService } from './login-service.service';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routing),
-    StoreModule.provideStore({TweetReduce, UserReduce, UserLoged}),
+    StoreModule.provideStore({TweetReduce, UserReduce, UserLoged, HashtagsReduce}),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],
   providers: [LoginService],

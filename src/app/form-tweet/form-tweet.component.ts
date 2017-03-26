@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Store, provideStore } from '@ngrx/store';
 
 import { Tweet } from '../models/tweet';
+import { Hashtag } from '../models/hashtag';
 import { AppStore } from '../store/app-store';
 import { LoginService } from '../login-service.service';
 
@@ -16,7 +17,8 @@ export class FormTweetComponent implements OnInit {
 
   //private userLoged;
   //private user;
-  private tweet = new Tweet (new Date(),'','',null);
+  //private tweet = new Tweet (new Date(),'','',null);
+  private id : number = 0;
 
   constructor(
     	private route: Router,
@@ -29,19 +31,22 @@ export class FormTweetComponent implements OnInit {
 
   writeTweet(content, author){
 
+    let newHashtag: Hashtag;
+    let arrayid : number[] = [];
     let textTweet = content.value;
     let wordsTweet = textTweet.split(' ');
 
-
+    arrayid.push(this.id);
     let arr=[];
     for(var i = 0; i < wordsTweet.length; i++){
-      //console.log(wordsTweet[i]);
         if(wordsTweet[i].indexOf('#') == 0){
-          arr.push(wordsTweet[i]);  
+          newHashtag = new Hashtag (wordsTweet[i], arrayid);
+          this._store.dispatch({type: 'HASHTAG_ADD', payload: newHashtag});
         }
     }
-
-    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (new Date(), author.value, content.value, arr)});
+    console.log('id =>' + this.id);
+    this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (this.id,new Date(), author.value, content.value)});
+    this.id++;
   }
 
   ngOnInit() {
