@@ -13,7 +13,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 	    </ul>
 	    <ul class="nav navbar-nav navbar-right">
       	  <li><a [routerLink]="['/signup']" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-          <li><a [routerLink]="['/login']" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li *ngIf="isLogged===undefined"><a [routerLink]="['/login']" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          <li *ngIf="isLogged!=undefined"><a [routerLink]="['/login']" (click) = "logout.emit()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
    		</ul>
 	  </div>
 	</nav>
@@ -21,5 +22,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 })
 export class NavBarComponent{
 	@Input() hashtags: String[];
+	@Input() isLogged;
 	@Output() filter = new EventEmitter();
+	@Output() logout = new EventEmitter();
 }

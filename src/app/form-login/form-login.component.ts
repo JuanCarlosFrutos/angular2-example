@@ -8,7 +8,7 @@ import { AppStore } from '../store/app-store';
 import {Observable} from 'rxjs/Rx';
 
 import { Router } from '@angular/router';
-import { LoginService} from '../login-service.service';
+import { LoginService } from '../login-service.service';
 
 @Component({
   selector: 'app-form-login',
@@ -17,24 +17,38 @@ import { LoginService} from '../login-service.service';
 })
 export class FormLoginComponent implements OnInit {
 
-  private listUsers: Observable<Array<User>>;
-  private logedUser;
+  private logedUserStore: Observable<User> ;
   private user = new User('', '');
-
-  submitted = false;
+  private isLogged : boolean;
+  private err : boolean = false;
 
   constructor(
   	private _store: Store<AppStore>,
   	private _router: Router,
   	private loginService: LoginService
   	){
-    this.logedUser = this._store.select('UserLoged');
+    this.logedUserStore = this._store.select('UserLoged');
+
+    this.logedUserStore
+      .subscribe(
+        (user : User) => {
+          user != undefined ? this.isLogged = true : this.isLogged = false;
+          //this.isLogged = user;
+        }
+      );
   }
 
   login() {
-    let isLogin;
-    isLogin = this.loginService.login(this.user);
-    this._router.navigate(['/tweet']);
+
+    let isLogged ;
+    isLogged = this.loginService.login(this.user);
+
+    if(isLogged){
+      console.log(this.user);
+      this._router.navigate(['/login/tweet']);
+    }else{
+      this.err = true;
+    }
   }
 
   ngOnInit() {

@@ -1,5 +1,13 @@
 
-<app-header [isLoged] = "isLoged" (logout)="logout($event)"></app-header>
-<app-nav-bar [hashtags] = "hashtagShow" (filter)="changeFilter($event)"></app-nav-bar>
+<div class="container"> 
+<app-header [isLogged] = "isLogged"></app-header>
+<app-nav-bar [isLogged] = "isLogged" [hashtags] = "hashtagShow" (filter)="changeFilter($event)" (logout)="logout()"></app-nav-bar>
+<div class = "row">
+<div class = "col-md-6">
 <app-feed [tweets] = "tweetsShow" ></app-feed>
+</div>
+<div class = "col-md-6">
 <router-outlet></router-outlet>
+</div>
+</div>
+</div>

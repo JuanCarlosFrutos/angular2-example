@@ -13,6 +13,7 @@ import { TweetReduce } from './store/reduce/tweet.reduce';
 import { UserReduce } from './store/reduce/user.reduce';
 import { UserLoged } from './store/reduce/user-loged.reduce';
 import { HashtagsReduce } from './store/reduce/hashtags.reduce';
+import { GlobalId } from './store/global-id';
 //COMPONENTS
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
@@ -47,6 +48,7 @@ import { CanActivateService } from './can-activate-service.service';
                                UserReduce, 
                                UserLoged, 
                                HashtagsReduce,
+                               GlobalId
                              }),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],

@@ -19,7 +19,9 @@ export class FormTweetComponent implements OnInit {
 
   private userLogedStore : Observable <User>;
   private userLoged : User;
-  private id : number = 0;
+
+  private globalId : Observable<number>;
+  private id : number;
 
   constructor(
     	private route: Router,
@@ -27,6 +29,9 @@ export class FormTweetComponent implements OnInit {
   	) {  
       this.userLogedStore = _store.select('UserLoged');
       this.userLogedStore.subscribe((user : User) => this.userLoged = user);
+
+      this.globalId = _store.select('GlobalId');
+      this.globalId.subscribe ((num : number) => this.id = num);
     }
 
   writeTweet(content){
@@ -46,9 +51,9 @@ export class FormTweetComponent implements OnInit {
         }
       }
     );
-
+    console.log(this.userLoged.name);
     this._store.dispatch({type: 'TWEET_ADD', payload: new Tweet (this.id,new Date(), this.userLoged.name, content.value)});
-    this.id++;
+    this._store.dispatch({type: 'ID_INCREMENT'});
   }
 
   ngOnInit() {

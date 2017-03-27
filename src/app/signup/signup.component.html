@@ -1,28 +1,42 @@
-    <div class="container">
-<!--       <div [hidden]="submitted"> -->
+
+    <div style="text-align: right;">
         <h1>Sign Up</h1>
-        <form #heroForm="ngForm">
-          <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
+        <form class="form-horizontal"  #signUpForm="ngForm">
+          <div *ngIf="success" class="form-group">
+            <div class="alert alert-success alert-dismissable fade in col-md-offset-6 col-md-6">
+            <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              Succes authetification.
+            </div>
+          </div>
+          <div *ngIf="err" class="form-group">
+            <div class="alert alert-danger alert-dismissable fade in col-md-offset-6 col-md-6">
+            <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              Passwords don't match.
+            </div>
           </div>
           <div class="form-group">
-            <label for="pass">Password:</label>
+            <label for="name" class = "control-label col-md-6">Name:</label>
+            <div class="col-md-6">
+            <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pass" class = "control-label col-md-6">Password:</label>
+            <div class="col-md-6">
             <input type="password" class="form-control" id="pass"
                    [(ngModel)]="pass" name="pass">
-            <div *ngIf="err"
-                   class="alert alert-danger">
-                Password dont match
             </div>
           </div>
 
           <div class="form-group">
-            <label for="repass">Repeat Password:</label>
+            <label for="repass" class = "control-label col-md-6">Repeat Password:</label>
+            <div class="col-md-6">
             <input type="password" class="form-control" id="repass"
                    [(ngModel)]="repass" name="repass">
+            </div>
           </div>
 <!--           <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button> -->
-          <button type="button" class="btn btn-default" (click)="newUser();">Sign Up</button>
+          <button type="button" class="btn btn-default" (click)="newUser();signUpForm.reset()">Sign Up</button>
         </form>
 <!--       </div> -->
 <!--       <div style = "color: white" *ngFor="let item of (listUsers | async);">
@@ -36,4 +50,4 @@
           <div class="col-xs-9 pull-left">{{ item.pass }}</div>
         </div>
       </div> -->
-    </div>
+      </div>

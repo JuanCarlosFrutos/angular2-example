@@ -7,7 +7,7 @@ import { Store } from '@ngrx/store';
 @Component({
   selector: 'app-feed',
   template: `
-  <div class="container">
+  <div class="class-md-6">
     <div *ngFor="let item of tweets;">
         <app-tweet [tweet] = "item"></app-tweet>
     </div>

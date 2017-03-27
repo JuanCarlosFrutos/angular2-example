@@ -5,7 +5,7 @@ import { Tweet } from '../models/tweet';
 @Component({
   selector: 'app-tweet',
   template: `
-  <div class = "container alert alert-info">
+  <div class = "class-md-6 alert alert-info">
     	<p>Date: {{tweet.date | date: 'dd/MM/yyyy'}}</p>
     	<p>Author: {{tweet.author}}</p>
     	<p>Content: {{tweet.text}}</p>

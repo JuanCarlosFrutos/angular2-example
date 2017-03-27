@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 //MODEL
 import { User } from '../models/user'
@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit {
   private pass: string;
   private repass: string;
   private err: boolean = false;
+  private success : boolean = false;
 
   constructor(
   	private _store: Store<AppStore>,
@@ -35,6 +36,7 @@ export class SignupComponent implements OnInit {
     if (this.pass === this.repass){
       this.user = new User (this.name, this.pass);
       this._store.dispatch({type: 'USER_REGISTER', payload: this.user});
+      this.success = true;
     }else{
       this.err = true;
     }

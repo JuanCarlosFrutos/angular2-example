@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
 import { Hashtag } from './models/hashtag';
 import { Tweet } from './models/tweet';
+import { User } from './models/user';
 import { AppStore } from './store/app-store';
 import { LoginService } from './login-service.service';
 
@@ -25,6 +26,9 @@ export class AppComponent{
   private hashtagStore : Observable<Array<Hashtag>>;
   private hashtagShow : Hashtag[];
 
+  private loggedUserStore : Observable<User>;
+  private isLogged : User;
+
   //private listUsers : ;
   //private userLoged;
   //private isLoged;
@@ -37,6 +41,7 @@ export class AppComponent{
     //SELECT STORES
     this.tweetStore = _store.select('TweetReduce');
     this.hashtagStore = _store.select('HashtagsReduce');
+    this.loggedUserStore = _store.select('UserLoged');
 
     this.tweetStore
       .subscribe( 
@@ -50,6 +55,13 @@ export class AppComponent{
       .subscribe( 
         (arrayHashtags : Hashtag[]) => {
             this.hashtagShow = arrayHashtags;
+        }
+      );
+
+    this.loggedUserStore
+      .subscribe( 
+        (userLogged : User) => {
+            this.isLogged = userLogged;
         }
       );
   }
@@ -72,7 +84,7 @@ export class AppComponent{
 
   }
 
-  logout($event){
+  logout(){
     this.loginService.logout();
   }
 }
