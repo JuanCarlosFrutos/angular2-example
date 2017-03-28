@@ -23,6 +23,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class NavBarComponent{
 	@Input() hashtags: String[];
 	@Input() isLogged;
+	// filter 
 	@Output() filter = new EventEmitter();
 	@Output() logout = new EventEmitter();
 }

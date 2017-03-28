@@ -1,5 +1,7 @@
+import { User } from '../../models/user';
+import { Action } from '@ngrx/store';
 
-export const UserReduce = (state: any = [], action) => {
+export const UserReduce = (state : User[] = [], action : Action) => {
 
 	switch(action.type){
 	    case 'USER_REGISTER':

@@ -38,6 +38,12 @@ export class FormLoginComponent implements OnInit {
       );
   }
 
+     /**
+     * login.
+     *
+     * Ckeck if the user is registered. If it is registered, it can logged. 
+     *
+     */
   login() {
 
     let isLogged ;

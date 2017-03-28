@@ -1,15 +1,13 @@
 <div>
   <h1>TWEET</h1>
   <form>
-<!--     <div class="form-group">
-      <label>Author:</label>
-      <input class="form-control" #author type="text" name="author">
-    </div> -->
     <div class="form-group">
       <label>Content:</label>
       <br>
       <textarea style = "width: 100%" #content type="text" name="content"></textarea>
     </div>
-    <button type="button" class="btn btn-default"type="submit" (click)="writeTweet(content,author)">WriteTweet</button>
+    <button type="button" class="btn btn-default" type="submit"(click)="writeTweet(content.value)">
+       WriteTweet
+    </button>
   </form>
 </div>

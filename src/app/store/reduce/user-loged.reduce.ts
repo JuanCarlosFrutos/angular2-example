@@ -1,5 +1,7 @@
+import { User } from '../../models/user';
+import { Action } from '@ngrx/store';
 
-export const UserLoged = (state: any = undefined, action) => {
+export function UserLoged (state: User = undefined, action : Action) {
 
 	switch(action.type){
 	    case 'USER_LOGIN':
