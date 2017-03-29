@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
 //STORE
@@ -21,7 +21,7 @@ import { LoginService } from './login-service.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent{
+export class AppComponent implements OnInit{
 
   private tweetStore : Observable<Array<Tweet>>;
   private tweetsShow : Tweet[];
@@ -68,6 +68,18 @@ export class AppComponent{
   }
 
   /**
+    * ngOnInit.
+    *
+    * 
+    * 
+    *
+    * @param click event nav-bar. It contains the hashtag name for filter.
+    *
+    *
+    */
+  ngOnInit () {
+  }
+  /**
     * changeFilter.
     *
     * Given a route with one or more dynamic parameters, replace
@@ -88,12 +100,19 @@ export class AppComponent{
     * Select all tweets that contains a hashtag and put all of it 
     * in tweetsShow.
     *
+    * If the filter is all tweets ,then tweetsShow would have all tweets
+    *
     * @param hashtag name
     *
     */
   filterTweets (filter) : void {
     let tweetsIDS : number[] = [];
     
+    if (filter === "All Tweets"){
+      this.tweetsShow = this.tweets;
+      return;
+    }
+
     this.hashtagShow
       .forEach(
         (hashtag : Hashtag) => {

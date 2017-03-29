@@ -20,6 +20,8 @@ export class FormTweetComponent {
   private globalIdStore : Observable<number>;
   private id : number;
 
+  private success : boolean = false; 
+  private date : Date;
 
   constructor(
       private _store : Store<AppStore>,
@@ -47,27 +49,61 @@ export class FormTweetComponent {
 
     let newTweet : Tweet;
     let newHashtag: Hashtag;
-    let arrayid : number[] = [this.id];
-    let wordsTweet : string[]
+    let arrayid : number[] = [];
+    let wordsTweet : string[];
 
     wordsTweet = text.split(' ');
 
-    //Detected all hashtag in text.
-    wordsTweet.forEach(
-      (word : string) => {
-        if(word.indexOf('#') == 0){
-          newHashtag = new Hashtag (word, arrayid);
+    //Save in wordsTweet only hte hashtags
+    wordsTweet = this.searchHashtags(wordsTweet);
+    //Set in arrayid the next id. It will be new id tweet
+    arrayid.push(this.id);
+
+    wordsTweet
+      .forEach(
+        (hashtag : string) => {
+          newHashtag = new Hashtag (hashtag, arrayid);
+          console.log(newHashtag);
           this._store.dispatch({type: 'HASHTAG_ADD', payload: newHashtag});
         }
-      }
-    );
+      );
+
+
 
     //Created new tweet.
     newTweet = new Tweet (this.id,new Date(), this.userLoged.name, text)
+    this.success = true;
+    this.date = new Date();
 
     //Saved changes in store.
     this._store.dispatch({type: 'TWEET_ADD', payload: newTweet});
+    //Increment id
     this._store.dispatch({type: 'ID_INCREMENT'});
   }
+
+  /**
+     * searchHashtags.
+     *
+     * @param Array with all words in the text of tweet
+     *
+     * @return Array with hashtags find in text
+     *
+     *@example input  : [Hi, Im, JuanCarlos, #Hello]
+     *         output : [#Hello] 
+  */
+  searchHashtags(arrayWords : string[]) : string[] {
+
+    let arrayHashtahs : string[] = [];
+
+    arrayWords.forEach(
+      (word : string) => {
+        if(word.indexOf('#') == 0)
+          arrayHashtahs.push(word);       
+      }
+    );
+    return arrayHashtahs;
+  }
+
+
 }
 
