@@ -41,7 +41,6 @@ export class LoginService {
   public login(loginUser: User) : boolean{
 
     if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
-        console.log(loginUser);
         this.store.dispatch({type: 'USER_LOGIN', payload: loginUser});
         return true;
     }

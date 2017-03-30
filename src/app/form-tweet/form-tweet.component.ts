@@ -20,6 +20,9 @@ export class FormTweetComponent {
   private globalIdStore : Observable<number>;
   private id : number;
 
+  private hashtagStore : Observable <Hashtag[]>;
+  private hashtags : Hashtag[];
+
   private success : boolean = false; 
   private date : Date;
 
@@ -31,6 +34,9 @@ export class FormTweetComponent {
 
       this.globalIdStore = _store.select('GlobalId');
       this.globalIdStore.subscribe ((num : number) => this.id = num);
+
+      this.hashtagStore = _store.select('HashtagsReduce');
+      this.hashtagStore.subscribe ((arrayHashtags : Hashtag[]) => this.hashtags = arrayHashtags);
     }
 
   /**
@@ -51,20 +57,27 @@ export class FormTweetComponent {
     let newHashtag: Hashtag;
     let arrayid : number[] = [];
     let wordsTweet : string[];
+    let index : number;
 
     wordsTweet = text.split(' ');
 
     //Save in wordsTweet only hte hashtags
-    wordsTweet = this.searchHashtags(wordsTweet);
+    wordsTweet = this.splitHashtags(wordsTweet);
     //Set in arrayid the next id. It will be new id tweet
     arrayid.push(this.id);
 
     wordsTweet
       .forEach(
         (hashtag : string) => {
-          newHashtag = new Hashtag (hashtag, arrayid);
-          console.log(newHashtag);
-          this._store.dispatch({type: 'HASHTAG_ADD', payload: newHashtag});
+          index = this.existHashtag(hashtag);
+
+          if (index === -1){
+            newHashtag = new Hashtag (hashtag, arrayid);
+            this._store.dispatch({type: 'HASHTAG_ADD', payload: newHashtag});
+          }else{
+            this._store.dispatch({type: 'HASHTAG_UPDATE', payload: [index,this.id]});
+          }
+
         }
       );
 
@@ -88,10 +101,10 @@ export class FormTweetComponent {
      *
      * @return Array with hashtags find in text
      *
-     *@example input  : [Hi, Im, JuanCarlos, #Hello]
-     *         output : [#Hello] 
+     *@example input  : [Hi, Im, JuanCarlos, #Hello #hi]
+     *         output : [#Hello, #hi] 
   */
-  searchHashtags(arrayWords : string[]) : string[] {
+  splitHashtags(arrayWords : string[]) : string[] {
 
     let arrayHashtahs : string[] = [];
 
@@ -102,6 +115,31 @@ export class FormTweetComponent {
       }
     );
     return arrayHashtahs;
+  }
+
+  /**
+     * existHashtag.
+     *
+     * @param 
+     *
+     * @return 
+     *
+     *@example 
+     *          
+  */
+  existHashtag(hashtagName : string) : number {
+    let index  = -1;
+
+    this.hashtags
+      .map( 
+        (hashtag : Hashtag, ind : number) => {
+          if (hashtag.name === hashtagName){
+            index = ind;
+          }
+        }
+      );
+
+    return index;
   }
 
 

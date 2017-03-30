@@ -50,7 +50,6 @@ export class FormLoginComponent implements OnInit {
     isLogged = this.loginService.login(this.user);
 
     if(isLogged){
-      console.log(this.user);
       this._router.navigate(['/login/tweet']);
     }else{
       this.err = true;

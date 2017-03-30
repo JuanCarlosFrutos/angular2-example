@@ -9,17 +9,10 @@ export function HashtagsReduce (state: Hashtag [] = [], action : Action) {
 		  *If any hashtag has this name, it add a new hashtag in the state.
 		  */
 	    case 'HASHTAG_ADD':
-	    	if (state.some((hashtag : Hashtag) => hashtag.name === action.payload.name)){
-	    		state.forEach(
-	    			(hashtag : Hashtag) => {
-	    				if (hashtag.name === action.payload.name) 
-	    					hashtag.tweets.push(action.payload.tweets[0]);
-	    			}
-	    		);
-	    		return state;
-	    	}else{
-	    		return [...state, action.payload];
-	    	}	  	
+	    	return [...state, action.payload];	 
+	    case 'HASHTAG_UPDATE':
+	    	console.log(action.payload);
+ 			state[action.payload[0]].tweets.push(action.payload[1]);
 	    default:
 	      return state;
  	}
