@@ -6,14 +6,14 @@
         Success {{date}}
     </div>
   </div>
-  <form #tweetForm="ngForm">
+  <form>
     <div class="form-group">
       <label>Content:</label>
       <br>
       <textarea style = "width: 100%" #content type="text" name="content"></textarea>
     </div>
     <button type="button" class="btn btn-default" type="submit"
-            (click)="writeTweet(content.value);tweetForm.reset()">
+            (click)="tweetText.emit($event);">
        WriteTweet
     </button>
   </form>

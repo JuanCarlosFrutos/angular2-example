@@ -11,7 +11,7 @@
 			<app-feed [tweets] = "tweetsShow" ></app-feed>
 		</div>
 		<div class = "col-md-6">
-			<router-outlet></router-outlet>
+			<router-outlet (tweetText)="handle()">></router-outlet>
 		</div>
 	</div>
 </div>
