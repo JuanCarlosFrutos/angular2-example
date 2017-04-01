@@ -10,6 +10,8 @@ import { Tweet } from './shared/models/tweet';
 import { User } from './shared/models/user';
 //SERVICE
 import { LoginService } from './shared/services/login-service.service';
+import { TweetDataService } from './shared/services/tweet-data-service.service';
+import { HashtagDataService } from './shared/services/hashtag-data-service.service';
 
 //to do
 //display form tweet
@@ -23,11 +25,9 @@ import { LoginService } from './shared/services/login-service.service';
 
 export class AppComponent implements OnInit{
 
-  private tweetStore : Observable<Array<Tweet>>;
-  private tweetsShow : Tweet[];
-  private tweets : Tweet[];
+  private tweets : Observable<Tweet[]>;
+  private hashtags : Observable<Hashtag[]>;
 
-  private hashtagStore : Observable<Array<Hashtag>>;
   private hashtagShow : Hashtag[];
 
   private loggedUserStore : Observable<User>;
@@ -35,29 +35,18 @@ export class AppComponent implements OnInit{
 
   constructor(
     private _store : Store<AppStore>,
-    private loginService : LoginService
+    private loginService : LoginService,
+    private tweetDataService : TweetDataService,
+    private hashtagDataService : HashtagDataService
   ) {
 
+    this.tweets = tweetDataService.allTweets();
+    this.hashtags = hashtagDataService.allHashtag();
+
     //Select stores.
-    this.tweetStore = _store.select('TweetReduce');
-    this.hashtagStore = _store.select('HashtagsReduce');
     this.loggedUserStore = _store.select('UserLoged');
 
-    //subscribes.
-    this.tweetStore
-      .subscribe( 
-        (arrayTweets: Tweet[]) => {
-            this.tweets = arrayTweets; 
-            this.tweetsShow = arrayTweets;
-        }
-      );
 
-    this.hashtagStore
-      .subscribe( 
-        (arrayHashtags : Hashtag[]) => {
-            this.hashtagShow = arrayHashtags;
-        }
-      );
 
     this.loggedUserStore
       .subscribe( 
@@ -65,6 +54,7 @@ export class AppComponent implements OnInit{
             this.isLogged = userLogged;
         }
       );
+      console.log(this.tweets);
   }
 
   /**
@@ -91,38 +81,10 @@ export class AppComponent implements OnInit{
     */
 
   changeFilter (event) : void {
-      this.filterTweets(event.target.text)
-  }
+      let hastag : Hashtag;
 
-  /**
-    * filterTweets.
-    *
-    * Select all tweets that contains a hashtag and put all of it 
-    * in tweetsShow.
-    *
-    * If the filter is all tweets ,then tweetsShow would have all tweets
-    *
-    * @param hashtag name
-    *
-    */
-  filterTweets (filter) : void {
-    let tweetsIDS : number[] = [];
-    
-    if (filter === "All Tweets"){
-      this.tweetsShow = this.tweets;
-      return;
-    }
-
-    this.hashtagShow
-      .forEach(
-        (hashtag : Hashtag) => {
-          if (hashtag.name === filter) 
-            tweetsIDS = hashtag.tweets;
-        }
-      );
-
-    this.tweetsShow = this.tweets
-                            .filter((tweet : Tweet) => tweetsIDS.indexOf(tweet.id)>=0);
+      hastag = this.hashtagDataService.getHashtag(event.target.text);
+      this.tweetDataService.filterTweets(hastag);
   }
 
   /**

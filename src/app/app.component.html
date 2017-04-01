@@ -2,13 +2,13 @@
 <div class="container"> 
 	<app-header [isLogged] = "isLogged"></app-header>
 	<app-nav-bar [isLogged] = "isLogged" 
-				 [hashtags] = "hashtagShow" 
+				 [hashtags] = "hashtags | async" 
 				 (filter)="changeFilter($event)" 
 				 (logout)="logout()">
 				 </app-nav-bar>
 	<div class = "row">
 		<div class = "col-md-6">
-			<app-feed [tweets] = "tweetsShow" ></app-feed>
+			<app-feed [tweets] = "tweets | async" ></app-feed>
 		</div>
 		<div class = "col-md-6">
 			<router-outlet></router-outlet>

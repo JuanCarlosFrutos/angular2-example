@@ -1,30 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-
+import { Subject }    from 'rxjs/Subject';
 //STORE
 import { Store } from '@ngrx/store';
 import { AppStore } from '../store/app-store';
 //MODELS
 import { Tweet } from '../models/tweet';
+import { Hashtag } from '../models/hashtag';
+
+
+
+import { HashtagDataService } from './hashtag-data-service.service';
+
 
 @Injectable()
-export class TweetDataServiceService {
+export class TweetDataService {
 
 	private tweetsStore : Observable<Tweet[]>;
-  private tweets : Tweet[]; 
-	private idTweet : number;
+  private tweetsSource = new Subject<Tweet[]>(); 
+  tweets = this.tweetsSource.asObservable();
+  tweetsArray : Tweet[];
+	private idTweet : number = 0;
 
   constructor(
-  		private _store : Store<AppStore>
+  		private _store : Store<AppStore>,
+      private hashtagDataService : HashtagDataService,
   	) 
   { 
+
+
   	this.tweetsStore = _store.select('TweetReduce');
+
 
     this.tweetsStore
       .subscribe(
         (arrayTweets : Tweet[] ) => {
-          this.tweets = arrayTweets;
-        }
+          this.tweetsSource.next(arrayTweets);
+          this.tweetsArray = arrayTweets;
+        },
       )
   }
 
@@ -39,8 +52,8 @@ export class TweetDataServiceService {
      *
   	*/
 
-  public AllTweets() : Observable<Tweet[]> {
- 	  return this.tweetsStore;
+  public allTweets() : Observable<Tweet[]> {
+ 	  return this.tweets;
   }
 
     /**
@@ -59,10 +72,13 @@ export class TweetDataServiceService {
     let newTweet : Tweet;
 
     newTweet = new Tweet (this.idTweet,new Date(), author, text)
+    this.hashtagDataService.SearchHashtag(text,this.idTweet);
     this._store.dispatch({type: 'TWEET_ADD', payload: newTweet});
     this.idTweet++;
+
   }
 
+  
   /**
     * filterTweets.
     *
@@ -74,15 +90,19 @@ export class TweetDataServiceService {
     * @param hashtag name
     *
     */
-  public filterTweets (filter : string) : Tweet[] {
+  public filterTweets (hashtag : Hashtag) : void{
 
-    let tweetsIDS : number[] = [];
-    
-    if (filter === "All Tweets"){
+    let tweetsFilter : Tweet [];
+ 
+    if (hashtag.name === "All Tweets"){
       this.tweets = this.tweets;
-      return;
     }
 
+    tweetsFilter = this.tweetsArray
+                          .filter((tweet : Tweet) => hashtag.tweets.indexOf(tweet.id)>=0);
+
+    this.tweetsSource.next(tweetsFilter);
   }
+
 
 }

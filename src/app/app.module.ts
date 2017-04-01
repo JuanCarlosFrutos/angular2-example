@@ -26,6 +26,8 @@ import { FormLoginComponent } from './form-login/form-login.component';
 //SERVICES
 import { LoginService } from './shared/services/login-service.service';
 import { CanActivateService } from './shared/services/can-activate-service.service';
+import { TweetDataService } from './shared/services/tweet-data-service.service';
+import { HashtagDataService } from './shared/services/hashtag-data-service.service';
 
 
 @NgModule({
@@ -54,7 +56,9 @@ import { CanActivateService } from './shared/services/can-activate-service.servi
   ],
   providers: [
     LoginService,
-    CanActivateService
+    CanActivateService,
+    TweetDataService,
+    HashtagDataService,
   ],
   bootstrap: [AppComponent]
 })

@@ -1,8 +1,7 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Tweet } from '../shared/models/tweet';
 
-import {Observable} from 'rxjs/Rx';
-import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-feed',
@@ -15,6 +14,6 @@ import { Store } from '@ngrx/store';
   `
 })
 export class FeedComponent{
-  @Input() tweets: Observable<Array<Tweet>>;
+  @Input() tweets: Observable<Tweet[]>;
   private currentFilter;
 }
