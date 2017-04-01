@@ -1,16 +1,15 @@
-
-<div class="container"> 
-	<app-header [isLogged] = "isLogged"></app-header>
-	<app-nav-bar [isLogged] = "isLogged" 
+<app-header [isLogged] = "isLogged"></app-header>
+<app-nav-bar [isLogged] = "isLogged" 
 				 [hashtags] = "hashtags | async" 
 				 (changeFilter)="changeFilter($event)" 
 				 (logout)="logout()">
 				 </app-nav-bar>
+<div id="appComponent" class="container"> 
 	<div class = "row">
-		<div class = "col-md-6">
+		<div class = "col-md-7">
 			<app-feed [tweets] = "tweets | async" ></app-feed>
 		</div>
-		<div class = "col-md-6">
+		<div class = "col-md-5">
 			<router-outlet></router-outlet>
 		</div>
 	</div>

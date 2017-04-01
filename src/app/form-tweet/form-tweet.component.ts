@@ -37,6 +37,7 @@ export class FormTweetComponent {
   }
 
   private configureMessages (state : boolean) : void {
+   
       if (state === true) {
         this.date = new Date();
         this.success = true;

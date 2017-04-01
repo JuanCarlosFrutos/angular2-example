@@ -1,0 +1,28 @@
+#tweet {
+   text-align: center;
+   width: 90%;
+   height: 125px;
+   border: 15px solid #1C3A4E;
+   padding: 10px;
+   margin: 25px;
+   box-shadow: 3px 3px 5px black;
+   box-sizing: border-box;
+}
+
+#date {
+	display: inline;
+	margin-bottom: 0px;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+#author {
+	display: inline;
+	margin-bottom: 0px;
+	font-weight: bold;
+		font-size: 1.5em;
+}
+
+#text {
+
+}

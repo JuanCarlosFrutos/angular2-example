@@ -6,7 +6,8 @@ import { Hashtag } from '../shared/models/hashtag';
 
 @Component({
   selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html'
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent{
 	@Input() hashtags: Observable<Hashtag[]>;
