@@ -8,7 +8,6 @@ import { Tweet } from '../shared/models/tweet';
 import { Hashtag } from '../shared/models/hashtag';
 import { AppStore } from '../shared/store/app-store';
 //SERVICES
-import { TweetDataService } from '../shared/services/tweet-data-service.service';
 import { FormsService } from '../shared/services/forms-service.service';
 
 @Component({
