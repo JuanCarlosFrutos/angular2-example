@@ -9,6 +9,7 @@ import { Hashtag } from '../shared/models/hashtag';
 import { AppStore } from '../shared/store/app-store';
 //SERVICES
 import { TweetDataService } from '../shared/services/tweet-data-service.service';
+import { FormsService } from '../shared/services/forms-service.service';
 
 @Component({
   selector: 'app-form-tweet',
@@ -21,18 +22,13 @@ export class FormTweetComponent {
 
   constructor(
       private tweetDataService : TweetDataService,
+      private formsService : FormsService
   	) {  
 
     }
 
   private writeTweet(text : string) : void{
-    let obser :  Observable<Tweet>;
-     this.tweetDataService.writeTweet(text, "ADMIN");
-     // obser =  this.tweetDataService.AllTweets();
-     // obser.subscribe( Tweet => {
-     //             console.log("Obser map.");
-     //             console.log(Tweet);
-     //            });
+    this.formsService.submitTweet(text);
   }
 
 }

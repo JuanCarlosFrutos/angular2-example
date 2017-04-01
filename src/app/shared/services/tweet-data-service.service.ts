@@ -9,10 +9,6 @@ import { Tweet } from '../models/tweet';
 import { Hashtag } from '../models/hashtag';
 
 
-
-import { HashtagDataService } from './hashtag-data-service.service';
-
-
 @Injectable()
 export class TweetDataService {
 
@@ -24,7 +20,6 @@ export class TweetDataService {
 
   constructor(
   		private _store : Store<AppStore>,
-      private hashtagDataService : HashtagDataService,
   	) 
   { 
 
@@ -67,15 +62,14 @@ export class TweetDataService {
      * @return void
      *
   	*/
-  public writeTweet(text : string, author: string) : void {
+  public writeTweet(text : string, author: string) : number {
 
     let newTweet : Tweet;
 
     newTweet = new Tweet (this.idTweet,new Date(), author, text)
-    this.hashtagDataService.SearchHashtag(text,this.idTweet);
     this._store.dispatch({type: 'TWEET_ADD', payload: newTweet});
     this.idTweet++;
-
+    return this.idTweet - 1;
   }
 
   

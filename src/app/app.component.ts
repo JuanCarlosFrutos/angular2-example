@@ -12,6 +12,7 @@ import { User } from './shared/models/user';
 import { LoginService } from './shared/services/login-service.service';
 import { TweetDataService } from './shared/services/tweet-data-service.service';
 import { HashtagDataService } from './shared/services/hashtag-data-service.service';
+import { FormsService } from './shared/services/forms-service.service';
 
 //to do
 //display form tweet
@@ -37,11 +38,21 @@ export class AppComponent implements OnInit{
     private _store : Store<AppStore>,
     private loginService : LoginService,
     private tweetDataService : TweetDataService,
-    private hashtagDataService : HashtagDataService
+    private hashtagDataService : HashtagDataService,
+    private forms : FormsService
   ) {
+
 
     this.tweets = tweetDataService.allTweets();
     this.hashtags = hashtagDataService.allHashtag();
+
+    //events
+    this.forms.formTweet
+                      .subscribe(
+                        (text : string)=> {
+                          this.newTweet(text);
+                        }
+                      );
 
     //Select stores.
     this.loggedUserStore = _store.select('UserLoged');
@@ -56,7 +67,12 @@ export class AppComponent implements OnInit{
       );
       console.log(this.tweets);
   }
-
+  /***/
+  private newTweet(text : string) : void{
+    let idTweet : number ; 
+    idTweet = this.tweetDataService.writeTweet(text, this.isLogged.name);
+    this.hashtagDataService.SearchHashtag(text,idTweet);
+  }
   /**
     * ngOnInit.
     *
