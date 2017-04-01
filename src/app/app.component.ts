@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 
@@ -12,9 +12,6 @@ import { TweetDataService } from './shared/services/tweet-data-service.service';
 import { HashtagDataService } from './shared/services/hashtag-data-service.service';
 import { FormsService } from './shared/services/forms-service.service';
 
-//to do
-//display form tweet
-//
 
 @Component({
   selector: 'app-root',
@@ -22,7 +19,7 @@ import { FormsService } from './shared/services/forms-service.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent {
 
   private tweets : Observable<Tweet[]>;
   private hashtags : Observable<Hashtag[]>;
@@ -32,10 +29,10 @@ export class AppComponent implements OnInit{
 
   constructor(
     private loginService : LoginService,
-    private _router: Router,
     private tweetDataService : TweetDataService,
     private hashtagDataService : HashtagDataService,
-    private forms : FormsService
+    private formsService : FormsService,
+    private _router: Router,
   ) {
 
 
@@ -43,22 +40,21 @@ export class AppComponent implements OnInit{
     this.hashtags = hashtagDataService.allHashtag();
     this.loggedUser = loginService.userLogged();
 
-    //events handles by formsService
-    this.forms.formTweet
+    this.formsService.formTweet
                       .subscribe(
                         (text : string)=> {
                           this.newTweet(text);
                         }
                       );
 
-    this.forms.formLogin
+    this.formsService.formLogin
                       .subscribe(
                         (user : User)=> {
                           this.login(user);
                         }
                       );
 
-    this.forms.formSignup
+    this.formsService.formSignup
                       .subscribe(
                         (user : User)=> {
                           this.newUser(user);
@@ -66,56 +62,108 @@ export class AppComponent implements OnInit{
                       );                                       
 
     this.loggedUser
-      .subscribe( 
-        (userLogged : User) => {
-            this.isLogged = userLogged;
-        }
-      );
-  }
-  /***/
-  private newTweet(text : string) : void{
-    let idTweet : number ; 
-    idTweet = this.tweetDataService.writeTweet(text, this.isLogged.name);
-    this.hashtagDataService.SearchHashtag(text,idTweet);
+                .subscribe( 
+                  (userLogged : User) => {
+                    this.isLogged = userLogged;
+                  }
+                );
   }
 
-  private login(user : User) {
-    console.log(user);
-    this.loginService.login(user);
-    this._router.navigate(['/tweet']);
-
-  }
-
-  private newUser (user : User) {
-    this.loginService.newUser(user);
-  }
   /**
-    * ngOnInit.
+    * newTweet.
     *
+    * Save in store the tweet and its hashtags.
     * 
+    * This.tweetDataService.writeTweet return the id of new tweet. If return value is < 0 -> error
     * 
     *
-    * @param click event nav-bar. It contains the hashtag name for filter.
+    * @param tweet text
     *
-    *
+    * @example newTweet("Hi, my name is JuanCarlos #Hello");
+
+               Store before call newTweet.   Store after call newTweet.
+               HASTAG STORE => []            HASTAG STORE => [(#hello,array[1])]
+               TWEET STORE =>  []            TWEET STORE =>  [(id, date, author, "Hi, my name is JuanCarlos #Hello")]
+               
+
     */
-  ngOnInit () {
+
+  private newTweet(text : string) : void{
+
+    let idTweet : number ; 
+
+    idTweet = this.tweetDataService.writeTweet(text, this.isLogged.name);
+
+    this.formsService.StateTweet(idTweet>=0);
+
+    this.hashtagDataService.SearchHashtag(text,idTweet);
+
   }
+
+  /**
+    * login.
+    *
+    * Try login user. Send the resulto to form-login (Using forsService)
+    * 
+    * @param user
+    *
+    * @example user1 = new User ("Juan Carlos" , "password");
+    *          login(user1);
+    */
+
+  private login(user : User) : void {
+
+    let state : boolean
+
+    state = this.loginService.login(user);
+
+    this.formsService.StateLogin(state);
+
+    this._router.navigate(['/tweet']);
+  }
+
+  /**
+    * newUser.
+    *
+    * Register new User.
+    * 
+    * @param new User
+    *
+    * @example newUser (new user ("Juan Carlos", "password"));
+    */
+
+  private newUser (user : User) : void {
+
+    let state : boolean;
+
+    state = this.loginService.newUser(user);
+
+    this.formsService.StateSignup(state);
+  }
+
   /**
     * changeFilter.
     *
-    * Given a route with one or more dynamic parameters, replace
-    * parameters with supplied parameters and return resulting string.
+    * Recives a new filter (hashtagName), calls getHashtag to obtain the hastag 
+    * and finally tweetDataService.filterTweets() picks the correct tweets and 
+    * change observable this.tweets.
     *
-    * @param click event nav-bar. It contains the hashtag name for filter.
+    * If filter is ALL_TWEETS , It will show all tweets.
     *
+    * @param hashtag name
     *
+    * @example changeFilter ("#Hello");
+    *          
+    *          
     */
 
   changeFilter (event) : void {
+
       let hastag : Hashtag;
 
+      console.log("Filter: " + event.target.text);
       hastag = this.hashtagDataService.getHashtag(event.target.text);
+
       this.tweetDataService.filterTweets(hastag);
   }
 

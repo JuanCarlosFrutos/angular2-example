@@ -24,6 +24,7 @@ export class HashtagDataService {
       .subscribe(
         (arrayHashtag : Hashtag[]) => {
           this.hashtagArray = arrayHashtag;
+          console.log(arrayHashtag[0]);
         }
       );
   }
@@ -48,7 +49,11 @@ export class HashtagDataService {
 
   public getHashtag ( hastahName : string) : Hashtag {
 
-    let searchedHashtag : Hashtag = null;
+    let searchedHashtag : Hashtag = new Hashtag ("ALL_TWEETS", null);
+
+    if (hastahName === "ALL_TWEETS") {
+        return searchedHashtag;
+    }
 
     this.hashtagArray
       .map(
@@ -57,6 +62,7 @@ export class HashtagDataService {
             searchedHashtag = hashtag;
         }
       );
+
     return searchedHashtag;
   }
 

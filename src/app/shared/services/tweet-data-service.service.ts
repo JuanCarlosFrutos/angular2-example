@@ -88,14 +88,16 @@ export class TweetDataService {
 
     let tweetsFilter : Tweet [];
  
-    if (hashtag.name === "All Tweets"){
-      this.tweets = this.tweets;
-    }
+    if (hashtag.name === "ALL_TWEETS"){
+      this.tweetsSource.next(this.tweetsArray);
 
-    tweetsFilter = this.tweetsArray
+    }else{
+      tweetsFilter = this.tweetsArray
                           .filter((tweet : Tweet) => hashtag.tweets.indexOf(tweet.id)>=0);
 
-    this.tweetsSource.next(tweetsFilter);
+      this.tweetsSource.next(tweetsFilter);
+    }
+
   }
 
 

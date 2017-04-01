@@ -11,7 +11,8 @@ export class LoginService {
 
   private listUsersStore  : Observable<User[]>;
   private users           : User[];
-  private userLoggedStore  : Observable<User>;
+  private userLoggedStore : Observable<User>;
+  private user            : User;
 
   constructor( private store: Store<AppStore>) 
   {
@@ -29,6 +30,14 @@ export class LoginService {
         } 
     );
 
+    //subscribe to Store with all users.
+    this.userLoggedStore
+      .subscribe(
+        (userLogged : User) => {
+          this.user = userLogged;
+        } 
+    );
+
   }
   
    /**
@@ -38,11 +47,12 @@ export class LoginService {
      *
      */
 
-  newUser(user : User) {
+  newUser(user : User) : boolean {
 
     //if (this.pass === this.repass){
       //this.user = new User (this.name, this.pass);
       this.store.dispatch({type: 'USER_REGISTER', payload: user});
+      return true;
       //this.success = true;
       //this.err = false;
     //}else{
@@ -70,9 +80,9 @@ export class LoginService {
   }
 
   public isLoggedIn(){
-    // if (this.userLogged === undefined){
-    //   return false;
-    // }
+    if (this.user === undefined){
+       return false;
+    }
     return true; 
   }
 }

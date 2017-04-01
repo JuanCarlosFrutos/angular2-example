@@ -12,6 +12,7 @@ import { User } from '../models/user';
 @Injectable()
 export class FormsService {
 
+  // ***************** Submit ***********************//
   private formTweetSource = new Subject<string>();
   private formLoginSource = new Subject<User>();
   private formSignupSource = new Subject<User>();
@@ -19,6 +20,17 @@ export class FormsService {
   public formTweet : Observable<string> = this.formTweetSource.asObservable();
   public formLogin : Observable<User>   = this.formLoginSource.asObservable();
   public formSignup: Observable<User>   = this.formSignupSource.asObservable();
+  // ************************************************//
+
+  // ***************State of forms*******************//
+  private MessageTweetSource = new Subject<boolean>();
+  private MessageLoginSource = new Subject<boolean>();
+  private MessageSignupSource = new Subject<boolean>();
+
+  public MessageTweet : Observable<boolean>   = this.MessageTweetSource.asObservable();
+  public MessageLogin : Observable<boolean>   = this.MessageLoginSource.asObservable();
+  public MessageSignup: Observable<boolean>   = this.MessageSignupSource.asObservable();
+  // ************************************************//
 
 
   constructor() { }
@@ -35,4 +47,15 @@ export class FormsService {
   	this.formSignupSource.next(user);
   };
 
+  public StateTweet ( state : boolean ) : any {
+    this.MessageTweetSource.next(state);
+  };
+
+  public StateLogin ( state : boolean ) : any {
+    this.MessageLoginSource.next(state);
+  };
+
+  public StateSignup ( state : boolean ) : any {
+    this.MessageSignupSource.next(state);
+  };
 }

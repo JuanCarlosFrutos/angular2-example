@@ -20,14 +20,28 @@ export class FormTweetComponent {
   private date : Date;
 
   constructor(
-      private tweetDataService : TweetDataService,
       private formsService : FormsService
   	) {  
-
+    this.formsService.MessageTweet
+                        .subscribe(
+                          (state : boolean)=>{
+                            this.configureMessages(state);
+                          }
+                        );
     }
 
   private writeTweet(text : string) : void{
+
     this.formsService.submitTweet(text);
+
+  }
+
+  private configureMessages (state : boolean) : void {
+      if (state === true) {
+        this.date = new Date();
+        this.success = true;
+      }
+
   }
 
 }

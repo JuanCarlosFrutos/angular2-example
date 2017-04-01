@@ -3,7 +3,7 @@
 	<app-header [isLogged] = "isLogged"></app-header>
 	<app-nav-bar [isLogged] = "isLogged" 
 				 [hashtags] = "hashtags | async" 
-				 (filter)="changeFilter($event)" 
+				 (changeFilter)="changeFilter($event)" 
 				 (logout)="logout()">
 				 </app-nav-bar>
 	<div class = "row">

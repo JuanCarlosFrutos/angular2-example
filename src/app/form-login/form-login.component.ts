@@ -23,10 +23,26 @@ export class FormLoginComponent {
 
   constructor(
     private formsService : FormsService
-    ){}
+    ){
+        this.formsService.MessageLogin
+                              .subscribe(
+                                (state : boolean)=>{
+                                  this.configureMessages(state);
+                                }
+                              );
+  }
   
   private login () : void {
+
     this.formsService.submitLogin(this.user);
+
+  }
+
+    private configureMessages (state : boolean) : void {
+
+    if (state === false) {
+      this.err = true;
+    }    
   }
 
 }
