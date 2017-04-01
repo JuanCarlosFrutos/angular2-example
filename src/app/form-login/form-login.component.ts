@@ -2,20 +2,19 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../shared/models/user'
 
-import { Store, provideStore } from '@ngrx/store';
-import { AppStore } from '../shared/store/app-store';
-
 import {Observable} from 'rxjs/Rx';
 
-import { Router } from '@angular/router';
 import { LoginService } from '../shared/services/login-service.service';
+
+//SERVICE
+import { FormsService } from '../shared/services/forms-service.service';
 
 @Component({
   selector: 'app-form-login',
   templateUrl: './form-login.component.html',
   styleUrls: ['./form-login.component.css']
 })
-export class FormLoginComponent implements OnInit {
+export class FormLoginComponent {
 
   private logedUserStore: Observable<User> ;
   private user = new User('', '');
@@ -23,41 +22,11 @@ export class FormLoginComponent implements OnInit {
   private err : boolean = false;
 
   constructor(
-  	private _store: Store<AppStore>,
-  	private _router: Router,
-  	private loginService: LoginService
-  	){
-    this.logedUserStore = this._store.select('UserLoged');
-
-    this.logedUserStore
-      .subscribe(
-        (user : User) => {
-          user != undefined ? this.isLogged = true : this.isLogged = false;
-          //this.isLogged = user;
-        }
-      );
-  }
-
-     /**
-     * login.
-     *
-     * Ckeck if the user is registered. If it is registered, it can logged. 
-     *
-     */
-  login() {
-
-    let isLogged ;
-    isLogged = this.loginService.login(this.user);
-
-    if(isLogged){
-      console.log(this.user);
-      this._router.navigate(['/login/tweet']);
-    }else{
-      this.err = true;
-    }
-  }
-
-  ngOnInit() {
+    private formsService : FormsService
+    ){}
+  
+  private login () : void {
+    this.formsService.submitLogin(this.user);
   }
 
 }

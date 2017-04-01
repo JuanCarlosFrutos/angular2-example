@@ -14,26 +14,17 @@ export const routing = [
     redirectTo: '/login',
     pathMatch: 'full'
   },
-  // { 
-  //   path: 'tweet',
-  //   component: FormTweetComponent,
-  //   canActivate: [
-  //   	CanActivateService
-  //   ]
-  // },
+  { 
+    path: 'tweet',
+    component: FormTweetComponent,
+    canActivate: [
+    	CanActivateService
+    ]
+  },
   { path: 'signup', component: SignupComponent },
   { 
     path: 'login',
     component: FormLoginComponent,
-    children: [
-      {
-        path: 'tweet',
-        component : FormTweetComponent,
-        canActivate: [
-         CanActivateService
-        ]
-      }
-    ]
   },
   { path: '**', component: FormLoginComponent }
 ];

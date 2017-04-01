@@ -12,7 +12,6 @@ export class LoginService {
   private listUsersStore  : Observable<User[]>;
   private users           : User[];
   private userLoggedStore  : Observable<User>;
-  private userLogged       : User;
 
   constructor( private store: Store<AppStore>) 
   {
@@ -30,33 +29,50 @@ export class LoginService {
         } 
     );
 
-    //subscribe to Store that contains info about logged user.
-    this.userLoggedStore
-      .subscribe(
-        (user : User) => {
-          this.userLogged = user;
-        } 
-    );
   }
   
+   /**
+     * newUser.
+     *
+     * Given a user, newUser check if information is correct.
+     *
+     */
+
+  newUser(user : User) {
+
+    //if (this.pass === this.repass){
+      //this.user = new User (this.name, this.pass);
+      this.store.dispatch({type: 'USER_REGISTER', payload: user});
+      //this.success = true;
+      //this.err = false;
+    //}else{
+      //this.err = true;
+      //this.success = false;
+    //}
+  }
+
   public login(loginUser: User) : boolean{
 
-    // if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
+     if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
         //console.log(loginUser);
         this.store.dispatch({type: 'USER_LOGIN', payload: loginUser});
         return true;
-    // }
-    // return false;
+     }
+     return false;
   }
 
   public logout(){
       this.store.dispatch({type: 'USER_LOGOUT'});
   }
 
+  public userLogged() : Observable<User>{
+    return this.userLoggedStore;
+  }
+
   public isLoggedIn(){
-    if (this.userLogged === undefined){
-      return false;
-    }
+    // if (this.userLogged === undefined){
+    //   return false;
+    // }
     return true; 
   }
 }

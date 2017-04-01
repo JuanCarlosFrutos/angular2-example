@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import { Router } from '@angular/router';
 
-//STORE
-import { Store } from '@ngrx/store';
-import { AppStore } from './shared/store/app-store';
 //MODELS
 import { Hashtag } from './shared/models/hashtag';
 import { Tweet } from './shared/models/tweet';
@@ -28,15 +26,13 @@ export class AppComponent implements OnInit{
 
   private tweets : Observable<Tweet[]>;
   private hashtags : Observable<Hashtag[]>;
+  private loggedUser : Observable<User>;
 
-  private hashtagShow : Hashtag[];
-
-  private loggedUserStore : Observable<User>;
   private isLogged : User;
 
   constructor(
-    private _store : Store<AppStore>,
     private loginService : LoginService,
+    private _router: Router,
     private tweetDataService : TweetDataService,
     private hashtagDataService : HashtagDataService,
     private forms : FormsService
@@ -45,8 +41,9 @@ export class AppComponent implements OnInit{
 
     this.tweets = tweetDataService.allTweets();
     this.hashtags = hashtagDataService.allHashtag();
+    this.loggedUser = loginService.userLogged();
 
-    //events
+    //events handles by formsService
     this.forms.formTweet
                       .subscribe(
                         (text : string)=> {
@@ -54,24 +51,43 @@ export class AppComponent implements OnInit{
                         }
                       );
 
-    //Select stores.
-    this.loggedUserStore = _store.select('UserLoged');
+    this.forms.formLogin
+                      .subscribe(
+                        (user : User)=> {
+                          this.login(user);
+                        }
+                      );
 
+    this.forms.formSignup
+                      .subscribe(
+                        (user : User)=> {
+                          this.newUser(user);
+                        }
+                      );                                       
 
-
-    this.loggedUserStore
+    this.loggedUser
       .subscribe( 
         (userLogged : User) => {
             this.isLogged = userLogged;
         }
       );
-      console.log(this.tweets);
   }
   /***/
   private newTweet(text : string) : void{
     let idTweet : number ; 
     idTweet = this.tweetDataService.writeTweet(text, this.isLogged.name);
     this.hashtagDataService.SearchHashtag(text,idTweet);
+  }
+
+  private login(user : User) {
+    console.log(user);
+    this.loginService.login(user);
+    this._router.navigate(['/tweet']);
+
+  }
+
+  private newUser (user : User) {
+    this.loginService.newUser(user);
   }
   /**
     * ngOnInit.

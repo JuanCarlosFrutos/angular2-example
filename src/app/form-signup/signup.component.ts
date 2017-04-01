@@ -7,7 +7,8 @@ import { User } from '../shared/models/user'
 //STORE
 import { Store } from '@ngrx/store';
 import { AppStore } from '../shared/store/app-store';
-
+//SERVICE
+import { FormsService } from '../shared/services/forms-service.service';
 
 
 @Component({
@@ -28,27 +29,10 @@ export class SignupComponent {
   private success : boolean = false;
 
   constructor(
-  	private _store: Store<AppStore>,
+  	private formsService : FormsService
   	){}
-
-   /**
-     * newUser.
-     *
-     * Given a user, newUser check if information is correct.
-     *
-     */
-
-  newUser() {
-
-    if (this.pass === this.repass){
-      this.user = new User (this.name, this.pass);
-      this._store.dispatch({type: 'USER_REGISTER', payload: this.user});
-      this.success = true;
-      this.err = false;
-    }else{
-      this.err = true;
-      this.success = false;
-    }
+  
+  private newUser () : void {
+    this.formsService.submitSignup(new User (this.name,this.pass));
   }
-
 }
