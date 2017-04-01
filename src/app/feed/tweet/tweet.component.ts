@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { Tweet } from '../models/tweet';
+import { Tweet } from '../../shared/models/tweet';
 
 @Component({
   selector: 'app-tweet',

@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
 
 //MODEL
-import { User } from '../models/user'
+import { User } from '../shared/models/user'
 //STORE
 import { Store } from '@ngrx/store';
-import { AppStore } from '../store/app-store';
+import { AppStore } from '../shared/store/app-store';
 
 
 

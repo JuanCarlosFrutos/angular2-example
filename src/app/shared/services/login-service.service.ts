@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { AppStore } from './store/app-store';
-import { User } from './models/user';
+import { AppStore } from '../store/app-store';
+import { User } from '../models/user';
 
 import { Store } from '@ngrx/store';
 import {Observable} from 'rxjs/Rx';
@@ -41,6 +41,7 @@ export class LoginService {
   public login(loginUser: User) : boolean{
 
     if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
+        console.log(loginUser);
         this.store.dispatch({type: 'USER_LOGIN', payload: loginUser});
         return true;
     }

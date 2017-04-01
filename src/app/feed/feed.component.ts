@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { Tweet } from '../models/tweet';
+import { Tweet } from '../shared/models/tweet';
 
 import {Observable} from 'rxjs/Rx';
 import { Store } from '@ngrx/store';

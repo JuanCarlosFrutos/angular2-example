@@ -3,9 +3,9 @@
 // Componentes
 import { HeaderComponent }    from './header/header.component';
 import { FormTweetComponent }    from './form-tweet/form-tweet.component';
-import { SignupComponent }    from './signup/signup.component';
+import { SignupComponent }    from './form-signup/signup.component';
 import { FormLoginComponent }    from './form-login/form-login.component';
-import { CanActivateService }	from './can-activate-service.service';
+import { CanActivateService }	from './shared/services/can-activate-service.service';
 
 export const routing = [
   //{ path: '/', component:  },

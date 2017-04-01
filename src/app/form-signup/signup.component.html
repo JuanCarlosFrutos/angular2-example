@@ -4,13 +4,15 @@
   <form class="form-horizontal"  #signUpForm="ngForm">
     <!-- Success message -->
     <div *ngIf="success" class="form-group">
-      <div class="alert alert-success col-md-offset-6 col-md-6">
+      <div class="alert alert-success alert-dismissable fade in col-md-offset-6 col-md-6">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Succes authetification.
       </div>
     </div>
     <!-- Error message -->    
     <div *ngIf="err" class="form-group">
-      <div class="alert alert-danger col-md-offset-6 col-md-6">
+      <div class="alert alert-danger alert-dismissable fade in col-md-offset-6 col-md-6">
+        <a class="close" data-dismiss="alert" aria-label="close">&times;</a>
         Passwords don't match.
       </div>
     </div>

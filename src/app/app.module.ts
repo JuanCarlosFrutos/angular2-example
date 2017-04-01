@@ -9,23 +9,23 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
 import { routing } from './app.routing';
 //REDUCES
-import { TweetReduce } from './store/reduce/tweet.reduce';
-import { UserReduce } from './store/reduce/user.reduce';
-import { UserLoged } from './store/reduce/user-loged.reduce';
-import { HashtagsReduce } from './store/reduce/hashtags.reduce';
-import { GlobalId } from './store/global-id';
+import { TweetReduce } from './shared/store/reduce/tweet.reduce';
+import { UserReduce } from './shared/store/reduce/user.reduce';
+import { UserLoged } from './shared/store/reduce/user-loged.reduce';
+import { HashtagsReduce } from './shared/store/reduce/hashtags.reduce';
+import { GlobalId } from './shared/store/global-id';
 //COMPONENTS
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
-import { TweetComponent } from './tweet/tweet.component';
+import { TweetComponent } from './feed/tweet/tweet.component';
 import { HeaderComponent } from './header/header.component';
 import { FormTweetComponent } from './form-tweet/form-tweet.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { SignupComponent } from './signup/signup.component';
+import { SignupComponent } from './form-signup/signup.component';
 import { FormLoginComponent } from './form-login/form-login.component';
 //SERVICES
-import { LoginService } from './login-service.service';
-import { CanActivateService } from './can-activate-service.service';
+import { LoginService } from './shared/services/login-service.service';
+import { CanActivateService } from './shared/services/can-activate-service.service';
 
 
 @NgModule({

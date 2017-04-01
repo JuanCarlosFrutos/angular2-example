@@ -1,39 +1,26 @@
-import { Component } from '@angular/core';
-
-import { Store } from '@ngrx/store';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
-import { User } from '../shared/models/user'
-import { Tweet } from '../shared/models/tweet';
-import { Hashtag } from '../shared/models/hashtag';
-import { AppStore } from '../shared/store/app-store';
+//STORE
+import { Store } from '@ngrx/store';
+import { AppStore } from '../store/app-store';
+//MODELS
+import { Hashtag } from '../models/hashtag';
 
-@Component({
-  selector: 'app-form-tweet',
-  templateUrl: './form-tweet.component.html',
-})
-export class FormTweetComponent {
+@Injectable()
+export class HashtagDataServiceService {
 
-  private userLogedStore : Observable <User>;
-  private userLoged : User;
-
-  private globalIdStore : Observable<number>;
-  private id : number;
-
-  private success : boolean = false; 
-  private date : Date;
+	private hashtagStore : Observable<Hashtag[]>;
+	private idTweet : number;
 
   constructor(
-      private _store : Store<AppStore>,
-  	) {  
-      this.userLogedStore = _store.select('UserLoged');
-      this.userLogedStore.subscribe((user : User) => this.userLoged = user);
+  		private _store : Store<AppStore>
+  	) 
+  { 
+  	this.hashtagStore = _store.select('TweetReduce');
+  }
 
-      this.globalIdStore = _store.select('GlobalId');
-      this.globalIdStore.subscribe ((num : number) => this.id = num);
-    }
-
-  /**
+      /**
      * writeTweet.
      *
      * Given a route with one or more dynamic parameters, replace
@@ -44,6 +31,7 @@ export class FormTweetComponent {
      * @return void
      *
   */
+  /************************/
 
   writeTweet(text : string) : void {
 
@@ -51,20 +39,27 @@ export class FormTweetComponent {
     let newHashtag: Hashtag;
     let arrayid : number[] = [];
     let wordsTweet : string[];
+    let index : number;
 
     wordsTweet = text.split(' ');
 
     //Save in wordsTweet only hte hashtags
-    wordsTweet = this.searchHashtags(wordsTweet);
+    wordsTweet = this.splitHashtags(wordsTweet);
     //Set in arrayid the next id. It will be new id tweet
     arrayid.push(this.id);
 
     wordsTweet
       .forEach(
         (hashtag : string) => {
-          newHashtag = new Hashtag (hashtag, arrayid);
-          console.log(newHashtag);
-          this._store.dispatch({type: 'HASHTAG_ADD', payload: newHashtag});
+          index = this.existHashtag(hashtag);
+
+          if (index === -1){
+            newHashtag = new Hashtag (hashtag, arrayid);
+            this._store.dispatch({type: 'HASHTAG_ADD', payload: newHashtag});
+          }else{
+            this._store.dispatch({type: 'HASHTAG_UPDATE', payload: [index,this.id]});
+          }
+
         }
       );
 
@@ -88,10 +83,10 @@ export class FormTweetComponent {
      *
      * @return Array with hashtags find in text
      *
-     *@example input  : [Hi, Im, JuanCarlos, #Hello]
-     *         output : [#Hello] 
+     *@example input  : [Hi, Im, JuanCarlos, #Hello #hi]
+     *         output : [#Hello, #hi] 
   */
-  searchHashtags(arrayWords : string[]) : string[] {
+  splitHashtags(arrayWords : string[]) : string[] {
 
     let arrayHashtahs : string[] = [];
 
@@ -104,6 +99,30 @@ export class FormTweetComponent {
     return arrayHashtahs;
   }
 
+  /**
+     * existHashtag.
+     *
+     * @param 
+     *
+     * @return 
+     *
+     *@example 
+     *          
+  */
+  existHashtag(hashtagName : string) : number {
+    let index  = -1;
+
+    this.hashtags
+      .map( 
+        (hashtag : Hashtag, ind : number) => {
+          if (hashtag.name === hashtagName){
+            index = ind;
+          }
+        }
+      );
+
+    return index;
+  }
+
 
 }
-

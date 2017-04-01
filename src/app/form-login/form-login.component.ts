@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
-import { User } from '../models/user'
+import { User } from '../shared/models/user'
 
 import { Store, provideStore } from '@ngrx/store';
-import { AppStore } from '../store/app-store';
+import { AppStore } from '../shared/store/app-store';
 
 import {Observable} from 'rxjs/Rx';
 
 import { Router } from '@angular/router';
-import { LoginService } from '../login-service.service';
+import { LoginService } from '../shared/services/login-service.service';
 
 @Component({
   selector: 'app-form-login',
@@ -50,6 +50,7 @@ export class FormLoginComponent implements OnInit {
     isLogged = this.loginService.login(this.user);
 
     if(isLogged){
+      console.log(this.user);
       this._router.navigate(['/login/tweet']);
     }else{
       this.err = true;
