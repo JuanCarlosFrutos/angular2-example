@@ -4,16 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
-import {StoreModule, provideStore} from '@ngrx/store';
-import {StoreDevtoolsModule} from '@ngrx/store-devtools';
-
+import { StoreModule, provideStore } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { routing } from './app.routing';
 //REDUCES
 import { TweetReduce } from './shared/store/reduce/tweet.reduce';
 import { UserReduce } from './shared/store/reduce/user.reduce';
 import { UserLoged } from './shared/store/reduce/user-loged.reduce';
 import { HashtagsReduce } from './shared/store/reduce/hashtags.reduce';
-import { GlobalId } from './shared/store/global-id';
 //COMPONENTS
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
@@ -51,7 +49,6 @@ import { FormsService } from './shared/services/forms-service.service';
                                UserReduce, 
                                UserLoged, 
                                HashtagsReduce,
-                               GlobalId
                              }),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],

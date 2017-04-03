@@ -1,13 +1,20 @@
 import { Hashtag } from '../../models/hashtag';
 import { Action } from '@ngrx/store';
 
+  /**
+    * HashtagsReduce.
+    *
+    * Add new hashtag to hashtag store 
+    *
+    * @param action.payload must be type Tweet
+	*
+    * @return Tweet[] that contains all tweets in the system.
+    *                    
+    */
+
 export function HashtagsReduce (state: Hashtag [] = [], action : Action) {
 
 	switch(action.type){
-		/**
-		  *Search for one hashtag that has the same name, if exists it adds the tweet id to this hashtag.
-		  *If any hashtag has this name, it add a new hashtag in the state.
-		  */
 	    case 'HASHTAG_ADD':
 	    	return [...state, action.payload];	 
 	    case 'HASHTAG_UPDATE':

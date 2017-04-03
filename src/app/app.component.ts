@@ -104,7 +104,9 @@ export class AppComponent {
     * login.
     *
     * Try login user. Send the resulto to form-login (Using forsService)
-    * 
+    * Return to form-login message with result (true or false), for do that
+    * it uses formsService
+    *
     * @param user
     *
     * @example user1 = new User ("Juan Carlos" , "password");
@@ -125,7 +127,7 @@ export class AppComponent {
   /**
     * newUser.
     *
-    * Register new User.
+    * Register new User. Return true or false to form-signUp
     * 
     * @param new User
     *
@@ -161,7 +163,6 @@ export class AppComponent {
 
       let hastag : Hashtag;
 
-      console.log("Filter: " + event.target.text);
       hastag = this.hashtagDataService.getHashtag(event.target.text);
 
       this.tweetDataService.filterTweets(hastag);
@@ -177,4 +178,17 @@ export class AppComponent {
   logout() : void{
     this.loginService.logout();
   }
+
+    /**
+    * clickLike.
+    *
+    * 
+    * 
+    */
+
+  clickLike($event) : void{
+    //console.log($event);
+    this.tweetDataService.like($event);
+  }
+  
 }

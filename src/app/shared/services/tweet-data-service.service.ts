@@ -32,6 +32,7 @@ export class TweetDataService {
         (arrayTweets : Tweet[] ) => {
           this.tweetsSource.next(arrayTweets);
           this.tweetsArray = arrayTweets;
+          console.log("Modificador.")
         },
       )
   }
@@ -66,7 +67,7 @@ export class TweetDataService {
 
     let newTweet : Tweet;
 
-    newTweet = new Tweet (this.idTweet,new Date(), author, text)
+    newTweet = new Tweet (this.idTweet,new Date(), author, text, 0, 0)
     this._store.dispatch({type: 'TWEET_ADD', payload: newTweet});
     this.idTweet++;
     return this.idTweet - 1;
@@ -98,6 +99,31 @@ export class TweetDataService {
       this.tweetsSource.next(tweetsFilter);
     }
 
+  }
+
+    /**
+    * 
+    *
+    *
+    *
+    * @param hashtag name
+    *
+    */
+
+  public like (tweet : Tweet) : void {
+    this._store.dispatch({type: 'TWEET_LIKE', payload: tweet});
+  }
+
+    /**
+    * 
+    *
+    *
+    * @param 
+    *
+    */
+
+  public dislike (tweet : Tweet) : void {
+    this._store.dispatch({type: 'TWEET_DISLIKE', payload: tweet});
   }
 
 

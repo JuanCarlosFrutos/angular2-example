@@ -31,34 +31,48 @@ export class HashtagDataService {
 
 
 
-      /**
-     * 
+   /**
+     * allHashtag
      *
-     * 
-     * 
+     * With this function you obtain a Observable ,that will be modified 
+     * in function of filters.
+     * If filter is equal ALL_TWEETS the observable has all tweets, but 
+     * if filter is equal #Hello, the observable has the tweets that 
+     * contains hashtag #Hello.
      *
      * @param 
      *
-     * @return 
+     * @return Obervable Hashtag[]
      *
-  */
+     */
 
   public allHashtag () : Observable<Hashtag[]> {
     return this.hashtagStore;
   }
 
-  public getHashtag ( hastahName : string) : Hashtag {
+   /**
+     * getHashtag
+     *
+     * Search for a hashtag with the same name of param hashtagName
+     *
+     * @param hashtagName is the name of hashtag that you need to obtain.
+     *
+     * @return return the object Hashtag.
+     *
+     */
+
+  public getHashtag ( hashtagName : string) : Hashtag {
 
     let searchedHashtag : Hashtag = new Hashtag ("ALL_TWEETS", null);
 
-    if (hastahName === "ALL_TWEETS") {
+    if (hashtagName === "ALL_TWEETS") {
         return searchedHashtag;
     }
 
     this.hashtagArray
       .map(
         (hashtag : Hashtag) => {
-          if(hashtag.name === hastahName) 
+          if(hashtag.name === hashtagName) 
             searchedHashtag = hashtag;
         }
       );
@@ -66,17 +80,19 @@ export class HashtagDataService {
     return searchedHashtag;
   }
 
-      /**
-     * 
+   /**
+     * SearchHashtag
      *
+     * This function search for all hashtag in a text and save it in hashtagStore.
+     * Use two auxiliar function (splitHashtags, existHashtag).
      * 
-     * 
-     *
-     * @param text text of tweet
+     * @param textTweet
+     *        idTweet : If the text contains a hashtag that exists in the store I need to
+     *                  add the id tweet to this hashtag.
      *
      * @return void
      *
-  */
+     */
 
   public SearchHashtag(textTweet : string, idTweet :number) : void {
 
@@ -109,16 +125,20 @@ export class HashtagDataService {
 
   }
 
-  /**
+   /**
+     * splitHashtags
+     *
+     * Select only the words that begins for "#" (hashtags).
      * 
-     *
      * 
+     * @param array with words.
      *
-     * @return 
-     *
-     *@example 
-     *          
-  */
+     * @return array with hashtags.
+     * 
+     * @example input  : arrayWords    = [Hi, My, Name, is, Jcarlos, #goodMorning, #Hello]
+     *          output : arrayHashtags = [#goodMorning, #Hello]
+     */
+
   private splitHashtags(arrayWords : string[]) : string[] {
 
     let arrayHashtahs : string[] = [];
@@ -134,6 +154,8 @@ export class HashtagDataService {
 
   /**
      * existHashtag.
+     *
+     * 
      *
      * @param 
      *

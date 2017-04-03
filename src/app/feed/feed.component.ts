@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Tweet } from '../shared/models/tweet';
 
 import { Observable } from 'rxjs/Rx';
@@ -10,5 +10,13 @@ import { Observable } from 'rxjs/Rx';
 })
 export class FeedComponent{
   @Input() tweets: Observable<Tweet[]>;
-  private currentFilter;
+  @Output () like : EventEmitter<Tweet> = new EventEmitter<Tweet>();
+
+  private clickLike($event){
+
+  	//console.log($event);
+  	this.like.emit($event);
+
+  }
+
 }

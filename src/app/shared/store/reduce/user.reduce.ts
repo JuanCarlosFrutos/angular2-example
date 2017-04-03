@@ -1,7 +1,17 @@
 import { User } from '../../models/user';
 import { Action } from '@ngrx/store';
 
-export const UserReduce = (state : User[] = [], action : Action) => {
+  /**
+    * UserReduce.
+    *
+    * Add new user to user store 
+    *
+    * @param action.payload must be type User
+	*
+    * @return User[] that contains all user registered.
+    *                    
+    */
+export function UserReduce (state : User[] = [] , action : Action) {
 
 	switch(action.type){
 	    case 'USER_REGISTER':
@@ -10,3 +20,4 @@ export const UserReduce = (state : User[] = [], action : Action) => {
 	    	return state;
  	}
 }
+

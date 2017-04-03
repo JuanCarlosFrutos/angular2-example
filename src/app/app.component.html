@@ -7,7 +7,7 @@
 <div id="appComponent" class="container"> 
 	<div class = "row">
 		<div class = "col-md-7">
-			<app-feed [tweets] = "tweets | async" ></app-feed>
+			<app-feed [tweets] = "tweets | async" (like)="clickLike($event)" ></app-feed>
 		</div>
 		<div class = "col-md-5">
 			<router-outlet></router-outlet>
