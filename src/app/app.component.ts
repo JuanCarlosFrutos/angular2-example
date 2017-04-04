@@ -190,5 +190,17 @@ export class AppComponent {
     //console.log($event);
     this.tweetDataService.like($event);
   }
+
+    /**
+    * clickLike.
+    *
+    * 
+    * 
+    */
   
+  clickDislike($event) : void{
+    //console.log($event);
+    this.tweetDataService.dislike($event);
+  }
+
 }

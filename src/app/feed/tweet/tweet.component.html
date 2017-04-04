@@ -7,7 +7,7 @@
     	<p>{{tweet.text}}</p>
     </div>
     <div class = "col-md-1">
-      <img (click) = "clickLike()" src="/../../../assets/images/like.png" alt="like" />
+      <img (click) = "like.emit(this.tweet)" src="/../../../assets/images/like.png" alt="like" />
       <p>{{tweet.like}}</p>
     </div>
   </div>
@@ -19,7 +19,7 @@
   		{{tweet.date | date: 'dd/MM/yyyy'}}
   	</div>
     <div class = "col-md-1">
-      <img src="/../../../assets/images/dislike.png" alt="dislike" />
+      <img (click) = "dislike.emit(this.tweet)" src="/../../../assets/images/dislike.png" alt="dislike" />
       <p>{{tweet.dislike}}</p>
     </div>
   </div>

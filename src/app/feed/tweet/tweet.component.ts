@@ -12,13 +12,4 @@ export class TweetComponent{
 	@Input() tweet : Tweet;
 	@Output() like : EventEmitter<Tweet> = new EventEmitter<Tweet>();
 	@Output() dislike : EventEmitter<Tweet> = new EventEmitter<Tweet>();
-
-
-private clickLike () : void {
-
-	this.like.emit(this.tweet);
-
-}
-
-
 }

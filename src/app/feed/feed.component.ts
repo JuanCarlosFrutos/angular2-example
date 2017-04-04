@@ -11,12 +11,5 @@ import { Observable } from 'rxjs/Rx';
 export class FeedComponent{
   @Input() tweets: Observable<Tweet[]>;
   @Output () like : EventEmitter<Tweet> = new EventEmitter<Tweet>();
-
-  private clickLike($event){
-
-  	//console.log($event);
-  	this.like.emit($event);
-
-  }
-
+  @Output () dislike : EventEmitter<Tweet> = new EventEmitter<Tweet>();
 }

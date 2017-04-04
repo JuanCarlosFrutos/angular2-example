@@ -17,17 +17,20 @@ export function TweetReduce (state: Tweet [] = [], action : Action) {
 	let ind : number;
 
 	switch(action.type){
+
 	    case 'TWEET_ADD':
 	    	return [...state, action.payload];
+
 	    case 'TWEET_LIKE':
-	    	 return state.map((tweet : Tweet, index : number) => {
-	    	 	//if (tweet.id === action.payload.id){};
-	    	 		//tweet.like = 2;
-	    	 		tweet = tweet;
-	    	 	
-	    	 })
-	    	 // state[ind].like = state[ind].like + 1;
-	    	 // console.log(state[ind]);
+
+	    	 state[state.indexOf(action.payload)].like += 1;
+	    	 return state;
+
+	    case 'TWEET_DISLIKE':
+
+	    	 state[state.indexOf(action.payload)].dislike += 1;
+	    	 return state;
+
 	    default:
 	      	return state;
  	}

@@ -8,7 +8,11 @@
 					 </app-nav-bar> 
 	<div class = "row">
 		<div class = "col-md-8">
-			<app-feed [tweets] = "tweets | async" (like)="clickLike($event)" ></app-feed>
+			<app-feed [tweets] = "tweets | async" 
+					  (like)="clickLike($event)"
+					  (dislike)="clickDislike($event)"
+					  >
+					  </app-feed>
 		</div>
 		<div class = "col-md-4">
 			<router-outlet></router-outlet>
