@@ -1,5 +1,6 @@
 import { User } from '../../models/user';
 import { Action } from '@ngrx/store';
+import { UserActions } from '../actions/user.actions';
 
   /**
     * UserReduce.
@@ -14,7 +15,7 @@ import { Action } from '@ngrx/store';
 export function UserReduce (state : User[] = [] , action : Action) {
 
 	switch(action.type){
-	    case 'USER_REGISTER':
+	    case UserActions.USER_REGISTER:
 	    	return [...state, action.payload];
 	    default:
 	    	return state;

@@ -1,5 +1,5 @@
 
-<div id="feed" class="class-md-5">
+<div id="feed">
 	<div class="row">
 		<div *ngFor="let item of tweets;">
 		    <app-tweet [tweet] = "item" (like)="clickLike($event)"></app-tweet>

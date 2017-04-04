@@ -11,7 +11,7 @@
     <div class="form-group">
       <label>Content:</label>
       <br>
-      <textarea style = "width: 100%" #content type="text" name="content"></textarea>
+      <textarea #content type="text" name="content"></textarea>
     </div>
     <button type="button" class="btn btn-default" type="submit"
             (click)="writeTweet(content.value);tweetForm.reset()">

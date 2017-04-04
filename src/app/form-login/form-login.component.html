@@ -1,6 +1,4 @@
 
-    <router-outlet></router-outlet>
-    <div style="text-align: right" *ngIf="!isLogged">
       <h1>Login</h1>
 
       <form class="form-horizontal" #loginForm="ngForm">
@@ -31,4 +29,3 @@
           <!--           <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button> -->
             <button type="button" class="btn btn-default" (click)="login();">Login</button>
         </form>
-    </div>

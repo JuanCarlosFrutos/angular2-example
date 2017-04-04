@@ -18,7 +18,7 @@ export function HashtagsReduce (state: Hashtag [] = [], action : Action) {
 	    case 'HASHTAG_ADD':
 	    	return [...state, action.payload];	 
 	    case 'HASHTAG_UPDATE':
-	    	console.log(action.payload);
+	    	//console.log(action.payload);
  			state[action.payload[0]].tweets.push(action.payload[1]);
 	    default:
 	      return state;

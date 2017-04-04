@@ -20,12 +20,14 @@ export function TweetReduce (state: Tweet [] = [], action : Action) {
 	    case 'TWEET_ADD':
 	    	return [...state, action.payload];
 	    case 'TWEET_LIKE':
-	    	 state.map((tweet : Tweet, index : number) => {
-	    	 	if (tweet.id === action.payload.id)
-	    	 		ind =index;
+	    	 return state.map((tweet : Tweet, index : number) => {
+	    	 	//if (tweet.id === action.payload.id){};
+	    	 		//tweet.like = 2;
+	    	 		tweet = tweet;
+	    	 	
 	    	 })
-	    	 state[ind].like = state[ind].like + 1;
-	    	 console.log(state[ind]);
+	    	 // state[ind].like = state[ind].like + 1;
+	    	 // console.log(state[ind]);
 	    default:
 	      	return state;
  	}

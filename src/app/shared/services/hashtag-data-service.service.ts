@@ -155,6 +155,7 @@ export class HashtagDataService {
   /**
      * existHashtag.
      *
+     * Check if this hashtag exist, if exist return her inder
      * 
      *
      * @param 
