@@ -1,5 +1,6 @@
 import { Tweet } from '../../models/tweet';
 import { Action } from '@ngrx/store';
+import { TweetActions } from '../actions/tweet.action';
 
   /**
     * TweetReduce.
@@ -18,16 +19,16 @@ export function TweetReduce (state: Tweet [] = [], action : Action) {
 
 	switch(action.type){
 
-	    case 'TWEET_ADD':
+	    case TweetActions.TWEET_ADD:
 	    	return [...state, action.payload];
 
-	    case 'TWEET_LIKE':
-
+	    case TweetActions.TWEET_LIKE:
+			 if (state.indexOf(action.payload) != -1)
 	    	 state[state.indexOf(action.payload)].like += 1;
 	    	 return state;
 
-	    case 'TWEET_DISLIKE':
-
+	    case TweetActions.TWEET_DISLIKE:
+	    	 if (state.indexOf(action.payload) != -1)
 	    	 state[state.indexOf(action.payload)].dislike += 1;
 	    	 return state;
 

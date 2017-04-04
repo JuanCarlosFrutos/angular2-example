@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Rx';
 //STORE
 import { Store } from '@ngrx/store';
 import { AppStore } from '../store/app-store';
-//MODELS
+import { HashtagActions } from '../store/actions/hashtag.action';
+//MODELS 
 import { Hashtag } from '../models/hashtag';
 
 @Injectable()
@@ -115,9 +116,9 @@ export class HashtagDataService {
 
           if (index === -1){
             newHashtag = new Hashtag (hashtag, arrayid);
-            this._store.dispatch({type: 'HASHTAG_ADD', payload: newHashtag});
+            this._store.dispatch({type: HashtagActions.HASHTAG_ADD, payload: newHashtag});
           }else{
-            this._store.dispatch({type: 'HASHTAG_UPDATE', payload: [index,idTweet]});
+            this._store.dispatch({type: HashtagActions.HASHTAG_UPDATE, payload: [index,idTweet]});
           }
 
         }

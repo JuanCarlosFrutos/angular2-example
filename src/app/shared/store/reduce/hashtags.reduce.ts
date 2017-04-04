@@ -1,5 +1,6 @@
 import { Hashtag } from '../../models/hashtag';
 import { Action } from '@ngrx/store';
+import { HashtagActions } from '../actions/hashtag.action';
 
   /**
     * HashtagsReduce.
@@ -18,10 +19,10 @@ export function HashtagsReduce (state: Hashtag [] = [], action : Action) {
 	    case 'HASHTAG_ADD':
 	    	return [...state, action.payload];	 
 	    case 'HASHTAG_UPDATE':
-	    	//console.log(action.payload);
- 			state[action.payload[0]].tweets.push(action.payload[1]);
+	    	
+ 			state[action.payload[0]].tweets.push(action.payload[1]);//<- change this
+          return state;
 	    default:
-	      return state;
  	}
 }
 

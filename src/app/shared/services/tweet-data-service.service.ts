@@ -4,6 +4,7 @@ import { Subject }    from 'rxjs/Subject';
 //STORE
 import { Store } from '@ngrx/store';
 import { AppStore } from '../store/app-store';
+import { TweetActions } from '../store/actions/tweet.action';
 //MODELS
 import { Tweet } from '../models/tweet';
 import { Hashtag } from '../models/hashtag';
@@ -68,7 +69,7 @@ export class TweetDataService {
     let newTweet : Tweet;
 
     newTweet = new Tweet (this.idTweet,new Date(), author, text, 0, 0)
-    this._store.dispatch({type: 'TWEET_ADD', payload: newTweet});
+    this._store.dispatch({type: TweetActions.TWEET_ADD, payload: newTweet});
     this.idTweet++;
     return this.idTweet - 1;
   }
@@ -111,7 +112,7 @@ export class TweetDataService {
     */
 
   public like (tweet : Tweet) : void {
-    this._store.dispatch({type: 'TWEET_LIKE', payload: tweet});
+    this._store.dispatch({type: TweetActions.TWEET_LIKE, payload: tweet});
   }
 
     /**
@@ -123,7 +124,7 @@ export class TweetDataService {
     */
 
   public dislike (tweet : Tweet) : void {
-    this._store.dispatch({type: 'TWEET_DISLIKE', payload: tweet});
+    this._store.dispatch({type: TweetActions.TWEET_DISLIKE, payload: tweet});
   }
 
 

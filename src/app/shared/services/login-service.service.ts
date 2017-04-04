@@ -4,6 +4,8 @@ import { AppStore } from '../store/app-store';
 import { User } from '../models/user';
 
 import { Store } from '@ngrx/store';
+import { UserActions } from '../store/actions/user.action';
+
 import {Observable} from 'rxjs/Rx';
 
 @Injectable()
@@ -51,7 +53,7 @@ export class LoginService {
 
     //if (this.pass === this.repass){
       //this.user = new User (this.name, this.pass);
-      this.store.dispatch({type: 'USER_REGISTER', payload: user});
+      this.store.dispatch({type: UserActions.USER_REGISTER, payload: user});
       return true;
       //this.success = true;
       //this.err = false;
@@ -65,14 +67,14 @@ export class LoginService {
 
      //if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
         //console.log(loginUser);
-        this.store.dispatch({type: 'USER_LOGIN', payload: loginUser});
+        this.store.dispatch({type: UserActions.USER_LOGIN, payload: loginUser});
         return true;
      //}
      //return false;
   }
 
   public logout(){
-      this.store.dispatch({type: 'USER_LOGOUT'});
+      this.store.dispatch({type: UserActions.USER_LOGOUT});
   }
 
   public userLogged() : Observable<User>{

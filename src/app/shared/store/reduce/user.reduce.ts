@@ -1,6 +1,6 @@
 import { User } from '../../models/user';
 import { Action } from '@ngrx/store';
-import { UserActions } from '../actions/user.actions';
+import { UserActions } from '../actions/user.action';
 
   /**
     * UserReduce.
