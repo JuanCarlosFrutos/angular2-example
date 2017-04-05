@@ -143,7 +143,7 @@ export class AppComponent {
     */
 
   clickLike($event) : void{
-    this.tweetDataService.like($event);
+    this.tweetDataService.like($event, this.isLogged.id);
   }
 
     /**
@@ -154,7 +154,7 @@ export class AppComponent {
     */
   
   clickDislike($event) : void{
-    this.tweetDataService.dislike($event);
+    this.tweetDataService.dislike($event, this.isLogged.id);
   }
 
 

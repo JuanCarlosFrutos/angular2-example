@@ -68,7 +68,7 @@ export class TweetDataService {
 
     let newTweet : Tweet;
 
-    newTweet = new Tweet (this.idTweet,new Date(), author, text, 0, 0)
+    newTweet = new Tweet (this.idTweet, new Date(), author, text, [], [])
     this._store.dispatch({type: TweetActions.TWEET_ADD, payload: newTweet});
     this.idTweet++;
     return this.idTweet - 1;
@@ -111,8 +111,11 @@ export class TweetDataService {
     *
     */
 
-  public like (tweet : Tweet) : void {
-    this._store.dispatch({type: TweetActions.TWEET_LIKE, payload: tweet});
+  public like (tweet : Tweet, idUser : number) : void {
+    let object : Object = {};
+    object['tweet'] = tweet;
+    object['idUser'] = idUser;
+    this._store.dispatch({type: TweetActions.TWEET_LIKE, payload: object});
   }
 
     /**
@@ -123,8 +126,11 @@ export class TweetDataService {
     *
     */
 
-  public dislike (tweet : Tweet) : void {
-    this._store.dispatch({type: TweetActions.TWEET_DISLIKE, payload: tweet});
+  public dislike (tweet : Tweet, idUser : number) : void {
+    let object : Object = {};
+    object['tweet'] = tweet;
+    object['idUser'] = idUser;
+    this._store.dispatch({type: TweetActions.TWEET_DISLIKE, payload: object});
   }
 
 

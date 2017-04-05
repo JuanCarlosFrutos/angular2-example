@@ -8,7 +8,7 @@
     </div>
     <div class = "col-md-1">
       <img (click) = "like.emit(this.tweet)" src="/../../../assets/images/like.png" alt="like" />
-      <p>{{tweet.like}}</p>
+      <p>{{tweet.like.length}}</p>
     </div>
   </div>
   <div id="row2" class="row">
@@ -20,7 +20,7 @@
   	</div>
     <div class = "col-md-1">
       <img (click) = "dislike.emit(this.tweet)" src="/../../../assets/images/dislike.png" alt="dislike" />
-      <p>{{tweet.dislike}}</p>
+      <p>{{tweet.dislike.length}}</p>
     </div>
   </div>
 </div>

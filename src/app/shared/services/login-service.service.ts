@@ -80,8 +80,14 @@ export class LoginService {
 
   public login(loginUser: User) : boolean{
 
-     if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
-        //console.log(loginUser);
+     if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){//
+        this.users.map(                                                                                  //
+          (user : User)=> {                                                                              //
+             if (user.name === loginUser.name && user.pass === loginUser.pass){                          //==> CHANGE THIS!
+               loginUser = user;                                                                         //
+             }                                                                                           // 
+          }
+        );
         this.store.dispatch({type: UserActions.USER_LOGIN, payload: loginUser});
         return true;
      }
