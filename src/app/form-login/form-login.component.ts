@@ -17,7 +17,7 @@ import { FormsService } from '../shared/services/forms-service.service';
 export class FormLoginComponent {
 
   private logedUserStore: Observable<User> ;
-  private user = new User('', '');
+  private user = new User(-99,'', '');//-->Change this
   private isLogged : boolean;
   private err : boolean = false;
 

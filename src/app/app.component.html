@@ -1,11 +1,11 @@
 
-<div id="appComponent">
 	<app-header [isLogged] = "isLogged"></app-header>
 	<app-nav-bar [isLogged] = "isLogged" 
 					 [hashtags] = "hashtags | async" 
 					 (changeFilter)="changeFilter($event)" 
 					 (logout)="logout()">
 					 </app-nav-bar> 
+<div id="appComponent">
 	<div class = "row">
 		<div class = "col-md-8">
 			<app-feed [tweets] = "tweets | async" 

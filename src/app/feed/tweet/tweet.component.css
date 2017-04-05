@@ -1,10 +1,12 @@
 #tweet {
    text-align: right;
    width: 90%;
-   height: 125px;
-   border: 1px solid black;
+   height: 150px;
+    border-radius: 25px;
+    border: 2px solid black;
    padding: 5px;
-   margin: 25px;
+   margin-left: 25px;
+   margin-top: 25px;
    box-shadow: 3px 3px 5px black;
    box-sizing: border-box;
 
@@ -45,5 +47,11 @@
 
 #row2 {
 	height: 30%;
+}
+
+img {
+    margin: 5px;
+    height: 30px;
+    width: 30px;
 }
 
