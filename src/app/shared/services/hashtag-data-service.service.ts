@@ -12,7 +12,7 @@ import { Hashtag } from '../models/hashtag';
 export class HashtagDataService {
 
 	private hashtagStore : Observable<Hashtag[]>;
-  private hashtagArray : Hashtag[];
+  private hashtagArray : Hashtag[] = [];
 	private idTweet : number;
 
   constructor(
@@ -25,7 +25,6 @@ export class HashtagDataService {
       .subscribe(
         (arrayHashtag : Hashtag[]) => {
           this.hashtagArray = arrayHashtag;
-          console.log(arrayHashtag[0]);
         }
       );
   }

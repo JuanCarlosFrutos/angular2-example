@@ -16,13 +16,15 @@ import { HashtagActions } from '../actions/hashtag.action';
 export function HashtagsReduce (state: Hashtag [] = [], action : Action) {
 
 	switch(action.type){
-	    case 'HASHTAG_ADD':
+	    case HashtagActions.HASHTAG_ADD:
 	    	return [...state, action.payload];	 
-	    case 'HASHTAG_UPDATE':
-	    	
+
+	    case HashtagActions.HASHTAG_UPDATE:	
  			state[action.payload[0]].tweets.push(action.payload[1]);//<- change this
           return state;
+
 	    default:
+            return state;
  	}
 }
 
