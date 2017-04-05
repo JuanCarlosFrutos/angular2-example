@@ -11,7 +11,7 @@ export const routing = [
   //{ path: '/', component:  },
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   { 

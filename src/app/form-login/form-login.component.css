@@ -1,3 +1,6 @@
 #loginForm {
 	text-align: right;
+    border-radius: 25px;
+    border: 2px solid #0922BB;
+    padding: 20px; 
 }
