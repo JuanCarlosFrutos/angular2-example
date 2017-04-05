@@ -15,11 +15,11 @@ export class FormsService {
   // ***************** Submit ***********************//
   private formTweetSource = new Subject<string>();
   private formLoginSource = new Subject<User>();
-  private formSignupSource = new Subject<User>();
+  private formSignupSource = new Subject<Object>();
 
-  public formTweet : Observable<string> = this.formTweetSource.asObservable();
-  public formLogin : Observable<User>   = this.formLoginSource.asObservable();
-  public formSignup: Observable<User>   = this.formSignupSource.asObservable();
+  public formTweet : Observable<string>   = this.formTweetSource.asObservable();
+  public formLogin : Observable<User>     = this.formLoginSource.asObservable();
+  public formSignup: Observable<Object>   = this.formSignupSource.asObservable();
   // ************************************************//
 
   // ***************State of forms*******************//
@@ -43,8 +43,8 @@ export class FormsService {
   	this.formLoginSource.next(user);
   };
 
-  public submitSignup ( user : User ) : any {
-  	this.formSignupSource.next(user);
+  public submitSignup ( object : Object ) : any {
+  	this.formSignupSource.next(object);
   };
 
   public StateTweet ( state : boolean ) : any {

@@ -1,12 +1,9 @@
 import { Injectable } from '@angular/core';
-
 import { AppStore } from '../store/app-store';
 import { User } from '../models/user';
-
 import { Store } from '@ngrx/store';
 import { UserActions } from '../store/actions/user.action';
-
-import {Observable} from 'rxjs/Rx';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class LoginService {
@@ -15,6 +12,7 @@ export class LoginService {
   private users           : User[];
   private userLoggedStore : Observable<User>;
   private user            : User;
+  private userId          : number = 0;
 
   constructor( private store: Store<AppStore>) 
   {
@@ -45,32 +43,49 @@ export class LoginService {
    /**
      * newUser.
      *
-     * Given a user, newUser check if information is correct.
+     * Given the date of the user, newUser checks if information is correct.
+     *
+     *@param object , it contains all data of new user. Example : object [name:Jcarlos, pass:1234, repass:1234 ]
+     *
+     *
+     *@return if all data is correct return true, if it isnt correct return false.
      *
      */
 
-  newUser(user : User) : boolean {
+  newUser(object : Object) : boolean {
 
-    //if (this.pass === this.repass){
-      //this.user = new User (this.name, this.pass);
+    if (object['pass'] === object['repass']){
+
+      let user = new User ( this.userId, object['name'], object['pass'] );
       this.store.dispatch({type: UserActions.USER_REGISTER, payload: user});
+      this.userId++;
       return true;
-      //this.success = true;
-      //this.err = false;
-    //}else{
-      //this.err = true;
-      //this.success = false;
-    //}
+
+    }
+
+    return false;
+
   }
+
+   /**
+     * login.
+     *
+     * Check if the user is registered in the store.
+     *
+     *@param User 
+     *
+     *@return true if data is correct , and false in other way.
+     *
+     */
 
   public login(loginUser: User) : boolean{
 
-     //if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
+     if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){
         //console.log(loginUser);
         this.store.dispatch({type: UserActions.USER_LOGIN, payload: loginUser});
         return true;
-     //}
-     //return false;
+     }
+     return false;
   }
 
   public logout(){

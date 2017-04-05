@@ -56,8 +56,8 @@ export class AppComponent {
 
     this.formsService.formSignup
                       .subscribe(
-                        (user : User)=> {
-                          this.newUser(user);
+                        (object : Object)=> {
+                          this.newUser(object);
                         }
                       );                                       
 
@@ -68,6 +68,98 @@ export class AppComponent {
                   }
                 );
   }
+
+
+  //*******************************USE LOGIN SERVICE*******************************//
+
+  /**
+    * login.
+    *
+    * Try login user.
+    * Return to form-login the result (true or false), for do that
+    * it uses formsService.
+    *
+    * @param user
+    *
+    * @example user1 = new User ("Juan Carlos" , "password");
+    *          login(user1);
+    */
+
+  private login(user : User) : void {
+
+    let state : boolean
+
+    state = this.loginService.login(user);
+
+    this.formsService.StateLogin(state);
+
+    this._router.navigate(['/tweet']);
+  }
+
+  /**
+    * newUser.
+    *
+    * Register new User. Return true or false to form-signUp
+    * 
+    * @param new User
+    *
+    * @example newUser (new user ("Juan Carlos", "password"));
+    */
+
+  private newUser (object : Object) : void {
+
+    let state : boolean;
+
+    state = this.loginService.newUser(object);
+
+    this.formsService.StateSignup(state);
+  }
+
+  /**
+    * logout.
+    *
+    * Use LoginService to delete from the store the current User.
+    * 
+    */
+
+  logout() : void{
+    this.loginService.logout();
+  }
+
+
+  //*********************************************************************************//
+
+
+  //****************************USE TWEET DATA SERVICE*******************************//
+
+  /**
+    * clickLike.
+    *
+    * It saves in store that this user click like in the tweet.(Use TweetDataService)
+    * 
+    * @param $event is the tweet chooses by the user. 
+    *
+    *
+    */
+
+  clickLike($event) : void{
+    this.tweetDataService.like($event);
+  }
+
+    /**
+    * clickDislike.
+    *
+    * @param $event is the tweet chooses by the user.
+    * 
+    */
+  
+  clickDislike($event) : void{
+    this.tweetDataService.dislike($event);
+  }
+
+
+  //*********************************************************************************//
+
 
   /**
     * newTweet.
@@ -101,49 +193,6 @@ export class AppComponent {
   }
 
   /**
-    * login.
-    *
-    * Try login user. Send the resulto to form-login (Using forsService)
-    * Return to form-login message with result (true or false), for do that
-    * it uses formsService
-    *
-    * @param user
-    *
-    * @example user1 = new User ("Juan Carlos" , "password");
-    *          login(user1);
-    */
-
-  private login(user : User) : void {
-
-    let state : boolean
-
-    state = this.loginService.login(user);
-
-    this.formsService.StateLogin(state);
-
-    this._router.navigate(['/tweet']);
-  }
-
-  /**
-    * newUser.
-    *
-    * Register new User. Return true or false to form-signUp
-    * 
-    * @param new User
-    *
-    * @example newUser (new user ("Juan Carlos", "password"));
-    */
-
-  private newUser (user : User) : void {
-
-    let state : boolean;
-
-    state = this.loginService.newUser(user);
-
-    this.formsService.StateSignup(state);
-  }
-
-  /**
     * changeFilter.
     *
     * Recives a new filter (hashtagName), calls getHashtag to obtain the hastag 
@@ -155,7 +204,7 @@ export class AppComponent {
     * @param hashtag name
     *
     * @example changeFilter ("#Hello");
-    *          
+    *        
     *          
     */
 
@@ -171,40 +220,4 @@ export class AppComponent {
 
       this.tweetDataService.filterTweets(hastag);
   }
-
-  /**
-    * logout.
-    *
-    * Use LoginService to delete from the store the current User.
-    * 
-    */
-
-  logout() : void{
-    this.loginService.logout();
-  }
-
-    /**
-    * clickLike.
-    *
-    * 
-    * 
-    */
-
-  clickLike($event) : void{
-    //console.log($event);
-    this.tweetDataService.like($event);
-  }
-
-    /**
-    * clickLike.
-    *
-    * 
-    * 
-    */
-  
-  clickDislike($event) : void{
-    //console.log($event);
-    this.tweetDataService.dislike($event);
-  }
-
 }

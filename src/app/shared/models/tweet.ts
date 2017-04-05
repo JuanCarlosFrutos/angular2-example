@@ -4,8 +4,8 @@ export class Tweet {
     	public date: Date, 
     	public author: string, 
     	public text: string,
-    	public like: number,
-    	public dislike : number
+    	public like: number[],
+    	public dislike : number[],
     ){
     }
 }

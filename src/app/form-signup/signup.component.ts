@@ -20,10 +20,11 @@ import { FormsService } from '../shared/services/forms-service.service';
 export class SignupComponent {
 
   // Variables new User
-  private user: User;
+  //private user: User;
   private name: string;
   private pass: string;
   private repass: string;
+  private object: Object = {};
 
   private err: boolean = false;
   private success : boolean = false;
@@ -40,7 +41,12 @@ export class SignupComponent {
   }
   
   private newUser () : void {
-    this.formsService.submitSignup(new User (this.name,this.pass));
+
+    this.object['name']   = this.name;
+    this.object['pass']   = this.pass;
+    this.object['repass'] = this.repass;
+    this.formsService.submitSignup(this.object);
+    
   }
 
   private configureMessages (state : boolean) : void {
