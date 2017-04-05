@@ -63,7 +63,7 @@ export class HashtagDataService {
 
   public getHashtag ( hashtagName : string) : Hashtag {
 
-    let searchedHashtag : Hashtag = new Hashtag ("ALL_TWEETS", null);
+    let searchedHashtag : Hashtag = null;
 
     if (hashtagName === "ALL_TWEETS") {
         return searchedHashtag;
@@ -78,6 +78,36 @@ export class HashtagDataService {
       );
 
     return searchedHashtag;
+  }
+
+     /**
+     * 
+     *
+     * 
+     *
+     * @param 
+     *
+     * @return 
+     *
+     */
+
+  public newHashtag ( hashtagName : string, idTweet: number) : void {
+
+      let hashtag : Hashtag;
+      let object : Object = {};
+      let arrayid : number[]  = [];
+
+      hashtag  = this.getHashtag(hashtagName);
+
+      if (hashtag === null){
+        arrayid.push(idTweet);
+        hashtag = new Hashtag (hashtagName, arrayid);
+        this._store.dispatch({type: HashtagActions.HASHTAG_ADD, payload: hashtag});
+      }else{
+        object['hashtag'] = hashtag;
+        object['idTweet'] = idTweet;
+        this._store.dispatch({type: HashtagActions.HASHTAG_UPDATE, payload: object});
+      }
   }
 
    /**
@@ -96,30 +126,17 @@ export class HashtagDataService {
 
   public SearchHashtag(textTweet : string, idTweet :number) : void {
 
-    let newHashtag: Hashtag;
-    let arrayid : number[] = [];
     let wordsTweet : string[];
-    let index : number;
 
     wordsTweet = textTweet.split(' ');
 
     //Save in wordsTweet only hte hashtags
     wordsTweet = this.splitHashtags(wordsTweet);
-    //Set in arrayid the next id. It will be new id tweet
-    arrayid[0] = idTweet;
 
     wordsTweet
       .forEach(
-        (hashtag : string) => {
-          index = this.existHashtag(hashtag);
-
-          if (index === -1){
-            newHashtag = new Hashtag (hashtag, arrayid);
-            this._store.dispatch({type: HashtagActions.HASHTAG_ADD, payload: newHashtag});
-          }else{
-            this._store.dispatch({type: HashtagActions.HASHTAG_UPDATE, payload: [index,idTweet]});
-          }
-
+        (hashtagName : string) => {
+          this.newHashtag(hashtagName,idTweet);
         }
       );
 
@@ -151,34 +168,4 @@ export class HashtagDataService {
     );
     return arrayHashtahs;
   }
-
-  /**
-     * existHashtag.
-     *
-     * Check if this hashtag exist, if exist return her inder
-     * 
-     *
-     * @param 
-     *
-     * @return 
-     *
-     *@example 
-     *          
-  */
-  private existHashtag(hashtagName : string) : number {
-    let index  = -1;
-
-    this.hashtagArray
-      .map( 
-        (hashtag : Hashtag, ind : number) => {
-          if (hashtag.name === hashtagName){
-            index = ind;
-          }
-        }
-      );
-
-    return index;
-  }
-
-
 }

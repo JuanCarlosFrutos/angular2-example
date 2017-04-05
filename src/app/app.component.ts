@@ -165,6 +165,10 @@ export class AppComponent {
 
       hastag = this.hashtagDataService.getHashtag(event.target.text);
 
+      if (event.target.text === "ALL_TWEETS"){  //
+        hastag = new Hashtag("ALL_TWEETS", null);             //-->Change this
+      }                                         //   
+
       this.tweetDataService.filterTweets(hastag);
   }
 

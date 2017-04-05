@@ -17,11 +17,14 @@ export function HashtagsReduce (state: Hashtag [] = [], action : Action) {
 
 	switch(action.type){
 	    case HashtagActions.HASHTAG_ADD:
+        
 	    	return [...state, action.payload];	 
 
 	    case HashtagActions.HASHTAG_UPDATE:	
- 			state[action.payload[0]].tweets.push(action.payload[1]);//<- change this
-          return state;
+
+          if (state.indexOf(action.payload.hashtag) != -1)
+             state[state.indexOf(action.payload.hashtag)].tweets.push(action.payload.idTweet);
+             return state;
 
 	    default:
             return state;
