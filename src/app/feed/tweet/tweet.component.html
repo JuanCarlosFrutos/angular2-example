@@ -1,4 +1,4 @@
-<div id="tweet">
+<div dragablle="true" id="tweet">
   <div id="row1" class="row">
     <div id="image" class = "col-md-2">
     	 <img src="/../../../assets/images/example.png" height="42" width="42"> 
@@ -7,8 +7,8 @@
     	<p>{{tweet.text}}</p>
     </div>
     <div class = "col-md-1">
-      <img (click) = "like.emit(this.tweet)" src="/../../../assets/images/like.png" alt="like" />
-      <p>{{tweet.like.length}}</p>
+      <img (click) = "like.emit(this.tweet)" src="/../../../assets/images/like.ico" alt="like" />
+      {{tweet.like.length}}
     </div>
   </div>
   <div id="row2" class="row">
@@ -20,7 +20,7 @@
   	</div>
     <div class = "col-md-1">
       <img (click) = "dislike.emit(this.tweet)" src="/../../../assets/images/dislike.png" alt="dislike" />
-      <p>{{tweet.dislike.length}}</p>
+      {{tweet.dislike.length}}
     </div>
   </div>
 </div>
