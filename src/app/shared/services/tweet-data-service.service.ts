@@ -13,10 +13,11 @@ import { Hashtag } from '../models/hashtag';
 @Injectable()
 export class TweetDataService {
 
-	private tweetsStore : Observable<Tweet[]>;
-  private tweetsSource = new Subject<Tweet[]>(); 
-  tweets = this.tweetsSource.asObservable();
-  tweetsArray : Tweet[];
+	private tweetsSource = new Subject<Tweet[]>(); 
+  private tweetsStore : Observable<Tweet[]>;
+  private tweets = this.tweetsSource.asObservable();
+  private tweetsArray : Tweet[];
+
 	private idTweet : number = 0;
 
   constructor(
@@ -33,7 +34,6 @@ export class TweetDataService {
         (arrayTweets : Tweet[] ) => {
           this.tweetsSource.next(arrayTweets);
           this.tweetsArray = arrayTweets;
-          console.log("Modificador.")
         },
       )
   }

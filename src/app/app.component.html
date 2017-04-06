@@ -1,20 +1,23 @@
 <div id="appComponent">
-	<app-header [isLogged] = "isLogged"></app-header>
-	<app-nav-bar [isLogged] = "isLogged" 
+	<app-header></app-header>
+	<app-nav-bar [isLogged] = "userLogged" 
 					 [hashtags] = "hashtags | async" 
-					 (changeFilter)="changeFilter($event)" 
+					 (changeFilterTweets)="changeFilterTweets($event)" 
 					 (logout)="logout()">
 					 </app-nav-bar> 
 	<div class = "row">
+		<div class = "forms" class = "col-md-4">
+			<router-outlet></router-outlet>
+		</div>
 		<div class = "col-md-8">
-			<app-feed [tweets] = "tweets | async" 
+			<app-feed [tweets]  = "tweets | async"
+					  [users]   = "users  | async" 
+					  [showTweets]= "showTweets"
+					  [showUsers]= "showUsers"
 					  (like)="clickLike($event)"
 					  (dislike)="clickDislike($event)"
 					  >
 					  </app-feed>
-		</div>
-		<div class = "forms" class = "col-md-4">
-			<router-outlet></router-outlet>
 		</div>
 	</div>
 </div>

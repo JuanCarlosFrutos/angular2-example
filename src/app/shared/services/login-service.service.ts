@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { AppStore } from '../store/app-store';
 import { User } from '../models/user';
 import { Store } from '@ngrx/store';
+import { Subject }    from 'rxjs/Subject';
 import { UserActions } from '../store/actions/user.action';
 import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class LoginService {
 
+  private usersSource = new Subject<User[]>(); 
   private listUsersStore  : Observable<User[]>;
-  private users           : User[];
+  private users = this.usersSource.asObservable();
+  private usersArray      : User[];
   private userLoggedStore : Observable<User>;
   private user            : User;
   private userId          : number = 0;
@@ -26,7 +29,8 @@ export class LoginService {
     this.listUsersStore
       .subscribe(
         (arrayUsers : User[]) => {
-          this.users = arrayUsers;
+          this.usersSource.next(arrayUsers);
+          this.usersArray = arrayUsers;
         } 
     );
 
@@ -38,6 +42,16 @@ export class LoginService {
         } 
     );
 
+  }
+
+     /**
+     * allTweets.
+     *
+     *
+     */
+
+  public allUsers() : Observable<User[]> {
+     return this.users;
   }
   
    /**
@@ -80,8 +94,8 @@ export class LoginService {
 
   public login(loginUser: User) : boolean{
 
-     if (this.users.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){//
-        this.users.map(                                                                                  //
+     if (this.usersArray.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){//
+        this.usersArray.map(                                                                                  //
           (user : User)=> {                                                                              //
              if (user.name === loginUser.name && user.pass === loginUser.pass){                          //==> CHANGE THIS!
                loginUser = user;                                                                         //
@@ -108,6 +122,23 @@ export class LoginService {
     }
     return true; 
   }
+
+   /**
+     * searchUser.
+     *
+     *
+     */
+
+  public searchUser(name : string) : void {
+
+    let usersFilter : User [];
+
+      usersFilter = this.usersArray
+                          .filter((user : User) => user.name === name);
+
+      this.usersSource.next(usersFilter);
+  }
+
 }
 
 

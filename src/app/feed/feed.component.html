@@ -1,12 +1,18 @@
 
 <div id="feed">
-	<div class="row">
-		<div *ngFor="let item of tweets;">
-		    <app-tweet [tweet] = "item" 
-		    		   (like)="like.emit($event)"
-					   (dislike)="dislike.emit($event)"
-		    		   >
-		    		   </app-tweet>
-		</div>
-	</div>
+			<div *ngIf="showTweets">
+	    		<div *ngFor="let tweet of tweets;">
+				    <app-tweet [tweet] = "tweet" 
+				    	(like)="like.emit($event)"
+						(dislike)="dislike.emit($event)"
+				    	>
+				    </app-tweet>
+				</div>	
+			</div>		
+			<div *ngIf="showUsers">
+		   		<div class = col-md-4
+					*ngFor="let user of users;">
+					<app-user [user] = "user"></app-user>
+				</div>
+			</div>
 </div>

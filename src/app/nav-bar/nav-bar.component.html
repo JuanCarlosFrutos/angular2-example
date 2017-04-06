@@ -2,9 +2,9 @@
 	  <div class="container-fluid">
 
 	    <ul class="nav navbar-nav">
-	      <li><a (click)="changeFilter.emit($event)">ALL_TWEETS</a></li>
+	      <li><a (click)="changeFilterTweets.emit($event)">ALL_TWEETS</a></li>
 	      <li *ngFor="let item of hashtags">
-	      	<a (click)="changeFilter.emit($event)">{{item.name}}</a>
+	      	<a (click)="changeFilterTweets.emit($event)">{{item.name}}</a>
 	      </li>
 	    </ul>
 

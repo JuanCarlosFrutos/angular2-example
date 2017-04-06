@@ -13,6 +13,6 @@ export class NavBarComponent{
 	@Input() hashtags: Observable<Hashtag[]>;
 	@Input() isLogged;
 	// filter 
-	@Output() changeFilter = new EventEmitter();
+	@Output() changeFilterTweets = new EventEmitter();
 	@Output() logout = new EventEmitter();
 }

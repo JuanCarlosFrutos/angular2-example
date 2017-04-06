@@ -13,13 +13,17 @@ import { User } from '../models/user';
 export class FormsService {
 
   // ***************** Submit ***********************//
-  private formTweetSource = new Subject<string>();
-  private formLoginSource = new Subject<User>();
+  private formTweetSource  = new Subject<string>();
+  private formLoginSource  = new Subject<User>();
   private formSignupSource = new Subject<Object>();
+  private userLoggedSource = new Subject<User>();
+  private nameFriendSource     = new Subject<string>();
 
-  public formTweet : Observable<string>   = this.formTweetSource.asObservable();
-  public formLogin : Observable<User>     = this.formLoginSource.asObservable();
-  public formSignup: Observable<Object>   = this.formSignupSource.asObservable();
+  public formTweet  : Observable<string>   = this.formTweetSource.asObservable();
+  public formLogin  : Observable<User>     = this.formLoginSource.asObservable();
+  public formSignup : Observable<Object>   = this.formSignupSource.asObservable();
+  public userLogged : Observable<User>     = this.userLoggedSource.asObservable();
+  public nameFriend :  Observable<string> =  this.nameFriendSource.asObservable();
   // ************************************************//
 
   // ***************State of forms*******************//
@@ -45,6 +49,14 @@ export class FormsService {
 
   public submitSignup ( object : Object ) : any {
   	this.formSignupSource.next(object);
+  };
+
+  public setUserLogged ( user : User ) : any {
+    this.userLoggedSource.next(user);
+  };
+
+  public searchFriend ( name : string ) : any {
+    this.nameFriendSource.next(name);
   };
 
   public StateTweet ( state : boolean ) : any {

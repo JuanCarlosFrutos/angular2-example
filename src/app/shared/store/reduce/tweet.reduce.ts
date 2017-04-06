@@ -20,7 +20,6 @@ export function TweetReduce (state: Tweet [] = [], action : Action) {
 	switch(action.type){
 
 	    case TweetActions.TWEET_ADD:
-	    console.log(action.payload);
 	    	return [...state, action.payload];
 
 	    case TweetActions.TWEET_LIKE:

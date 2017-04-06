@@ -4,8 +4,6 @@ import { User } from '../shared/models/user'
 
 import {Observable} from 'rxjs/Rx';
 
-import { LoginService } from '../shared/services/login-service.service';
-
 //SERVICE
 import { FormsService } from '../shared/services/forms-service.service';
 
@@ -16,9 +14,7 @@ import { FormsService } from '../shared/services/forms-service.service';
 })
 export class FormLoginComponent {
 
-  private logedUserStore: Observable<User> ;
   private user = new User(-99,'', '');//-->Change this
-  private isLogged : boolean;
   private err : boolean = false;
 
   constructor(

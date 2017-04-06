@@ -22,10 +22,13 @@ import { FormsService } from './shared/services/forms-service.service';
 export class AppComponent {
 
   private tweets : Observable<Tweet[]>;
+  private users : Observable<User[]>;
   private hashtags : Observable<Hashtag[]>;
   private loggedUser : Observable<User>;
 
-  private isLogged : User;
+  private userLogged : User;
+  private showTweets : boolean = true; 
+  private showUsers  : boolean = false;
 
   constructor(
     private loginService : LoginService,
@@ -39,6 +42,7 @@ export class AppComponent {
     this.tweets = tweetDataService.allTweets();
     this.hashtags = hashtagDataService.allHashtag();
     this.loggedUser = loginService.userLogged();
+    this.users = loginService.allUsers();
 
     this.formsService.formTweet
                       .subscribe(
@@ -59,12 +63,19 @@ export class AppComponent {
                         (object : Object)=> {
                           this.newUser(object);
                         }
-                      );                                       
+                      );      
+
+    this.formsService.nameFriend
+                      .subscribe(
+                        (name : string)=> {
+                          this.searchUser(name);
+                        }
+                      );                              
 
     this.loggedUser
                 .subscribe( 
-                  (userLogged : User) => {
-                    this.isLogged = userLogged;
+                  (user : User) => {
+                    this.setUserLogged(user);
                   }
                 );
   }
@@ -93,7 +104,7 @@ export class AppComponent {
 
     this.formsService.StateLogin(state);
 
-    this._router.navigate(['/tweet']);
+    this._router.navigate(['/test']);
   }
 
   /**
@@ -143,7 +154,7 @@ export class AppComponent {
     */
 
   clickLike($event) : void{
-    this.tweetDataService.like($event, this.isLogged.id);
+    this.tweetDataService.like($event, this.userLogged.id);
   }
 
     /**
@@ -153,8 +164,8 @@ export class AppComponent {
     * 
     */
   
-  clickDislike($event) : void{
-    this.tweetDataService.dislike($event, this.isLogged.id);
+  private clickDislike($event) : void{
+    this.tweetDataService.dislike($event, this.userLogged.id);
   }
 
 
@@ -184,16 +195,19 @@ export class AppComponent {
 
     let idTweet : number ; 
 
-    idTweet = this.tweetDataService.writeTweet(text, this.isLogged.name);
+    idTweet = this.tweetDataService.writeTweet(text, this.userLogged.name);
 
     this.formsService.StateTweet(idTweet>=0);
 
     this.hashtagDataService.SearchHashtag(text,idTweet);
 
+        this.showUsers = false;
+    this.showTweets = true;
+
   }
 
   /**
-    * changeFilter.
+    * changeFilterTweets.
     *
     * Recives a new filter (hashtagName), calls getHashtag to obtain the hastag 
     * and finally tweetDataService.filterTweets() picks the correct tweets and 
@@ -208,7 +222,7 @@ export class AppComponent {
     *          
     */
 
-  changeFilter (event) : void {
+  changeFilterTweets (event) : void {
 
       let hastag : Hashtag;
 
@@ -219,5 +233,30 @@ export class AppComponent {
       }                                         //   
 
       this.tweetDataService.filterTweets(hastag);
+    this.showUsers = false;
+    this.showTweets = true;
   }
+
+  /**
+    * changeFilter.
+    *
+    *        
+    *          
+    */
+
+  private setUserLogged (user : User) : void {
+
+    this.userLogged = user;
+
+    this.formsService.setUserLogged(user);
+
+  }
+
+  private searchUser(name) : void {
+    this.loginService.searchUser(name);
+    this.showUsers = true;
+    this.showTweets = false;
+  }
+
+
 }

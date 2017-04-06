@@ -21,12 +21,14 @@ import { FormTweetComponent } from './form-tweet/form-tweet.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SignupComponent } from './form-signup/signup.component';
 import { FormLoginComponent } from './form-login/form-login.component';
+import { UserAccountComponent }    from './user-account/user-account.component'
 //SERVICES
 import { LoginService } from './shared/services/login-service.service';
 import { CanActivateService } from './shared/services/can-activate-service.service';
 import { TweetDataService } from './shared/services/tweet-data-service.service';
 import { HashtagDataService } from './shared/services/hashtag-data-service.service';
 import { FormsService } from './shared/services/forms-service.service';
+import { UserComponent } from './feed/user/user.component';
 
 
 @NgModule({
@@ -38,7 +40,9 @@ import { FormsService } from './shared/services/forms-service.service';
     FeedComponent,
     TweetComponent,
     SignupComponent,
-    FormLoginComponent
+    FormLoginComponent,
+    UserAccountComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

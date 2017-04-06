@@ -12,7 +12,7 @@ import { UserActions } from '../actions/user.action';
     * @return User[] that contains all user registered.
     *                    
     */
-export function UserReduce (state : User[] = [new User (-1,'jc','1234')] , action : Action) {
+export function UserReduce (state : User[] = [new User (-1,'jc','1234'),new User (-2,'jc','1234'),new User (-3,'jc','1234')] , action : Action) {
 
 	switch(action.type){
 	    case UserActions.USER_REGISTER:

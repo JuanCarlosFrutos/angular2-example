@@ -1,0 +1,22 @@
+#user {
+  background-color: red;
+   text-align: center;
+   width: 30%;
+   height: 200px;
+   border: 2px solid black;
+   padding: 5px;
+   margin: 25px;
+   box-shadow: 3px 3px 5px black;
+   box-sizing: border-box;
+   
+   
+
+
+   	background-color: #0922BB ;
+
+	  background: #ECF0FF; /* For browsers that do not support gradients */    
+    background: -webkit-linear-gradient(left top, #ECF0FF, #5177F2); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #ECF0FF, #5177F2); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #ECF0FF, #5177F2); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #ECF0FF, #5177F2); /* Standard syntax (must be last) */
+}

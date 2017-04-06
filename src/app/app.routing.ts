@@ -5,6 +5,7 @@ import { HeaderComponent }    from './header/header.component';
 import { FormTweetComponent }    from './form-tweet/form-tweet.component';
 import { SignupComponent }    from './form-signup/signup.component';
 import { FormLoginComponent }    from './form-login/form-login.component';
+import { UserAccountComponent }    from './user-account/user-account.component';
 import { CanActivateService }	from './shared/services/can-activate-service.service';
 
 export const routing = [
@@ -21,10 +22,14 @@ export const routing = [
     	CanActivateService
     ]
   },
-  { path: 'signup', component: SignupComponent },
   { 
-    path: 'login',
-    component: FormLoginComponent,
+    path: 'test',
+    component: UserAccountComponent,
+    canActivate: [
+      CanActivateService
+    ]
   },
+  { path: 'signup', component: SignupComponent },
+  { path: 'login', component: FormLoginComponent},
   { path: '**', component: FormLoginComponent }
 ];
