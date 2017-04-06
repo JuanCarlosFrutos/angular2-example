@@ -18,3 +18,7 @@
 a.hover {
 	background-color: red;
 }	
+
+.glyphicon-menu-hamburger {
+  background: url(../../assets/images/menu.png);
+}

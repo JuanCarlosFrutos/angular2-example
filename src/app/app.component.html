@@ -1,10 +1,11 @@
-<div id="appComponent">
-	<app-header></app-header>
+
 	<app-nav-bar [isLogged] = "userLogged" 
 					 [hashtags] = "hashtags | async" 
 					 (changeFilterTweets)="changeFilterTweets($event)" 
 					 (logout)="logout()">
 					 </app-nav-bar> 
+<div id="appComponent">
+<!-- 	<app-header></app-header> -->
 	<div class = "row">
 		<div class = "forms" class = "col-md-4">
 			<router-outlet></router-outlet>

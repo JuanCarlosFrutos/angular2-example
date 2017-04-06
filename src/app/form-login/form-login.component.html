@@ -13,7 +13,7 @@
           <label class="control-label col-md-6" for="name"  placeholder="Enter username">Name:</label>
           <div class = "col-md-6">
           <input type="text" class="form-control" id="name"
-          [(ngModel)]="user.name" name="name"
+          [(ngModel)]="userData['userName']" name="name"
           #name="ngModel">
           </div>
         <!-- Password -->
@@ -22,7 +22,7 @@
             <label class="control-label col-md-6" for="pass" placeholder="Enter password">Password:</label>
             <div class="col-md-6">
               <input type="password" class="form-control" id="pass"
-              [(ngModel)]="user.pass" name="pass">
+              [(ngModel)]="userData['password']" name="pass">
             </div>
           </div>
           <!-- Button -->

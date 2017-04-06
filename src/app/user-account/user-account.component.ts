@@ -30,9 +30,7 @@ export class UserAccountComponent implements OnDestroy {
   }
 
   private searchFriend () : void {
-
     this.formsService.searchFriend(this.nameFriend);
-
   }
 
   ngOnDestroy () {

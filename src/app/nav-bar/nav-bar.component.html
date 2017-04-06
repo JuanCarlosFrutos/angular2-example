@@ -2,13 +2,15 @@
 	  <div class="container-fluid">
 
 	    <ul class="nav navbar-nav">
-	      <li><a (click)="changeFilterTweets.emit($event)">ALL_TWEETS</a></li>
+	      <li><a [routerLink]="['/login']" href="#"><span class="glyphicon glyphicon-menu-hamburger"></span></a></li>
+	      <li><a (click)="changeFilterTweets.emit($event)">Twiter</a></li>
 	      <li *ngFor="let item of hashtags">
 	      	<a (click)="changeFilterTweets.emit($event)">{{item.name}}</a>
 	      </li>
 	    </ul>
 
 	    <ul class="nav navbar-nav navbar-right">
+	      <li><a (click)="changeFilterTweets.emit($event)">ALL_TWEETS</a></li>
       	  <li>
       	  	<a [routerLink]="['/signup']" href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
       	  </li>

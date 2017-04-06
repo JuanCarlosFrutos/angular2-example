@@ -1,22 +1,13 @@
 <div id="userAcount">
   <div class="row">
-    <div id="image" class = "col-md-4">
-    	 <img src="/../../../assets/images/example.png" height="150" width="150"> 
-    </div>
-    <div id="text" class = "col-md-8">
-<!--     	<p>{{user.name}}</p> -->
-    </div>
+    <button [routerLink]="['/tweet']">Tweet</button>
   </div>
   <div class="row">
-    <div class = "col-md-3">
-      <button [routerLink]="['/tweet']">Tweet</button>
-    </div>
-    <div class = "col-md-9"> 
+    <div class = "col-md-12"> 
       <form>
         Search Friend:
       <input [(ngModel)]="nameFriend" type="search" name="googlesearch">
-      <button (click)="searchFriend()" >Search</button>
+      <button (click)="searchFriend()">Search</button>
       </form>
-    </div>
   </div>
 </div>

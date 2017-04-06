@@ -14,7 +14,9 @@ import { FormsService } from '../shared/services/forms-service.service';
 })
 export class FormLoginComponent {
 
-  private user = new User(-99,'', '');//-->Change this
+  private userName : string;
+  private password  : string;
+  private userData : Object = {}; // {userName : string, password : string}
   private err : boolean = false;
 
   constructor(
@@ -30,12 +32,11 @@ export class FormLoginComponent {
   
   private login () : void {
 
-    this.formsService.submitLogin(this.user);
+    this.formsService.submitLogin(this.userData);
 
   }
 
-    private configureMessages (state : boolean) : void {
-
+  private configureMessages (state : boolean) : void {
     if (state === false) {
       this.err = true;
     }    

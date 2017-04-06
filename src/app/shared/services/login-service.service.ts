@@ -9,18 +9,20 @@ import { Observable } from 'rxjs/Rx';
 @Injectable()
 export class LoginService {
 
-  private usersSource = new Subject<User[]>(); 
+  private usersSource     : Subject<User[]> = new Subject<User[]>(); 
+  private users           : Observable<User[]> = this.usersSource.asObservable();
+
   private listUsersStore  : Observable<User[]>;
-  private users = this.usersSource.asObservable();
   private usersArray      : User[];
+  
   private userLoggedStore : Observable<User>;
   private user            : User;
+
   private userId          : number = 0;
 
   constructor( private store: Store<AppStore>) 
   {
 
-    
     //selects
     this.listUsersStore = store.select('UserReduce');
     this.userLoggedStore = store.select('UserLoged');
@@ -86,35 +88,59 @@ export class LoginService {
      *
      * Check if the user is registered in the store.
      *
-     *@param User 
+     *@param object => {username : string, password : string} 
      *
      *@return true if data is correct , and false in other way.
      *
      */
 
-  public login(loginUser: User) : boolean{
+  public login(object : Object) : boolean{
 
-     if (this.usersArray.some((user : User)=> user.name === loginUser.name && user.pass === loginUser.pass )){//
-        this.usersArray.map(                                                                                  //
-          (user : User)=> {                                                                              //
-             if (user.name === loginUser.name && user.pass === loginUser.pass){                          //==> CHANGE THIS!
-               loginUser = user;                                                                         //
-             }                                                                                           // 
-          }
-        );
-        this.store.dispatch({type: UserActions.USER_LOGIN, payload: loginUser});
-        return true;
-     }
-     return false;
+    let users : User [];
+    console.log(object["userName"]);
+    console.log(object["password"]);
+    users = this.usersArray
+                        .filter(                                                                                  
+                          (user : User) => {                                                                              
+                            return object["userName"] && user.pass === object["password"];      
+                           // console.log(user.name === object["userName"] && user.pass === object["password"]);                    
+                          }                                                                                           
+                        ); 
+
+     if (users.length <= 0){
+       return false;
+     }    
+
+     this.store.dispatch({type: UserActions.USER_LOGIN, payload: users[0]});
+     return true;
+
   }
+
+   /**
+     * logout.
+     *
+     *
+     */
 
   public logout(){
       this.store.dispatch({type: UserActions.USER_LOGOUT});
   }
 
+   /**
+     * userLogged.
+     *
+     *
+     */
+
   public userLogged() : Observable<User>{
     return this.userLoggedStore;
   }
+
+   /**
+     * isLoggedIn.
+     *
+     *
+     */
 
   public isLoggedIn(){
     if (this.user === undefined){

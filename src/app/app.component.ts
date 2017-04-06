@@ -21,9 +21,9 @@ import { FormsService } from './shared/services/forms-service.service';
 
 export class AppComponent {
 
-  private tweets : Observable<Tweet[]>;
-  private users : Observable<User[]>;
-  private hashtags : Observable<Hashtag[]>;
+  private tweets     : Observable<Tweet[]>;
+  private users      : Observable<User[]>;
+  private hashtags   : Observable<Hashtag[]>;
   private loggedUser : Observable<User>;
 
   private userLogged : User;
@@ -37,7 +37,6 @@ export class AppComponent {
     private formsService : FormsService,
     private _router: Router,
   ) {
-
 
     this.tweets = tweetDataService.allTweets();
     this.hashtags = hashtagDataService.allHashtag();
@@ -53,8 +52,8 @@ export class AppComponent {
 
     this.formsService.formLogin
                       .subscribe(
-                        (user : User)=> {
-                          this.login(user);
+                        (object : Object)=> {
+                          this.login(object);
                         }
                       );
 
@@ -90,17 +89,17 @@ export class AppComponent {
     * Return to form-login the result (true or false), for do that
     * it uses formsService.
     *
-    * @param user
+    * @param 
     *
     * @example user1 = new User ("Juan Carlos" , "password");
     *          login(user1);
     */
 
-  private login(user : User) : void {
+  private login(object : Object) : void {
 
     let state : boolean
 
-    state = this.loginService.login(user);
+    state = this.loginService.login(object);
 
     this.formsService.StateLogin(state);
 
@@ -153,7 +152,7 @@ export class AppComponent {
     *
     */
 
-  clickLike($event) : void{
+  private clickLike($event) : void{
     this.tweetDataService.like($event, this.userLogged.id);
   }
 
@@ -201,7 +200,7 @@ export class AppComponent {
 
     this.hashtagDataService.SearchHashtag(text,idTweet);
 
-        this.showUsers = false;
+    this.showUsers = false;
     this.showTweets = true;
 
   }
@@ -251,6 +250,13 @@ export class AppComponent {
     this.formsService.setUserLogged(user);
 
   }
+
+  /**
+    * searchUser.
+    *
+    *        
+    *          
+    */
 
   private searchUser(name) : void {
     this.loginService.searchUser(name);

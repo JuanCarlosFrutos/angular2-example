@@ -64,6 +64,7 @@ export class TweetDataService {
      * @return void
      *
   	*/
+
   public writeTweet(text : string, author: string) : number {
 
     let newTweet : Tweet;
@@ -86,6 +87,7 @@ export class TweetDataService {
     * @param hashtag name
     *
     */
+    
   public filterTweets (hashtag : Hashtag) : void{
 
     let tweetsFilter : Tweet [];
