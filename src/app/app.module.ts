@@ -29,6 +29,7 @@ import { TweetDataService } from './shared/services/tweet-data-service.service';
 import { HashtagDataService } from './shared/services/hashtag-data-service.service';
 import { FormsService } from './shared/services/forms-service.service';
 import { UserComponent } from './feed/user/user.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { UserComponent } from './feed/user/user.component';
     SignupComponent,
     FormLoginComponent,
     UserAccountComponent,
-    UserComponent
+    UserComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

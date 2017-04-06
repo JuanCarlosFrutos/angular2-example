@@ -1,5 +1,6 @@
 
 <div id="signupForm">
+  <h2>Twitter</h2>
   <h1>Sign Up</h1>
   <form class="form-horizontal"  #signUpForm="ngForm">
     <!-- Success message -->
@@ -16,22 +17,22 @@
     </div>
     <!-- Name -->   
     <div class="form-group">
-      <label for="name" class = "control-label col-md-6">Name:</label>
-      <div class="col-md-6">
+      <label for="name" class = "control-label col-md-offset-2 col-md-3">Name:</label>
+      <div class="col-md-3">
         <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
       </div>
     </div>
     <!-- Password --> 
     <div class="form-group">
-      <label for="pass" class = "control-label col-md-6">Password:</label>
-      <div class="col-md-6">
+      <label for="pass" class = "control-label col-md-offset-2 col-md-3">Password:</label>
+      <div class="col-md-3">
         <input type="password" class="form-control" id="pass" [(ngModel)]="pass" name="pass">
       </div>
     </div>
     <!-- Repeat Password -->
     <div class="form-group">
-      <label for="repass" class = "control-label col-md-6">Repeat Password:</label>
-      <div class="col-md-6">
+      <label for="repass" class = "control-label col-md-offset-2 col-md-3">Repeat Password:</label>
+      <div class="col-md-3">
         <input type="password" class="form-control" id="repass" [(ngModel)]="repass" name="repass">
       </div>
     </div>

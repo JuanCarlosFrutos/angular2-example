@@ -6,13 +6,14 @@ import { FormTweetComponent }    from './form-tweet/form-tweet.component';
 import { SignupComponent }    from './form-signup/signup.component';
 import { FormLoginComponent }    from './form-login/form-login.component';
 import { UserAccountComponent }    from './user-account/user-account.component';
+import { MenuComponent }    from './menu/menu.component';
 import { CanActivateService }	from './shared/services/can-activate-service.service';
 
 export const routing = [
   //{ path: '/', component:  },
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: '',
     pathMatch: 'full'
   },
   { 
@@ -31,5 +32,6 @@ export const routing = [
   },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: FormLoginComponent},
-  { path: '**', component: FormLoginComponent }
+  { path: 'menu', component: MenuComponent},
+  { path: '**', component:MenuComponent}
 ];

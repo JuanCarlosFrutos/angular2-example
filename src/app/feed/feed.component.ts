@@ -17,4 +17,5 @@ export class FeedComponent{
   @Input() showUsers  : boolean;
   @Output () like : EventEmitter<Tweet> = new EventEmitter<Tweet>();
   @Output () dislike : EventEmitter<Tweet> = new EventEmitter<Tweet>();
+  @Output () addFriend : EventEmitter<User> = new EventEmitter<User>();
 }

@@ -264,5 +264,16 @@ export class AppComponent {
     this.showTweets = false;
   }
 
+  /**
+    * addUser.
+    *
+    *        
+    *          
+    */
+
+  private addFriend(user : User) {
+    this.loginService.addFriend(user);
+  }
+
 
 }

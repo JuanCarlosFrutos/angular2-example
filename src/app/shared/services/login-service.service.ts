@@ -72,7 +72,7 @@ export class LoginService {
 
     if (object['pass'] === object['repass']){
 
-      let user = new User ( this.userId, object['name'], object['pass'] );
+      let user = new User ( this.userId, object['name'], object['pass'], []);
       this.store.dispatch({type: UserActions.USER_REGISTER, payload: user});
       this.userId++;
       return true;
@@ -164,6 +164,33 @@ export class LoginService {
 
       this.usersSource.next(usersFilter);
   }
+
+   /**
+     * addFriend.
+     *
+     *
+     */
+
+  public addFriend (user : User) : void {
+    if (user != undefined) {
+      user.friends.push(user);
+    }
+  } 
+
+   /**
+     * ShowFriends.
+     *
+     *
+     */
+
+  public ShowFriends (user : User) : void {
+    let friends : User [];
+
+      friends = this.usersArray
+                          .filter((user : User) => this.user.friends.indexOf(user) >= 0 );
+
+      this.usersSource.next(friends);
+  } 
 
 }
 

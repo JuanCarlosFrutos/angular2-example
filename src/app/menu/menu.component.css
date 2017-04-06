@@ -1,22 +1,28 @@
-#user {
-   background-color: red;
-   text-align: center;
-   width: 90%;
-   height: 200px;
-   border: 2px solid black;
-   padding: 5px;
-   margin: 15px;
-   box-shadow: 3px 3px 5px black;
-   box-sizing: border-box;
-   
-   
+#menu {
+	float : left;
+	text-align: left;
+/*    border-radius: 25px;*/
+    padding: 20px; 
+    box-shadow: 3px 3px 5px black;
+    width: 20%;
+    height: auto;
 
 
     background-color: #5177F2 ;
 
-    background: #ECF0FF; /* For browsers that do not support gradients */    
+	background: #ECF0FF; /* For browsers that do not support gradients */    
     background: -webkit-linear-gradient(left top, #ECF0FF, white); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(bottom right, #ECF0FF, white); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(bottom right, #ECF0FF, white); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to bottom right, #ECF0FF,white); /* Standard syntax (must be last) */
+}
+
+li {
+	list-style-type: none;
+    padding: 3px; 
+    margin: 3px;
+}
+
+a.hover {
+	background-color: white;
 }

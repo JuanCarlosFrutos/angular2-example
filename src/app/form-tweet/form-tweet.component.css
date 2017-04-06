@@ -1,20 +1,20 @@
 #tweetForm {
-	text-align: right;
-    border: 2px solid black;
+    float: left;
+	text-align: left;
     padding: 20px; 
-  	margin-top: 25px;
-    box-shadow: 3px 3px 5px black;
+    margin-left: 25px;
+    width: 20%;
 
+    background-color: #5177F2 ;
 
-    background-color: #0922BB ;
-
-	background: #ECF0FF; /* For browsers that do not support gradients */    
-    background: -webkit-linear-gradient(left top, #ECF0FF, #5177F2); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(bottom right, #ECF0FF, #5177F2); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(bottom right, #ECF0FF, #5177F2); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to bottom right, #ECF0FF, #5177F2); /* Standard syntax (must be last) */
+    background: #ECF0FF; /* For browsers that do not support gradients */    
+    background: -webkit-linear-gradient(left top, #ECF0FF, white); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #ECF0FF, white); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #ECF0FF, white); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, #ECF0FF,white); /* Standard syntax (must be last) */
 }
 
 textarea {
 	width: 100%;
+    height: 100px;
 }

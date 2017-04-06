@@ -1,10 +1,11 @@
 <div id="user">
     <div class="row">
-        	 <img src="/../../../assets/images/example.png" height="75" width="75"> 
+        	 <img src="/../../../assets/images/user.png" height="75" width="75"> 
     </div>
     <div clas="row">
         {{user.name}}
     </div>
     <div clas="row">
+    	<button (click)="addFriend.emit(this.user)" >Add Friend</button>
     </div>
 </div>

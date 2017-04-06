@@ -5,6 +5,7 @@
 			<app-tweet [tweet] = "tweet" 
 				(like)="like.emit($event)"
 				(dislike)="dislike.emit($event)"
+				(addFriend)="addFriend.emit($event)"
 				 >
 			</app-tweet>
 		</div>	

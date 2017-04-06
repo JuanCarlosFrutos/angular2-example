@@ -1,6 +1,14 @@
-#appComponent {
-	height: 100%;
-	color: #1C3A4E;
-	margin-left: 50px;
-	margin-right: 50px;
+app-feed {
+	float: right;
+	width: 70%;
+	margin-right: 25px;
+
+ background: rgba(0, 0, 0, 0.3) /* Green background with 30% opacity */
 }
+
+#forms {
+	float: left;
+	background-color: red;
+}
+
+
