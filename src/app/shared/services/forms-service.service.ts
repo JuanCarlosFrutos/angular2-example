@@ -13,11 +13,11 @@ import { User } from '../models/user';
 export class FormsService {
 
   // ***************** Submit ***********************//
-  private formTweetSource  = new Subject<string>();
-  private formLoginSource  = new Subject<Object>();
-  private formSignupSource = new Subject<Object>();
-  private userLoggedSource = new Subject<User>();
-  private nameUserSource = new Subject<string>();
+  private formTweetSource   = new Subject<string>();
+  private formLoginSource   = new Subject<Object>();
+  private formSignupSource  = new Subject<Object>();
+  private userLoggedSource  = new Subject<User>();
+  private nameUserSource    = new Subject<string>();
   private filterTweetSource = new Subject<string>();
 
   public formTweet   : Observable<string>  = this.formTweetSource.asObservable();
@@ -64,7 +64,6 @@ export class FormsService {
 
   public searchTweet ( name : string ) : any {
     this.filterTweetSource.next(name);
-    console.log(name);
   };
 
   public StateTweet ( state : boolean ) : any {

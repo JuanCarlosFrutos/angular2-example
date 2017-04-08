@@ -17,8 +17,15 @@
 }
 
 
-h2 {
+h1 {
     text-align: center;
-    font-size: 5em;
+    font-size: 7em;
     margin: auto;
+    font-family: lookscript;
+    margin-bottom: 50px;
+}
+
+@font-face {
+    font-family: 'lookscript'; /*a name to be used later*/
+    src: url('../../assets/fonts/Webfonts/lookscript_woodbold_macroman/lookscriptwoodbold-webfont.woff2'); /*URL to font*/
 }

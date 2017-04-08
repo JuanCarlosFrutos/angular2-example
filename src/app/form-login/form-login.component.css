@@ -2,7 +2,7 @@
 	text-align: right;
 	margin-top: 25px;
 /*    border-radius: 25px;*/
-/*    border: 2px solid black;*/
+    border: 2px solid black;
     padding: 20px; 
 /*    box-shadow: 3px 3px 5px black;*/
 
@@ -22,8 +22,15 @@
     text-align: center;
 }
 
-h2 {
+h1 {
     text-align: center;
-    font-size: 5em;
+    font-size: 7em;
     margin: auto;
+    font-family: lookscript;
+    margin-bottom: 50px;
+}
+
+@font-face {
+    font-family: 'lookscript'; /*a name to be used later*/
+    src: url('../../assets/fonts/Webfonts/lookscript_woodbold_macroman/lookscriptwoodbold-webfont.woff2'); /*URL to font*/
 }

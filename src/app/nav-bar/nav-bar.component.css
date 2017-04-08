@@ -18,5 +18,15 @@ a.hover {
 }	
 
 .glyphicon-menu-hamburger {
-  background: url(../../assets/images/menu.png);
+    background: url(../../assets/images/menu.png);
+}
+
+#title {
+    font-family: 'milka';
+    font-size: 2em;
+}
+
+@font-face {
+    font-family: 'milka'; /*a name to be used later*/
+    src: url('../../assets/fonts/milka/Webfonts/milka/milkafree-regular-webfont.woff2'); /*URL to font*/
 }
