@@ -69,7 +69,7 @@ export class TweetDataService {
 
     let newTweet : Tweet;
 
-    newTweet = new Tweet (this.idTweet, new Date(), author, text, [], [])
+    newTweet = new Tweet (this.idTweet, new Date(), author, text, [], []);
     this._store.dispatch({type: TweetActions.TWEET_ADD, payload: newTweet});
     this.idTweet++;
     return this.idTweet - 1;

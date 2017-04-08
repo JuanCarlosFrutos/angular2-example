@@ -159,8 +159,12 @@ export class LoginService {
 
     let usersFilter : User [];
 
+
       usersFilter = this.usersArray
-                          .filter((user : User) => user.name === name);
+                          .filter((user : User) => {
+                                          return user.name.indexOf(name) == 0;
+                                  }
+                          );
 
       this.usersSource.next(usersFilter);
   }

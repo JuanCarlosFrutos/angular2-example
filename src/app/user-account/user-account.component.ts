@@ -10,32 +10,18 @@ import { FormsService } from '../shared/services/forms-service.service';
   templateUrl: './user-account.component.html',
   styleUrls: ['./user-account.component.css']
 })
-export class UserAccountComponent implements OnDestroy {
+export class UserAccountComponent {
 
   private user : User; 	
-  private subscription;
-  private nameFriend : string;
+  private nameUserSearch: string;
 
   constructor(
   	private formsService : FormsService
   	) {
-
-        this.subscription = this.formsService.userLogged
-                      		                        .subscribe(
-                      		                            (userLog : User) => {
-                      		                            	console.log(userLog);
-                      		                                this.user = userLog;
-                      		                            }
-                      		                        );
   }
 
-  private searchFriend () : void {
-    this.formsService.searchFriend(this.nameFriend);
+  private onChangeSearch (input) : void {
+    this.formsService.searchFriend(input.value);
+    console.log(input.value);
   }
-
-  ngOnDestroy () {
-    this.subscription.unsubscribe();
-  }
-
-
 }

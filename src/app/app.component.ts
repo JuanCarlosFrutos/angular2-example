@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,7 @@ import { FormsService } from './shared/services/forms-service.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   private tweets     : Observable<Tweet[]>;
   private users      : Observable<User[]>;
@@ -77,8 +77,11 @@ export class AppComponent {
                     this.setUserLogged(user);
                   }
                 );
+
   }
 
+  ngOnInit(){
+  }
 
   //*******************************USE LOGIN SERVICE*******************************//
 
@@ -232,6 +235,7 @@ export class AppComponent {
       }                                         //   
 
       this.tweetDataService.filterTweets(hastag);
+
     this.showUsers = false;
     this.showTweets = true;
   }
