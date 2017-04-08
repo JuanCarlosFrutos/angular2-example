@@ -1,9 +1,8 @@
 
 	<app-nav-bar [isLogged] = "userLogged" 
-					 [hashtags] = "hashtags | async" 
-					 (changeFilterTweets)="changeFilterTweets($event)" 
-					 (logout)="logout()">
-					 </app-nav-bar> 
+				 [hashtags] = "hashtags | async"  
+				 (logout)="logout()">
+			     </app-nav-bar> 
 
 		<div class = "forms">
 			<router-outlet></router-outlet>

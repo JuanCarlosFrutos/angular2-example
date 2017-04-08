@@ -17,13 +17,15 @@ export class FormsService {
   private formLoginSource  = new Subject<Object>();
   private formSignupSource = new Subject<Object>();
   private userLoggedSource = new Subject<User>();
-  private nameFriendSource = new Subject<string>();
+  private nameUserSource = new Subject<string>();
+  private filterTweetSource = new Subject<string>();
 
-  public formTweet  : Observable<string>   = this.formTweetSource.asObservable();
-  public formLogin  : Observable<Object>     = this.formLoginSource.asObservable();
-  public formSignup : Observable<Object>   = this.formSignupSource.asObservable();
-  public userLogged : Observable<User>     = this.userLoggedSource.asObservable();
-  public nameFriend : Observable<string>  =  this.nameFriendSource.asObservable();
+  public formTweet   : Observable<string>  = this.formTweetSource.asObservable();
+  public formLogin   : Observable<Object>  = this.formLoginSource.asObservable();
+  public formSignup  : Observable<Object>  = this.formSignupSource.asObservable();
+  public userLogged  : Observable<User>    = this.userLoggedSource.asObservable();
+  public nameUser    : Observable<string>  = this.nameUserSource.asObservable();
+  public filterTweet : Observable<string>  = this.filterTweetSource.asObservable();
   // ************************************************//
 
   // ***************State of forms*******************//
@@ -56,8 +58,13 @@ export class FormsService {
     this.userLoggedSource.next(user);
   };
 
-  public searchFriend ( name : string ) : any {
-    this.nameFriendSource.next(name);
+  public searchUser ( name : string ) : any {
+    this.nameUserSource.next(name);
+  };
+
+  public searchTweet ( name : string ) : any {
+    this.filterTweetSource.next(name);
+    console.log(name);
   };
 
   public StateTweet ( state : boolean ) : any {

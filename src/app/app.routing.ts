@@ -1,11 +1,10 @@
 // Importar componentes y módulos para el routing 
  
 // Componentes
-import { HeaderComponent }    from './header/header.component';
 import { FormTweetComponent }    from './form-tweet/form-tweet.component';
 import { SignupComponent }    from './form-signup/signup.component';
 import { FormLoginComponent }    from './form-login/form-login.component';
-import { UserAccountComponent }    from './user-account/user-account.component';
+import { SearchComponent }    from './search/search.component';
 import { MenuComponent }    from './menu/menu.component';
 import { CanActivateService }	from './shared/services/can-activate-service.service';
 
@@ -25,7 +24,7 @@ export const routing = [
   },
   { 
     path: 'test',
-    component: UserAccountComponent,
+    component: SearchComponent,
     canActivate: [
       CanActivateService
     ]

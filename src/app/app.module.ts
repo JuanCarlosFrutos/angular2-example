@@ -16,12 +16,11 @@ import { HashtagsReduce } from './shared/store/reduce/hashtags.reduce';
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
 import { TweetComponent } from './feed/tweet/tweet.component';
-import { HeaderComponent } from './header/header.component';
 import { FormTweetComponent } from './form-tweet/form-tweet.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { SignupComponent } from './form-signup/signup.component';
 import { FormLoginComponent } from './form-login/form-login.component';
-import { UserAccountComponent }    from './user-account/user-account.component'
+import { SearchComponent }    from './search/search.component'
 //SERVICES
 import { LoginService } from './shared/services/login-service.service';
 import { CanActivateService } from './shared/services/can-activate-service.service';
@@ -35,14 +34,13 @@ import { MenuComponent } from './menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     FormTweetComponent,
     NavBarComponent,
     FeedComponent,
     TweetComponent,
     SignupComponent,
     FormLoginComponent,
-    UserAccountComponent,
+    SearchComponent,
     UserComponent,
     MenuComponent
   ],

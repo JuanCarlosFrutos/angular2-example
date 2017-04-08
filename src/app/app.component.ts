@@ -64,12 +64,19 @@ export class AppComponent implements OnInit {
                         }
                       );      
 
-    this.formsService.nameFriend
+    this.formsService.nameUser
                       .subscribe(
                         (name : string)=> {
                           this.searchUser(name);
                         }
-                      );                              
+                      );  
+
+    this.formsService.filterTweet
+                      .subscribe(
+                        (filter : string)=> {
+                          this.changeFilterTweets(filter);
+                        }
+                      );                                                    
 
     this.loggedUser
                 .subscribe( 
@@ -224,20 +231,22 @@ export class AppComponent implements OnInit {
     *          
     */
 
-  changeFilterTweets (event) : void {
+  changeFilterTweets (hashtagName : string) : void {
 
-      let hastag : Hashtag;
+      let hashtag : Hashtag;
 
-      hastag = this.hashtagDataService.getHashtag(event.target.text);
+      if (hashtagName === "ALL_TWEETS"){  //
+        hashtag = new Hashtag("ALL_TWEETS", null);             //-->Change this
+      }               
 
-      if (event.target.text === "ALL_TWEETS"){  //
-        hastag = new Hashtag("ALL_TWEETS", null);             //-->Change this
-      }                                         //   
+      hashtag = this.hashtagDataService.getHashtag(hashtagName);                          //   
 
-      this.tweetDataService.filterTweets(hastag);
-
-    this.showUsers = false;
-    this.showTweets = true;
+      if (hashtag != null){
+        this.tweetDataService.filterTweets(hashtag);
+      }
+      
+      this.showUsers = false;
+      this.showTweets = true;
   }
 
   /**
