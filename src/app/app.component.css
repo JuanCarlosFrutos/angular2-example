@@ -1,14 +1,19 @@
-app-feed {
-	float: right;
-	width: 70%;
-	margin-right: 25px;
 
- background: rgba(0, 0, 0, 0.3) /* Green background with 30% opacity */
+#appComponent {
+}
+
+app-feed {
+	display: flex;
+	justify-content: center;
+	margin: 20px;
+/*	float: right;
+	width: 70%;*/
+
+ 	background: rgba(0, 0, 0, 0.3) 
 }
 
 #forms {
-	float: left;
-	background-color: red;
+
 }
 
 

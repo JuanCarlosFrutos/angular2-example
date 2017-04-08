@@ -113,7 +113,7 @@ export class AppComponent implements OnInit {
 
     this.formsService.StateLogin(state);
 
-    this._router.navigate(['/test']);
+    this._router.navigate(['']);
   }
 
   /**

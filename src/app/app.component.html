@@ -1,20 +1,22 @@
 
+<div id="appComponent">
 	<app-nav-bar [isLogged] = "userLogged" 
 				 [hashtags] = "hashtags | async"  
 				 (logout)="logout()">
 			     </app-nav-bar> 
 
-		<div class = "forms">
+	<div class = "forms">
 			<router-outlet></router-outlet>
-		</div>
-<!-- 	<app-header></app-header> -->
-			<app-feed [tweets]  = "tweets | async"
-					  [users]   = "users  | async" 
-					  [showTweets]= "showTweets"
-					  [showUsers]= "showUsers"
-					  (like)="clickLike($event)"
-					  (dislike)="clickDislike($event)"
-					  (addFriend)="addFriend($event)"
-					  >
-					  </app-feed>
+	</div>
+
+	<app-feed   [tweets]  = "tweets | async"
+			    [users]   = "users  | async" 
+				[showTweets]= "showTweets"
+				[showUsers]= "showUsers"
+				(like)="clickLike($event)"
+				(dislike)="clickDislike($event)"
+				(addFriend)="addFriend($event)"
+				>
+	</app-feed>
+<div>
 

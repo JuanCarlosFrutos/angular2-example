@@ -7,7 +7,6 @@
    height: auto;
    padding: 5px;
    margin: 25px auto;
-/*   box-shadow: 3px 3px 5px black;*/
    box-sizing: border-box;
    resize: both;
    overflow: auto;
@@ -39,9 +38,12 @@
 .text {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 500;
-  width: 85%;
+  width: 90%;
 }
 
+.photo{
+  width: 10%;
+}
 #image{
   height: 100px;
   width: 100px;
