@@ -1,0 +1,21 @@
+#feed {
+/*	float: right;
+	width: 70%;*/
+	display: flex;
+	justify-content: space-around;
+ 	background: rgba(0, 0, 0, 0.3); 
+	margin-right: 25px;
+	margin-left: 25px;
+}
+
+app-tweet {
+	display: flex;
+}
+
+#if {
+	width: 100%;
+}
+
+#for {
+	width: 100%;
+}

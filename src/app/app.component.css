@@ -3,13 +3,7 @@
 }
 
 app-feed {
-	display: flex;
-	justify-content: center;
-	margin: 20px;
-/*	float: right;
-	width: 70%;*/
 
- 	background: rgba(0, 0, 0, 0.3) 
 }
 
 #forms {

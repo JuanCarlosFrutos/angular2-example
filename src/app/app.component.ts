@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,7 @@ import { FormsService } from './shared/services/forms-service.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit {
+export class AppComponent {
 
   private tweets     : Observable<Tweet[]>;
   private users      : Observable<User[]>;
@@ -31,17 +31,17 @@ export class AppComponent implements OnInit {
   private showUsers  : boolean = false;
 
   constructor(
-    private loginService : LoginService,
-    private tweetDataService : TweetDataService,
+    private loginService       : LoginService,
+    private tweetDataService   : TweetDataService,
     private hashtagDataService : HashtagDataService,
-    private formsService : FormsService,
-    private _router: Router,
+    private formsService       : FormsService,
+    private _router            : Router,
   ) {
 
-    this.tweets = tweetDataService.allTweets();
-    this.hashtags = hashtagDataService.allHashtag();
+    this.tweets     = tweetDataService.allTweets();
+    this.hashtags   = hashtagDataService.allHashtag();
     this.loggedUser = loginService.userLogged();
-    this.users = loginService.allUsers();
+    this.users      = loginService.allUsers();
 
     this.formsService.formTweet
                       .subscribe(
@@ -87,19 +87,14 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit(){
-  }
-
-  //*******************************USE LOGIN SERVICE*******************************//
-
   /**
     * login.
     *
     * Try login user.
-    * Return to form-login the result (true or false), for do that
-    * it uses formsService.
+    * Return to form-login the result (true or false). 
+    * It uses formsService.
     *
-    * @param 
+    * @param object => {string: userNanme, string: password}
     *
     * @example user1 = new User ("Juan Carlos" , "password");
     *          login(user1);
@@ -119,11 +114,12 @@ export class AppComponent implements OnInit {
   /**
     * newUser.
     *
-    * Register new User. Return true or false to form-signUp
+    * Register new User. Return true or false to form-signUp.
     * 
-    * @param new User
+    * @param object {string: userName, string: password, string: repassword}
     *
     * @example newUser (new user ("Juan Carlos", "password"));
+    *
     */
 
   private newUser (object : Object) : void {
@@ -143,14 +139,10 @@ export class AppComponent implements OnInit {
     */
 
   logout() : void{
+
     this.loginService.logout();
+
   }
-
-
-  //*********************************************************************************//
-
-
-  //****************************USE TWEET DATA SERVICE*******************************//
 
   /**
     * clickLike.
@@ -158,12 +150,14 @@ export class AppComponent implements OnInit {
     * It saves in store that this user click like in the tweet.(Use TweetDataService)
     * 
     * @param $event is the tweet chooses by the user. 
-    *
+    *        $event => {number: id, Date: date, string: author, string: text,
+    *                    number[]: likes, number[]: dislikes}
     *
     */
 
   private clickLike($event) : void{
     this.tweetDataService.like($event, this.userLogged.id);
+    console.log($event);
   }
 
     /**
@@ -176,10 +170,6 @@ export class AppComponent implements OnInit {
   private clickDislike($event) : void{
     this.tweetDataService.dislike($event, this.userLogged.id);
   }
-
-
-  //*********************************************************************************//
-
 
   /**
     * newTweet.

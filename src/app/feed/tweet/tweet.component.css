@@ -2,9 +2,8 @@
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
-
-   width: 90%;
    height: auto;
+   min-width: 90%;
    padding: 5px;
    margin: 25px auto;
    box-sizing: border-box;
@@ -36,6 +35,7 @@
 }
 
 .text {
+
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 500;
   width: 90%;

@@ -1,17 +1,16 @@
 <div id="tweet">
-    <div class="photo">
-    	 <img id="image" src="/../../../assets/images/background.jpg" height="100" width="100"> 
-    </div>
-    <div class="text">
-    	<p>{{tweet.text}}</p>
-    </div>
-    <div class="date">
-      {{tweet.date | date: 'dd/MM/yyyy'}}
-    </div>
-  	<div class="author">
-  		{{tweet.author}}
-  	</div>
-
+      <div class="photo">
+      	 <img id="image" src="/../../../assets/images/background.jpg" height="100" width="100"> 
+      </div>
+      <div class="text">
+      	<p>{{tweet.text}}</p>
+      </div>
+      <div class="date">
+        {{tweet.date | date: 'dd/MM/yyyy'}}
+      </div>
+    	<div class="author">
+    		{{tweet.author}}
+    	</div>
     <div class="opinion">
       <img id="likeImage"(click) = "like.emit(this.tweet)" src="/../../../assets/images/like.ico" alt="like" />
       {{tweet.like.length}}
