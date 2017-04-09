@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { Observable } from 'rxjs/Rx';
+//MODELS
 import { Hashtag } from '../shared/models/hashtag';
 
 
@@ -11,24 +11,24 @@ import { Hashtag } from '../shared/models/hashtag';
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent{
+
 	@Input() hashtags: Observable<Hashtag[]>;
-	@Input() isLogged;
-	// filter 
-	//@Output() changeFilterTweets = new EventEmitter();
-	@Output() logout = new EventEmitter();
+	@Input() isLogged: boolean;
+
+	@Output() logout : EventEmitter<void> = new EventEmitter<void>();
 
 	constructor (
 		private router : Router
-		) {
+	) {}
 
-	}
+	public onClickMenu () {
 
-	onClickMenu () {
 		if (this.router.url === '/menu'){
 			this.router.navigate(['']);
 		}else{
 			this.router.navigate(['/menu']);
 		}
+
 	}
 
 }

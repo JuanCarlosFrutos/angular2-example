@@ -13,7 +13,7 @@ import { HashtagActions } from '../actions/hashtag.action';
     *                    
     */
 
-export function HashtagsReduce (state: Hashtag [] = [], action : Action) {
+export function HashtagsReducer (state: Hashtag [] = [], action : Action) {
 
 	switch(action.type){
 	    case HashtagActions.HASHTAG_ADD:

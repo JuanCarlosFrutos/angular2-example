@@ -27,6 +27,8 @@ export class AppComponent {
   public loggedUser : Observable<User>;
 
   public userLogged : User;
+
+  public isLogged   : boolean = false;
   public showTweets : boolean = true; 
   public showUsers  : boolean = false;
 
@@ -82,6 +84,7 @@ export class AppComponent {
                 .subscribe( 
                   (user : User) => {
                     this.setUserLogged(user);
+                    user != undefined ? this.isLogged=true : this.isLogged=false;
                   }
                 );
 
@@ -156,11 +159,12 @@ export class AppComponent {
     */
 
   public clickLike($event) : void{
+
     this.tweetDataService.like($event, this.userLogged.id);
-    console.log($event);
+
   }
 
-    /**
+  /**
     * clickDislike.
     *
     * @param $event is the tweet chooses by the user.
@@ -168,7 +172,9 @@ export class AppComponent {
     */
   
   public clickDislike($event) : void{
+
     this.tweetDataService.dislike($event, this.userLogged.id);
+
   }
 
   /**
@@ -237,6 +243,7 @@ export class AppComponent {
       
       this.showUsers = false;
       this.showTweets = true;
+      
   }
 
   /**

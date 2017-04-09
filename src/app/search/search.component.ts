@@ -12,20 +12,21 @@ import { FormsService } from '../shared/services/forms-service.service';
 })
 export class SearchComponent {
 
-  private textSearch : string = "";
-
   constructor(
   	private formsService : FormsService
-  	) {
-  }
+  ) {}
 
   public onChangeSearch (myInput) : void {
 
     if (myInput.value.indexOf('#')==0){
+
       this.formsService.searchTweet(myInput.value);
+
     }else{
+
       this.formsService.searchUser(myInput.value);
       console.log(myInput.value);
+
     }
     
   }

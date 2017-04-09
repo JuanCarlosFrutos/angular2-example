@@ -8,10 +8,10 @@ import { StoreModule, provideStore } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { routing } from './app.routing';
 //REDUCES
-import { TweetReduce } from './shared/store/reduce/tweet.reduce';
-import { UserReduce } from './shared/store/reduce/user.reduce';
-import { UserLoged } from './shared/store/reduce/user-loged.reduce';
-import { HashtagsReduce } from './shared/store/reduce/hashtags.reduce';
+import { TweetReducer } from './shared/store/reducer/tweet.reducer';
+import { UserReducer } from './shared/store/reducer/user.reducer';
+import { UserLoged } from './shared/store/reducer/user-loged.reducer';
+import { HashtagsReducer } from './shared/store/reducer/hashtags.reducer';
 //COMPONENTS
 import { AppComponent } from './app.component';
 import { FeedComponent } from './feed/feed.component';
@@ -49,10 +49,10 @@ import { MenuComponent } from './menu/menu.component';
     FormsModule,
     HttpModule,
     RouterModule.forRoot(routing),
-    StoreModule.provideStore({ tweets : TweetReduce, 
-                               userus : UserReduce, 
+    StoreModule.provideStore({ tweets : TweetReducer, 
+                               users : UserReducer, 
                                userLogged : UserLoged, 
-                               hashtags :HashtagsReduce,
+                               hashtags :HashtagsReducer,
                              }),
     StoreDevtoolsModule.instrumentOnlyWithExtension()
   ],

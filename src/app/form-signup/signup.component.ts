@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Rx';
-
 //MODEL
 import { User } from '../shared/models/user'
-//STORE
-import { Store } from '@ngrx/store';
-import { AppStore } from '../shared/store/app-store';
 //SERVICE
 import { FormsService } from '../shared/services/forms-service.service';
 
@@ -19,25 +15,26 @@ import { FormsService } from '../shared/services/forms-service.service';
 
 export class SignupComponent {
 
-  // Variables new User
-  //private user: User;
-  public name: string;
-  public pass: string;
-  public repass: string;
-  public object: Object = {};
+    public name    : string;
+    public pass    : string;
+    public repass  : string;
 
-  public err: boolean = false;
-  public success : boolean = false;
+    public object  : Object  = {};// {name : string, pass : string, repass : string}
+    public err     : boolean = false;
+
+    public success : boolean = false;
 
   constructor(
   	private formsService : FormsService
-  	){
+  ){
+
     this.formsService.MessageSignup
                         .subscribe(
                           (state : boolean)=>{
                             this.configureMessages(state);
                           }
                         );
+
   }
   
   public newUser () : void {
@@ -45,6 +42,7 @@ export class SignupComponent {
     this.object['name']   = this.name;
     this.object['pass']   = this.pass;
     this.object['repass'] = this.repass;
+
     this.formsService.submitSignup(this.object);
     
   }
@@ -58,6 +56,7 @@ export class SignupComponent {
       this.err = true;
       this.success = false;
     }
+
   }
 
 }

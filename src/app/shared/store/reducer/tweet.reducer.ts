@@ -13,7 +13,7 @@ import { TweetActions } from '../actions/tweet.action';
     *                    
     */
 
-export function TweetReduce (state: Tweet []  = [] , action : Action) {
+export function TweetReducer (state: Tweet []  = [] , action : Action) {
 
     // let text: string = `Lorem ipsum dolor sit amet, 
     //                     consectetuer adipiscing elit. Aenean commodo ligula eget dolor. 

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-import { User } from '../shared/models/user'
-
 import {Observable} from 'rxjs/Rx';
-
+//MODELS
+import { User } from '../shared/models/user'
 //SERVICE
 import { FormsService } from '../shared/services/forms-service.service';
 
@@ -14,20 +12,24 @@ import { FormsService } from '../shared/services/forms-service.service';
 })
 export class FormLoginComponent {
 
-  public userName : string;
-  public password  : string;
-  public userData : Object = {}; // {userName : string, password : string}
-  public err : boolean = false;
+    public userName  : string;
+    public password  : string;
+
+    public userData  : Object  = {}; // {userName : string, password : string}
+    
+    public err       : boolean = false;
 
   constructor(
     private formsService : FormsService
-    ){
-        this.formsService.MessageLogin
-                              .subscribe(
-                                (state : boolean)=>{
-                                  this.configureMessages(state);
-                                }
-                              );
+  ){
+
+    this.formsService.MessageLogin
+                            .subscribe(
+                              (state : boolean)=>{
+                                this.configureMessages(state);
+                              }
+                            );
+
   }
   
   public login () : void {
@@ -37,9 +39,11 @@ export class FormLoginComponent {
   }
 
   private configureMessages (state : boolean) : void {
+
     if (state === false) {
       this.err = true;
     }    
+
   }
 
 }

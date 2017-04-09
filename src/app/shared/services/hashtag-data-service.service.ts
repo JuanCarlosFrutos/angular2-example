@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-
 //STORE
 import { Store } from '@ngrx/store';
 import { AppStore } from '../store/app-store';
@@ -11,15 +10,17 @@ import { Hashtag } from '../models/hashtag';
 @Injectable()
 export class HashtagDataService {
 
-	private hashtagStore : Observable<Hashtag[]>;
-  private hashtagArray : Hashtag[] = [];
-	private idTweet : number;
+	  private hashtagStore : Observable<Hashtag[]>;
+    private hashtagArray : Hashtag[] = [];
+
+	  private idTweet : number;
 
   constructor(
   		private _store : Store<AppStore>
-  	) 
+  ) 
   { 
-  	this.hashtagStore = _store.select(s => s.hashtags);
+
+  	this.hashtagStore = _store.select((s : AppStore) => s.hashtags);
 
     this.hashtagStore
       .subscribe(
@@ -27,39 +28,40 @@ export class HashtagDataService {
           this.hashtagArray = arrayHashtag;
         }
       );
+
   }
 
-
-
-   /**
-     * allHashtag
-     *
-     * With this function you obtain a Observable ,that will be modified 
-     * in function of filters.
-     * If filter is equal ALL_TWEETS the observable has all tweets, but 
-     * if filter is equal #Hello, the observable has the tweets that 
-     * contains hashtag #Hello.
-     *
-     * @param 
-     *
-     * @return Obervable Hashtag[]
-     *
-     */
+  /**
+    * allHashtag
+    *
+    * With this function you obtain a Observable ,that will be modified 
+    * in function of filters.
+    * If filter is equal ALL_TWEETS the observable has all tweets, but 
+    * if filter is equal #Hello, the observable has the tweets that 
+    * contains hashtag #Hello.
+    *
+    * @param 
+    *
+    * @return Obervable Hashtag[]
+    *
+    */
 
   public allHashtag () : Observable<Hashtag[]> {
+
     return this.hashtagStore;
+
   }
 
-   /**
-     * getHashtag
-     *
-     * Search for a hashtag with the same name of param hashtagName
-     *
-     * @param hashtagName is the name of hashtag that you need to obtain.
-     *
-     * @return return the object Hashtag.
-     *
-     */
+  /**
+    * getHashtag
+    *
+    * Search for a hashtag with the same name of param hashtagName
+    *
+    * @param hashtagName is the name of hashtag that you need to obtain.
+    *
+    * @return return the object Hashtag.
+    *
+    */
 
   public getHashtag ( hashtagName : string) : Hashtag {
 
@@ -78,51 +80,57 @@ export class HashtagDataService {
       );
 
     return searchedHashtag;
+
   }
 
-     /**
-     * 
-     *
-     * 
-     *
-     * @param 
-     *
-     * @return 
-     *
-     */
+  /**
+    * newHashtag
+    *
+    * 
+    *
+    * @param 
+    *
+    * @return 
+    *
+    */
 
   public newHashtag ( hashtagName : string, idTweet: number) : void {
 
-      let hashtag : Hashtag;
-      let object : Object = {};
-      let arrayid : number[]  = [];
+    let hashtag : Hashtag;
+    let object : Object = {};
+    let arrayid : number[]  = [];
 
-      hashtag  = this.getHashtag(hashtagName);
+    hashtag  = this.getHashtag(hashtagName);
 
-      if (hashtag === null){
-        arrayid.push(idTweet);
-        hashtag = new Hashtag (hashtagName, arrayid);
-        this._store.dispatch({type: HashtagActions.HASHTAG_ADD, payload: hashtag});
-      }else{
-        object['hashtag'] = hashtag;
-        object['idTweet'] = idTweet;
-        this._store.dispatch({type: HashtagActions.HASHTAG_UPDATE, payload: object});
-      }
+    if (hashtag === null){
+
+      arrayid.push(idTweet);
+      hashtag = new Hashtag (hashtagName, arrayid);
+      this._store.dispatch({type: HashtagActions.HASHTAG_ADD, payload: hashtag});
+
+    }else{
+
+      object['hashtag'] = hashtag;
+      object['idTweet'] = idTweet;
+      this._store.dispatch({type: HashtagActions.HASHTAG_UPDATE, payload: object});
+
+    }
+
   }
 
-   /**
-     * SearchHashtag
-     *
-     * This function search for all hashtag in a text and save it in hashtagStore.
-     * Use two auxiliar function (splitHashtags, existHashtag).
-     * 
-     * @param textTweet
-     *        idTweet : If the text contains a hashtag that exists in the store I need to
-     *                  add the id tweet to this hashtag.
-     *
-     * @return void
-     *
-     */
+  /**
+    * SearchHashtag
+    *
+    * This function search for all hashtag in a text and save it in hashtagStore.
+    * Use two auxiliar function (splitHashtags, existHashtag).
+    * 
+    * @param textTweet
+    *        idTweet : If the text contains hashtag that exists in the store. It needs to
+    *                  add the id tweet to this hashtag.
+    *
+    * @return void
+    *
+    */
 
   public SearchHashtag(textTweet : string, idTweet :number) : void {
 
@@ -130,7 +138,6 @@ export class HashtagDataService {
 
     wordsTweet = textTweet.split(' ');
 
-    //Save in wordsTweet only hte hashtags
     wordsTweet = this.splitHashtags(wordsTweet);
 
     wordsTweet
@@ -142,19 +149,19 @@ export class HashtagDataService {
 
   }
 
-   /**
-     * splitHashtags
-     *
-     * Select only the words that begins for "#" (hashtags).
-     * 
-     * 
-     * @param array with words.
-     *
-     * @return array with hashtags.
-     * 
-     * @example input  : arrayWords    = [Hi, My, Name, is, Jcarlos, #goodMorning, #Hello]
-     *          output : arrayHashtags = [#goodMorning, #Hello]
-     */
+  /**
+    * splitHashtags
+    *
+    * Select only the words that begins for "#" (hashtags).
+    * 
+    * 
+    * @param array with words.
+    *
+    * @return array with hashtags.
+    * 
+    * @example input  : arrayWords    = [Hi, My, Name, is, Jcarlos, #goodMorning, #Hello]
+    *          output : arrayHashtags = [#goodMorning, #Hello]
+    */
 
   private splitHashtags(arrayWords : string[]) : string[] {
 
@@ -166,6 +173,8 @@ export class HashtagDataService {
           arrayHashtahs.push(word);       
       }
     );
+    
     return arrayHashtahs;
   }
+
 }

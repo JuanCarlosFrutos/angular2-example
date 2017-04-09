@@ -13,10 +13,10 @@ import { Hashtag } from '../models/hashtag';
 @Injectable()
 export class TweetDataService {
 
-	private tweetsSource = new Subject<Tweet[]>(); 
-  private tweetsStore : Observable<Tweet[]>;
-  private tweets = this.tweetsSource.asObservable();
-  private tweetsArray : Tweet[];
+	private tweetsSource : Subject<Tweet[]> = new Subject<Tweet[]>(); 
+  private tweetsStore  : Observable<Tweet[]>;
+  private tweets       : Observable<Tweet[]> = this.tweetsSource.asObservable();
+  private tweetsArray  : Tweet[];
 
 	private idTweet : number = 0;
 
@@ -25,9 +25,7 @@ export class TweetDataService {
   	) 
   { 
 
-
   	this.tweetsStore = _store.select(s => s.tweets);
-
 
     this.tweetsStore
       .subscribe(
@@ -35,34 +33,36 @@ export class TweetDataService {
           this.tweetsSource.next(arrayTweets);
           this.tweetsArray = arrayTweets;
         },
-      )
+      );
+
   }
 
-
-    /**
-     * AllTweets.
-     *
-     * 
-     * 
-     *
-     * @return Observable with all tweets in the store
-     *
+  /**
+    * AllTweets.
+    *
+    * 
+    * 
+    *
+    * @return Observable with all tweets in the store
+    *
   	*/
 
   public allTweets() : Observable<Tweet[]> {
+
  	  return this.tweets;
+
   }
 
-    /**
-     * writeTweet.
-     *
-     * Given a route with one or more dynamic parameters, replace
-     * parameters with supplied parameters and return resulting string.
-     *
-     * @param text text of tweet
-     *
-     * @return void
-     *
+  /**
+    * writeTweet.
+    *
+    * Given a route with one or more dynamic parameters, replace
+    * parameters with supplied parameters and return resulting string.
+    *
+    * @param text text of tweet
+    *
+    * @return void
+    *
   	*/
 
   public writeTweet(text : string, author: string) : number {
@@ -70,9 +70,12 @@ export class TweetDataService {
     let newTweet : Tweet;
 
     newTweet = new Tweet (this.idTweet, new Date(), author, text, [], []);
+
     this._store.dispatch({type: TweetActions.TWEET_ADD, payload: newTweet});
+
     this.idTweet++;
     return this.idTweet - 1;
+
   }
 
   
@@ -88,7 +91,7 @@ export class TweetDataService {
     *
     */
     
-  public filterTweets (hashtag : Hashtag) : void{
+  public filterTweets (hashtag : Hashtag) : void {
 
     let tweetsFilter : Tweet [];
  
@@ -104,24 +107,26 @@ export class TweetDataService {
 
   }
 
-    /**
-    * 
+  /**
+    * like
     *
     *
-    *
-    * @param hashtag name
+    * @param
     *
     */
 
   public like (tweet : Tweet, idUser : number) : void {
     let object : Object = {};
+
     object['tweet'] = tweet;
     object['idUser'] = idUser;
+
     this._store.dispatch({type: TweetActions.TWEET_LIKE, payload: object});
+
   }
 
-    /**
-    * 
+  /**
+    * dislike
     *
     *
     * @param 
@@ -129,10 +134,14 @@ export class TweetDataService {
     */
 
   public dislike (tweet : Tweet, idUser : number) : void {
+
     let object : Object = {};
+
     object['tweet'] = tweet;
     object['idUser'] = idUser;
+    
     this._store.dispatch({type: TweetActions.TWEET_DISLIKE, payload: object});
+
   }
 
 

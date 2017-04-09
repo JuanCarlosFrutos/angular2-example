@@ -1,12 +1,9 @@
 import { Component } from '@angular/core';
-
-import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/Rx';
-
+//MODELS
 import { User } from '../shared/models/user'
 import { Tweet } from '../shared/models/tweet';
 import { Hashtag } from '../shared/models/hashtag';
-import { AppStore } from '../shared/store/app-store';
 //SERVICES
 import { FormsService } from '../shared/services/forms-service.service';
 
@@ -17,21 +14,22 @@ import { FormsService } from '../shared/services/forms-service.service';
 })
 export class FormTweetComponent {
 
-  public success : boolean = false; 
-  public date : Date;
+    public success : boolean = false; 
+    public date    : Date;
 
   constructor(
-      private formsService : FormsService
-  	) {  
+    private formsService : FormsService
+  )
+  {  
     this.formsService.MessageTweet
                         .subscribe(
                           (state : boolean)=>{
                             this.configureMessages(state);
                           }
                         );
-    }
+  }
 
-  public writeTweet(text : string) : void{
+  public writeTweet(text : string) : void {
 
     this.formsService.submitTweet(text);
 
