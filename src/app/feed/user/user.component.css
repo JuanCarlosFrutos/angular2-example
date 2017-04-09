@@ -1,17 +1,14 @@
 #user {
-   background-color: red;
-   text-align: center;
-   width: 90%;
-   height: 200px;
-   border: 2px solid black;
+   display: flex;
+   justify-content: space-between;
+   min-height: 30%;
+   min-width: 30%;
    padding: 5px;
-   margin: 15px;
-   box-shadow: 3px 3px 5px black;
+   margin: 25px auto;
    box-sizing: border-box;
+   resize: both;
+   overflow: auto;
    
-   
-
-
     background-color: #5177F2 ;
 
     background: #ECF0FF; /* For browsers that do not support gradients */    

@@ -1,5 +1,3 @@
-// Importar componentes y módulos para el routing 
- 
 // Componentes
 import { FormTweetComponent }    from './form-tweet/form-tweet.component';
 import { SignupComponent }    from './form-signup/signup.component';
@@ -9,7 +7,7 @@ import { MenuComponent }    from './menu/menu.component';
 import { CanActivateService }	from './shared/services/can-activate-service.service';
 
 export const routing = [
-  //{ path: '/', component:  },
+
   {
     path: '',
     redirectTo: '',
@@ -23,7 +21,7 @@ export const routing = [
     ]
   },
   { 
-    path: 'test',
+    path: 'search',
     component: SearchComponent,
     canActivate: [
       CanActivateService
@@ -31,6 +29,11 @@ export const routing = [
   },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: FormLoginComponent},
-  { path: 'menu', component: MenuComponent},
+  { path: 'menu',
+    component: MenuComponent,
+    canActivate: [
+      CanActivateService
+    ]
+  },
   { path: '**', component:MenuComponent}
 ];

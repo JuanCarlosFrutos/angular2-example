@@ -4,14 +4,14 @@
       <form class="form-horizontal" #loginForm="ngForm">
         <!-- Error message -->  
         <div class="form-group">
-          <div *ngIf="err" class="alert alert-danger col-md-offset-6 col-md-6">
+          <div *ngIf="err" class="alert alert-danger col-md-offset-3 col-md-6">
             Username or password incorrect.
           </div>
         </div>
         <!-- Name -->  
         <div class="form-group">
-          <label class="control-label col-md-offset-2 col-md-3" for="name"  placeholder="Enter username">Name:</label>
-          <div class = "col-md-3">
+          <label class="control-label col-md-offset-2 col-md-4" for="name"  placeholder="Enter username">Name:</label>
+          <div class = "col-md-4">
           <input type="text" class="form-control" id="name"
             [(ngModel)]="userData['userName']" name="name"
             #name="ngModel">
@@ -19,8 +19,8 @@
           <!-- Password -->
         </div>
         <div class="form-group">
-          <label class="control-label col-md-offset-2 col-md-3" for="pass" placeholder="Enter password">Password:</label>
-          <div class="col-md-3">
+          <label class="control-label col-md-offset-2 col-md-4" for="pass" placeholder="Enter password">Password:</label>
+          <div class="col-md-4">
             <input type="password" class="form-control" id="pass"
               [(ngModel)]="userData['password']" name="pass">
           </div>

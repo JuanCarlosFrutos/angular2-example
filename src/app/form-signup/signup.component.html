@@ -1,41 +1,43 @@
 
-<div id="signupForm">
+<div id="signup">
   <h1>Sign Up</h1>
+  <div id="signupForm">
   <form class="form-horizontal"  #signUpForm="ngForm">
     <!-- Success message -->
     <div *ngIf="success" class="form-group">
-      <div class="alert alert-success col-md-offset-6 col-md-6">
+      <div class="alert alert-success col-md-offset-3 col-md-6">
         Succes authetification.
       </div>
     </div>
     <!-- Error message -->    
     <div *ngIf="err" class="form-group">
-      <div class="alert alert-danger col-md-offset-6 col-md-6">
+      <div class="alert alert-danger col-md-offset-3 col-md-6">
         Passwords don't match.
       </div>
     </div>
     <!-- Name -->   
     <div class="form-group">
-      <label for="name" class = "control-label col-md-offset-2 col-md-3">Name:</label>
-      <div class="col-md-3">
+      <label for="name" class = "control-label col-md-offset-2 col-md-4">Name:</label>
+      <div class="col-md-4">
         <input type="text" class="form-control" id="name" [(ngModel)]="name" name="name">
       </div>
     </div>
     <!-- Password --> 
     <div class="form-group">
-      <label for="pass" class = "control-label col-md-offset-2 col-md-3">Password:</label>
-      <div class="col-md-3">
+      <label for="pass" class = "control-label col-md-offset-2 col-md-4">Password:</label>
+      <div class="col-md-4">
         <input type="password" class="form-control" id="pass" [(ngModel)]="pass" name="pass">
       </div>
     </div>
     <!-- Repeat Password -->
     <div class="form-group">
-      <label for="repass" class = "control-label col-md-offset-2 col-md-3">Repeat Password:</label>
-      <div class="col-md-3">
+      <label for="repass" class = "control-label col-md-offset-2 col-md-4">Repeat Password:</label>
+      <div class="col-md-4">
         <input type="password" class="form-control" id="repass" [(ngModel)]="repass" name="repass">
       </div>
     </div>
     <!-- Button -->
     <button type="button" class="btn btn-default" (click)="newUser();signUpForm.reset()">Sign Up</button>
   </form>
+  </div>
 </div>

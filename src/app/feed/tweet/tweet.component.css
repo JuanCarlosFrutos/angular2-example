@@ -1,4 +1,5 @@
 #tweet {
+  
    display: flex;
    flex-wrap: wrap;
    justify-content: space-between;
@@ -44,10 +45,10 @@
 .photo{
   width: 10%;
 }
-#image{
+/*#image{
   height: 100px;
   width: 100px;
-}
+}*/
 
 
 .opinions {

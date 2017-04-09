@@ -111,7 +111,7 @@ export class AppComponent {
 
     this.formsService.StateLogin(state);
 
-    this._router.navigate(['']);
+    this._router.navigate(['/menu']);
   }
 
   /**

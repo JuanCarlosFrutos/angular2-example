@@ -11,8 +11,7 @@
 		</div>	
 	</div>		
 	<div *ngIf="showUsers">
-		<div class = col-md-4
-			*ngFor="let user of users;">
+		<div *ngFor="let user of users;">
 			<app-user [user] = "user"></app-user>
 		</div>
 	</div>

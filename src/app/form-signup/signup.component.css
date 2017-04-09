@@ -1,4 +1,4 @@
-#signupForm {
+#signup {
     text-align: center;
 
     margin-top: 25px;
@@ -16,6 +16,11 @@
     background: rgba(0, 0, 0, 0.3) /* Green background with 30% opacity */
 }
 
+#signupForm {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 50px;
+}
 
 h1 {
     text-align: center;
