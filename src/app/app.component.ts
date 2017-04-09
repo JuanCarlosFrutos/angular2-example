@@ -235,7 +235,7 @@ export class AppComponent {
         hashtag = new Hashtag("ALL_TWEETS", null);             //-->Change this
       }               
 
-      hashtag = this.hashtagDataService.getHashtag(hashtagName);                          //   
+      hashtag = this.hashtagDataService.getHashtag(hashtagName);   
 
       if (hashtag != null){
         this.tweetDataService.filterTweets(hashtag);
