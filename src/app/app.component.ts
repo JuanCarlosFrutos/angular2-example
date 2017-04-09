@@ -21,14 +21,14 @@ import { FormsService } from './shared/services/forms-service.service';
 
 export class AppComponent {
 
-  private tweets     : Observable<Tweet[]>;
-  private users      : Observable<User[]>;
-  private hashtags   : Observable<Hashtag[]>;
-  private loggedUser : Observable<User>;
+  public tweets     : Observable<Tweet[]>;
+  public users      : Observable<User[]>;
+  public hashtags   : Observable<Hashtag[]>;
+  public loggedUser : Observable<User>;
 
-  private userLogged : User;
-  private showTweets : boolean = true; 
-  private showUsers  : boolean = false;
+  public userLogged : User;
+  public showTweets : boolean = true; 
+  public showUsers  : boolean = false;
 
   constructor(
     private loginService       : LoginService,
@@ -155,7 +155,7 @@ export class AppComponent {
     *
     */
 
-  private clickLike($event) : void{
+  public clickLike($event) : void{
     this.tweetDataService.like($event, this.userLogged.id);
     console.log($event);
   }
@@ -167,7 +167,7 @@ export class AppComponent {
     * 
     */
   
-  private clickDislike($event) : void{
+  public clickDislike($event) : void{
     this.tweetDataService.dislike($event, this.userLogged.id);
   }
 
@@ -274,7 +274,7 @@ export class AppComponent {
     *          
     */
 
-  private addFriend(user : User) {
+  public addFriend(user : User) {
     this.loginService.addFriend(user);
   }
 

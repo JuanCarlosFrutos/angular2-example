@@ -21,13 +21,13 @@ export class SignupComponent {
 
   // Variables new User
   //private user: User;
-  private name: string;
-  private pass: string;
-  private repass: string;
-  private object: Object = {};
+  public name: string;
+  public pass: string;
+  public repass: string;
+  public object: Object = {};
 
-  private err: boolean = false;
-  private success : boolean = false;
+  public err: boolean = false;
+  public success : boolean = false;
 
   constructor(
   	private formsService : FormsService
@@ -40,7 +40,7 @@ export class SignupComponent {
                         );
   }
   
-  private newUser () : void {
+  public newUser () : void {
 
     this.object['name']   = this.name;
     this.object['pass']   = this.pass;

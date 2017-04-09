@@ -17,8 +17,8 @@ import { FormsService } from '../shared/services/forms-service.service';
 })
 export class FormTweetComponent {
 
-  private success : boolean = false; 
-  private date : Date;
+  public success : boolean = false; 
+  public date : Date;
 
   constructor(
       private formsService : FormsService
@@ -31,7 +31,7 @@ export class FormTweetComponent {
                         );
     }
 
-  private writeTweet(text : string) : void{
+  public writeTweet(text : string) : void{
 
     this.formsService.submitTweet(text);
 

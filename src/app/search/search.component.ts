@@ -19,7 +19,7 @@ export class SearchComponent {
   	) {
   }
 
-  private onChangeSearch (myInput) : void {
+  public onChangeSearch (myInput) : void {
 
     if (myInput.value.indexOf('#')==0){
       this.formsService.searchTweet(myInput.value);

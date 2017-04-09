@@ -14,10 +14,10 @@ import { FormsService } from '../shared/services/forms-service.service';
 })
 export class FormLoginComponent {
 
-  private userName : string;
-  private password  : string;
-  private userData : Object = {}; // {userName : string, password : string}
-  private err : boolean = false;
+  public userName : string;
+  public password  : string;
+  public userData : Object = {}; // {userName : string, password : string}
+  public err : boolean = false;
 
   constructor(
     private formsService : FormsService
@@ -30,7 +30,7 @@ export class FormLoginComponent {
                               );
   }
   
-  private login () : void {
+  public login () : void {
 
     this.formsService.submitLogin(this.userData);
 
