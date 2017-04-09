@@ -24,8 +24,8 @@ export class LoginService {
   {
 
     //selects
-    this.listUsersStore = store.select('UserReduce');
-    this.userLoggedStore = store.select('UserLoged');
+    this.listUsersStore = store.select(s => s.users);
+    this.userLoggedStore = store.select(s => s.userLogged);
 
     //subscribe to Store with all users.
     this.listUsersStore

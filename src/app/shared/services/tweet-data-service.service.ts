@@ -26,7 +26,7 @@ export class TweetDataService {
   { 
 
 
-  	this.tweetsStore = _store.select('TweetReduce');
+  	this.tweetsStore = _store.select(s => s.tweets);
 
 
     this.tweetsStore

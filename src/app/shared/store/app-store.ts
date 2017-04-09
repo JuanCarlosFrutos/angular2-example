@@ -4,8 +4,8 @@ import { User } from '../models/user';
 import { Hashtag } from '../models/hashtag';
 
 export interface AppStore {
-  tweet : Tweet[];
-  users : User[];
-  currentUser : User;
-  hashtags : Hashtag[];
+  tweets 	 : Tweet[];
+  users 	 : User[];
+  userLogged : User;
+  hashtags   : Hashtag[];
 }

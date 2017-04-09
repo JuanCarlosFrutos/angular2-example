@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { FormsServiceService } from './forms-service.service';
+import { FormsService } from './forms-service.service';
 
-describe('FormsServiceService', () => {
+describe('FormsService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FormsServiceService]
+      providers: [FormsService]
     });
   });
 
-  it('should ...', inject([FormsServiceService], (service: FormsServiceService) => {
+  it('should ...', inject([FormsService], (service: FormsService) => {
     expect(service).toBeTruthy();
   }));
 });

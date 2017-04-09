@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { HashtagDataServiceService } from './hashtag-data-service.service';
+import { HashtagDataService } from './hashtag-data-service.service';
 
 describe('HashtagDataServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [HashtagDataServiceService]
+      providers: [HashtagDataService]
     });
   });
 
-  it('should ...', inject([HashtagDataServiceService], (service: HashtagDataServiceService) => {
+  it('should ...', inject([HashtagDataService], (service: HashtagDataService) => {
     expect(service).toBeTruthy();
   }));
 });

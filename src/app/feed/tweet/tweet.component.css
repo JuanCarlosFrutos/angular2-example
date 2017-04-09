@@ -67,7 +67,7 @@
 
 @font-face {
     font-family: 'steelfish'; /*a name to be used later*/
-    src: url('../../assets/fonts/Fonts/steelfish_bd.otf'); /*URL to font*/
+    src: url('../../../assets/fonts/Fonts/steelfish_bd.otf'); /*URL to font*/
 }
 
 

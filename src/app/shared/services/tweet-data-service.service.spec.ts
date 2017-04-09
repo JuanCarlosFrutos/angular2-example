@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { TweetDataServiceService } from './tweet-data-service.service';
+import { TweetDataService} from './tweet-data-service.service';
 
 describe('TweetDataServiceService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TweetDataServiceService]
+      providers: [TweetDataService]
     });
   });
 
-  it('should ...', inject([TweetDataServiceService], (service: TweetDataServiceService) => {
+  it('should ...', inject([TweetDataService], (service: TweetDataService) => {
     expect(service).toBeTruthy();
   }));
 });

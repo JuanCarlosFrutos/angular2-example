@@ -19,7 +19,7 @@ export class HashtagDataService {
   		private _store : Store<AppStore>
   	) 
   { 
-  	this.hashtagStore = _store.select('HashtagsReduce');
+  	this.hashtagStore = _store.select(s => s.hashtags);
 
     this.hashtagStore
       .subscribe(

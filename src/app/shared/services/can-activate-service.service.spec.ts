@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { CanActivateServiceService } from './can-activate-service.service';
+import { CanActivateService } from './can-activate-service.service';
 
-describe('CanActivateServiceService', () => {
+describe('CanActivateService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [CanActivateServiceService]
+      providers: [CanActivateService]
     });
   });
 
-  it('should ...', inject([CanActivateServiceService], (service: CanActivateServiceService) => {
+  it('should ...', inject([CanActivateService], (service: CanActivateService) => {
     expect(service).toBeTruthy();
   }));
 });
